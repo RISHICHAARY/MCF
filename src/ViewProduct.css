@@ -125,6 +125,7 @@
     .view-pop {
         top: 0.1;
         overflow: auto;
+        max-height:70vh;
     }
     .first-container {
         width: 100%;
