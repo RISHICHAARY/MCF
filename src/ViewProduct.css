@@ -1,0 +1,151 @@
+.view-pop{
+    position:fixed;
+    top:6vh;
+    left:5px;
+    background:rgba(250, 250, 250, 0.99);
+    width:98%;
+    border-radius:0.1em;
+    box-shadow: 0 0 5em;
+}
+
+.n-active-images{
+    cursor: pointer;
+    height:50px;
+    width:70px;
+    border:solid 0.1em;
+    margin:0.5em;
+}
+
+.active-image{
+    height:400px;
+    max-width:100%;
+}
+
+.active-image-div{
+    text-align: center;
+    border:solid 0.1em;
+}
+
+.view-product-name{
+    font-size:2em;
+    margin-bottom: 0;
+}
+
+.product-description{
+    font-size:1.4em;
+}
+
+.content-div{
+    text-align:left;
+}
+
+.product-links{
+    color:black;
+}
+
+.product-extras{
+    margin-bottom:0;
+    font-size:1.4em;
+}
+
+.view-warning{
+    color: red;
+    font-size: 0.7em;
+}
+
+.product-discount-price{
+    background-color:red;
+    color:white;
+    border-radius:2em;
+    padding: 0 1em;
+    width:6em;
+    text-align: center;
+}
+
+.strike{
+    color:red;
+    opacity:0.75;
+    font-size:1.2em;
+    margin-bottom:0;
+    margin-top:1em;
+}
+
+.slashed-price{
+    color:black;
+    margin-bottom:0;
+}
+
+.live-price{
+    font-size:2em;
+    margin-top:0em;
+    padding-top:0em;
+}
+
+.cart-button{
+    border:none;
+    outline:none;
+    background-color:black;
+    color:white;
+    padding:0.5em;
+    float:left;
+    transition-duration: 0.5s;
+}
+
+.cart-button:hover{
+    background-color: grey;
+}
+
+.wish-icon:hover{
+    color:#FF0032;
+}
+
+.full-wish-icon{
+    color:#FF0032;
+}
+
+.wish-button{
+    font-size:1.8em;
+    float:left;
+}
+
+@media (max-width: 767px) {
+    .view-product-name {
+        font-size: 1.5em;
+    }
+
+    .product-description {
+        font-size: 1.2em;
+    }
+
+    .live-price {
+        font-size: 1.5em;
+    }
+
+    .view-pop {
+        top: 0.1;
+        overflow: auto;
+    }
+    .first-container {
+        width: 100%;
+      flex-direction: column;
+    }
+
+    .active-image-div {
+        width: 100%;
+    }
+
+    .content-div {
+        width: 100%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .cart-button {
+        margin-bottom: 1em;
+    }
+
+    .active-image{
+        height:250px;
+        max-width:100%;
+    }
+}
