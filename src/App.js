@@ -37,7 +37,7 @@ import Account from './account';
 function App() {
 
   const [ Offers , setOffers ]= useState([]);
-  const [ PopUp , setPopUp ] = useState(false);
+  const [ PopUp , setPopUp ] = useState(true);
 
   if(PopUp){
     document.body.style.overflowY = "hidden";
