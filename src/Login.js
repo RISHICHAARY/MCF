@@ -5,7 +5,7 @@ import './users.css';
 
 function Login(){
     const [ Username , setUsername ] = useState (null );
-    const [ Password , setPassword ] = useState( [] );
+    const [ Password , setPassword ] = useState( null );
     const Navigate = useNavigate();
 
     useEffect(
