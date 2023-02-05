@@ -107,7 +107,7 @@ function Login(){
                                 onChange={(event)=>{setPassword(event.target.value)}}>
                             </input>
                             <button className="final-button general-button"
-                                onClick={check} type="button">
+                                onClick={()=>{check()}} type="button">
                                 GET IN
                                 <i className="fi fi-br-angle-right end-icons-err"></i>
                             </button>
