@@ -27,16 +27,16 @@ function Login(){
             if(Users_list.length === 0){
                 alert("Invalid Username!!");
             }
-            if(Users_list.length !== 0){
+            else if(Users_list.length !== 0){
                 for(var j = 0 ; j <= Users_list.length ; j++){
                     if( Users_list[j].email.toString() === Username.toString() ){
                         if( Users_list[j].password.toString() === Password.toString() ){
                             Navigate('/' , {state:{id:Users_list[j]._id, name : Users_list[j].full_name ,user:Username , status:"LoggedIn" , type : "user" }});
                             break;
                         }
-                        else{alert("Invalid Password")}
+                        else{alert("Invalid Password");break;}
                     }
-                    else if( j === Users_list.length-1 ){alert("Invalid Username!!");}
+                    else if( j === Users_list.length-1 ){alert("Invalid Username!!");break;}
                 }
             }
         }
@@ -47,10 +47,11 @@ function Login(){
                         Navigate('/Dashboard' , {state:{id:Admins_list[i]._id , name : Admins_list[i].full_name ,user:Username ,status:"LoggedIn" , type : "admin" }});
                         break;
                     }
-                    else{alert("Invalid Password")}
+                    else{alert("Invalid Password");break;}
                 }
                 else if(i === Admins_list.length-1 && Users_list.length === 0){
                     alert("Invalid Username!!");
+                    break;
                 }
                 else if( i === Admins_list.length-1 ){
                     for( j = 0 ; j <= Users_list.length ; j++){
@@ -59,9 +60,9 @@ function Login(){
                                 Navigate('/' , {state:{id:Users_list[j]._id, name : Users_list[j].full_name,user:Username ,status:"LoggedIn" , type : "user" }});
                                 break;
                             }
-                            else{alert("Invalid Password")}
+                            else{alert("Invalid Password");break}
                         }
-                        else if( j === Users_list.length-1 ){alert("Invalid Username!!");}
+                        else if( j === Users_list.length-1 ){alert("Invalid Username!!");break}
                     }
                 }
             }
