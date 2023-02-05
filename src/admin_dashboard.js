@@ -173,12 +173,11 @@ function AdminDashBoard(){
         )
     }
 
-    setColors([ {"BackgroundColor":"#DD5353" , "ForegroundColor":"#FFF8EA"} , {"BackgroundColor":"#54BAB9" , "ForegroundColor":"#FFF8EA"} ,
+    useEffect(()=>{
+        setColors([ {"BackgroundColor":"#DD5353" , "ForegroundColor":"#FFF8EA"} , {"BackgroundColor":"#54BAB9" , "ForegroundColor":"#FFF8EA"} ,
         {"BackgroundColor":"#9AD0EC" , "ForegroundColor":"black"} , {"BackgroundColor":"#FFBD35" , "ForegroundColor":"black"}
         , {"BackgroundColor":"#AE431E" , "ForegroundColor":"white"} , {"BackgroundColor":"#558776" , "ForegroundColor":"#EAE2B6"}
         , {"BackgroundColor":"#D8C292" , "ForegroundColor":"#C19065"}]);
-
-    useEffect(()=>{
         setLoading(true);
         Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
