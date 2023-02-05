@@ -12,7 +12,6 @@ import noproduct from './noproduct.png'
 function Filter() {
     const Navigate = useNavigate();
     const Location = useLocation();
-
     const Null = null;
     const [ Category , setCategory ] = useState( null );
     const [ Tag , setTag ] = useState( null );
@@ -174,7 +173,7 @@ function Filter() {
  , [] );
 
     return (
-        <div id="Home" className='full-height'>
+        <div id="Home">
         {
             (Location.state === null)?<NavBar Received={{page : "P"}}/>:
             <NavBar Received={ {page : "P",status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
