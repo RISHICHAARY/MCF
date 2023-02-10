@@ -82,7 +82,7 @@ function Display(){
                         // Product cart
                         <div className='display-column' key={value._id} >
                             <div className='image-div'>
-                                <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} alt="Product" className='image'></img>
+                                <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{setActiveProduct(value._id);setExpand(true);}} alt="Product" className='image'></img>
                                 <div className='product-discount-div'>
                                     <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
                                     <p className='product-discount'>OFF</p>
