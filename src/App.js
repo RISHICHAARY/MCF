@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-pascal-case */
 import {BrowserRouter as Router , Route , Routes} from 'react-router-dom';
 import Axios from 'axios';
 import {useEffect,useState} from 'react';
@@ -58,7 +57,7 @@ function App() {
         <div className="home-section">
               {/* <img src={homeimage} alt="home" /> */}
               <div className="container content">
-                <h2 className='magic-corner'>Magic Corner</h2>
+                <h2 className='magic-corner'>MAGIC CORNER</h2>
                 <p className='home-description'>A complete spot to all your handmade products.</p>
                 {
                   Offers.map((value)=>{
@@ -79,7 +78,7 @@ function App() {
         <div className="PopUp">
           <button onClick={()=>{setPopUp(false)}} className="close"><i class="fi fi-rr-cross"></i></button>
           <br></br>
-          <h1 className="h1">Magic Corner Offers</h1>
+          <h1 className="popup-h1">Magic Corner Offers</h1>
           {
             Offers.map((value)=>{
               return(
