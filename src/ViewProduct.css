@@ -39,6 +39,21 @@
     font-size:1.4em;
 }
 
+.text-area {
+    width: 90%;
+}
+
+.quantity {
+    font-family: 'Garamond';
+    font-size:1.4em;
+    display: inline-block;
+    width: 25%;
+}
+
+.quantity-input {
+    display: inline-block;
+}
+
 .content-div{
     text-align:left;
 }
