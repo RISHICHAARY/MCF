@@ -20,7 +20,7 @@ function EditWorkshops(){
 
     const update = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/UpdateWorkshops" , 
+        Axios.put("https://magiccorner-b.onrender.com/UpdateWorkshops" , 
         {
             id : id,
             name : Name,

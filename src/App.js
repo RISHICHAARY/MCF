@@ -47,7 +47,7 @@ function App() {
   }
 
   useEffect(()=>{
-    Axios.get("http://localhost:3001/getOffers").then((response)=>{
+    Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
       setOffers(response.data);
     })
   },[])

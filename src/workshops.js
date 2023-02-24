@@ -18,8 +18,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
+        Axios.put('https://magiccorner-b.onrender.com/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('https://magiccorner-b.onrender.com/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -30,7 +30,7 @@ function Workshop() {
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
+        Axios.get('https://magiccorner-b.onrender.com/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });

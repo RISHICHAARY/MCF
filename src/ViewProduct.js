@@ -28,8 +28,8 @@ const ProductView = (Received) => {
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("http://localhost:3001/deleteWishList" , {id:Received.Received.id , type : Received.Received.type , file : CartItems}).then(()=>{
-			Axios.put("http://localhost:3001/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
+		Axios.put("https://magiccorner-b.onrender.com/deleteWishList" , {id:Received.Received.id , type : Received.Received.type , file : CartItems}).then(()=>{
+			Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -38,12 +38,12 @@ const ProductView = (Received) => {
 
     useEffect( () => {
         setLoading(true);
-        Axios.put("http://localhost:3001/getSelectedProductss" , {id:Received.Received.Product_id}).then((response) => {
+        Axios.put("https://magiccorner-b.onrender.com/getSelectedProductss" , {id:Received.Received.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveImage(response.data[0].image[0])
             setNonActiveImage(response.data[0].image)
             if(Received.Received.check === "in"){
-                Axios.put("http://localhost:3001/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
+                Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
                     setCartItems(response.data[0].wishlist);
                     setLoading(false);
             })}
@@ -93,7 +93,7 @@ const ProductView = (Received) => {
                         <>
                             <button className="cart-button" onClick={() =>{
                                 setLoading(true);
-                                Axios.put("http://localhost:3001/addToCart" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
+                                Axios.put("https://magiccorner-b.onrender.com/addToCart" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
                                     setLoading(false);
                                     Navigate("/cart" , { state: {status: Received.Received.status, name : Received.Received.name , user:Received.Received.user , type:Received.Received.type , id:Received.Received.id} })
                                 });
@@ -107,7 +107,7 @@ const ProductView = (Received) => {
                                 <button className='wish-button'
                                 onClick={() =>{
                                 setLoading(true);
-                                Axios.put("http://localhost:3001/addToWishList" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id}).then(() =>{
+                                Axios.put("https://magiccorner-b.onrender.com/addToWishList" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id}).then(() =>{
                                     setOnPageCart((p) => [...p , Item._id])
                                     setLoading(false);
                                 });

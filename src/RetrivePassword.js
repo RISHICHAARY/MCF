@@ -17,10 +17,10 @@ function RetrivePassword(){
 
     useEffect(
         () =>{
-            Axios.get("http://localhost:3001/allUsers").then((response) => {
+            Axios.get("https://magiccorner-b.onrender.com/allUsers").then((response) => {
                 setUsers_list(response.data);
             });
-            Axios.get("http://localhost:3001/allAdmins").then((response) => {
+            Axios.get("https://magiccorner-b.onrender.com/allAdmins").then((response) => {
                 setAdmins_list(response.data);
             });
         } , []

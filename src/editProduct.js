@@ -28,7 +28,7 @@ function EditProducts(){
 
     const update = (id) => {
         setLoading(true);
-            Axios.put("http://localhost:3001/updateProducts" , 
+            Axios.put("https://magiccorner-b.onrender.com/updateProducts" , 
             {
                 id : id,
                 name : Name,

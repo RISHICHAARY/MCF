@@ -16,7 +16,7 @@ const ProductView = (Received) => {
     useEffect( () => {
 
         setLoading(true);
-        Axios.put("http://localhost:3001/getSelectedWorkShops" , {id:Received.Received.Product_id}).then((response) => {
+        Axios.put("https://magiccorner-b.onrender.com/getSelectedWorkShops" , {id:Received.Received.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveImage(response.data[0].image[0]);
             setNonActiveImage(response.data[0].image);
