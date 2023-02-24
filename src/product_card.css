@@ -79,6 +79,28 @@
     padding: 1em;
 }
 
+.quant-div{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: white;
+    background-color: rgba(250,0,0,0.80);
+    border-radius: 10em;
+    font-size: 1em;
+    padding: 1em;
+}
+
+.cuz-div{
+    position: absolute;
+    top: 2px;
+    left: 45px;
+    color: white;
+    background-color: rgba(27, 185, 212, 0.8);
+    border-radius: 10em;
+    font-size: 1em;
+    padding: 1em;
+}
+
 .contents-div{
     text-align: left;
     padding: 1em;

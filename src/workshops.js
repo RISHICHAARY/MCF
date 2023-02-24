@@ -18,8 +18,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://clear-slug-teddy.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -30,7 +30,7 @@ function Workshop() {
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });

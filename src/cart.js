@@ -17,7 +17,7 @@ function Cart(){
     const Calculation = ( Received ) => {
         var T =0;
         for(var j = 0; j< Received.length ; j++){
-            T = T + parseInt(Received[j].newprice);
+            T = T + parseInt(Received[j].newprice)*parseInt(Received[j].quant);
         }
         setTotal(T);
         setLoading(false);
@@ -25,17 +25,19 @@ function Cart(){
 
     const Delete = (id) => {
 		setLoading(true);
-		for(var i=0;i<OnCart.length;i++){
-			if(OnCart[i] === id){
-				OnCart.splice(i,2);
+		for(var i=0;i<OnCart.id.length;i++){
+			if(OnCart.id[i] === id){
+				OnCart.id.splice(i,1);
+                OnCart.cuz.splice(i,1);
+                OnCart.quant.splice(i,1);
 			}
 		}
-		Axios.put("https://clear-slug-teddy.cyclic.app/deleteMe" , {id:Location.state.id , type : Location.state.type , file : OnCart}).then(()=>{
-			Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("http://localhost:3001/deleteMe" , {id:Location.state.id , type : Location.state.type , file : OnCart}).then(()=>{
+			Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setOnCart(response.data[0].on_cart);
-                Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+                Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                     setCartItems(response1.data);
-                    Calculation(response1.data);
+                    add(response1.data , response.data[0].on_cart);
                 })
             })
 		});
@@ -51,6 +53,19 @@ function Cart(){
     const [ WishList , setWishList ] = useState([]);
     const [ OnPageCart , setOnPageCart ] = useState([]);
 
+    const add = (rec , rec1) =>{
+        for(var i=0 ; i< Object.keys(rec1.id).length ;i++){
+            for(var j=0 ; j< rec.length ;j++){
+                if(rec[j]._id === rec1.id[i]){
+                    rec[j].quant = rec1.quant[i]
+                    rec[j].cuz = rec1.cuz[i]
+                }
+            }
+        }
+        Calculation(rec);
+        setCartItems(rec);
+    }
+
     const DeleteWishlist = (id) => {
 		setLoading(true);
 		for(var i=0;i<CartItems.length;i++){
@@ -63,8 +78,8 @@ function Cart(){
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("https://clear-slug-teddy.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("http://localhost:3001/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setWishList(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -73,12 +88,12 @@ function Cart(){
 
     useEffect(() => {
         setLoading(true);
-        Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+        Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
             setOnCart(response.data[0].on_cart);
-            Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+            Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                 setCartItems(response1.data);
-                Calculation(response1.data);
-                Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                add(response1.data , response.data[0].on_cart);
+                Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setWishList(response.data[0].wishlist);
                         setLoading(false);
                 })
@@ -115,13 +130,23 @@ function Cart(){
                     {
                         CartItems.map((value) => {
                         return(
-                            <div className='display-column' key={value._id} >
+                            <div className='display-column' key={value._id+Math.floor((Math.random()*(value.image.length))+0)} >
                             <div className='image-div'>
                                 <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{setActiveProduct(value._id);setExpand(true);}} alt="Product" className='image'></img>
                                 <div className='product-discount-div'>
                                     <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
                                     <p className='product-discount'>OFF</p>
                                 </div>
+                                <div className='quant-div'>
+                                    <p className='product-discount'>{value.quant}</p>
+                                </div>
+                                {
+                                    (value.cuz !== null)?
+                                        <div className='cuz-div'>
+                                            <p className='product-discount'><i class="fi fi-rr-magic-wand"></i></p>
+                                        </div>
+                                    :<></>
+                                }
                             </div>
                             <div className='contents-div'>
                                 <div className='contents'>
@@ -161,7 +186,7 @@ function Cart(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://clear-slug-teddy.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });
@@ -207,12 +232,12 @@ function Cart(){
                 setExpand(false)
                 setLoading(true);
                 if(Location.state !== null){
-                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setOnCart(response.data[0].on_cart);
-                        Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+                        Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                             setCartItems(response1.data);
                             Calculation(response1.data);
-                            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                                 setWishList(response.data[0].wishlist);
                                 setLoading(false);
                         })
@@ -229,12 +254,12 @@ function Cart(){
                 setExpand(false)
                 setLoading(true);
                 if(Location.state !== null){
-                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setOnCart(response.data[0].on_cart);
-                        Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+                        Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                             setCartItems(response1.data);
                             Calculation(response1.data);
-                            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                                 setWishList(response.data[0].wishlist);
                                 setLoading(false);
                         })

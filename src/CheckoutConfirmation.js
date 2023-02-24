@@ -41,7 +41,7 @@ function Confirmation(){
             }
         }
         for(var j = 0; j< Received.length ; j++){
-            T = T + parseInt(Received[j].newprice);
+            T = T + parseInt(Received[j].newprice)*parseInt(Received[j].quant);
         }
         setSTotal(T);
         setTotal(T);
@@ -73,9 +73,9 @@ function Confirmation(){
         if(TCConfirmation === false){
             alert("Verify your address");
         }
-        if(PaymentMode === "COD"){
+        if(PaymentMode === "COD" && AddressConfirmation === true && TCConfirmation === true){
             setLoading(true);
-            Axios.put("https://clear-slug-teddy.cyclic.app/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : House+", Street "+Street+","+City+","+State , products : OnCart , pm : "COD" , total : Total }).then(
+            Axios.put("http://localhost:3001/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : House+", Street "+Street+","+City+","+State , products : OnCart , pm : "COD" , total : Total }).then(
                 (response)=>{
                     setLoading(false);
                     Navigate("/Confirmed" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
@@ -83,7 +83,7 @@ function Confirmation(){
                 }
             )
         }
-        else if(PaymentMode === "PN"){
+        else if(PaymentMode === "PN" && AddressConfirmation === true && TCConfirmation === true){
             setPayNow(true);
         }
         else{
@@ -91,9 +91,24 @@ function Confirmation(){
         }
     }
 
+    const add = (rec , rec1) =>{
+        for(var i=0 ; i< Object.keys(rec1.id).length ;i++){
+            for(var j=0 ; j< rec.length ;j++){
+                if(rec[j]._id === rec1.id[i]){
+                    rec[j].quant = rec1.quant[i]
+                    rec[j].cuz = rec1.cuz[i]
+                }
+            }
+        }
+        Axios.get("http://localhost:3001/getOffers").then((response3)=>{
+                        Calculation(rec , response3.data);
+                    })
+        setOnCart(rec);
+    }
+
     useEffect(()=>{
             setLoading(true);
-            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setHouse(response.data[0].address.house_no);
                 setStreet(response.data[0].address.street);
                 setArea(response.data[0].address.area);
@@ -103,11 +118,9 @@ function Confirmation(){
                 setMobile(response.data[0].mobile_no);
                 setEmail(response.data[0].email);
                 setId(response.data[0]._id);
-                Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+                Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                     setOnCart(response1.data);
-                    Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response3)=>{
-                        Calculation(response1.data , response3.data);
-                    })
+                    add(response1.data , response.data[0].on_cart);
                 })
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -138,6 +151,7 @@ function Confirmation(){
                     <table className='w-100 bill-table'>
                         <tr>
                             <th className='name-th'>Product Name</th>
+                            <th className='p-th'>Quantity</th>
                             <th className='p-th'>Original Price</th>
                             <th className='p-th'>Sold Price</th>
                         </tr>
@@ -145,8 +159,9 @@ function Confirmation(){
                             return(
                                 <tr key={value.name}>
                                     <td className='p-td'>
-                                    {(value.cod !== "YES")?value.name +" (NO CASH ON DELIVERY)": value.name}
+                                    {(value.cod !== "YES")?value.name +" (NO CASH ON DELIVERY)":(value.cuz !== null && value.cod !== "YES") ?value.name +" (NO CASH ON DELIVERY + CUSTOMIZATION CHARGES INCLUDE)": (value.cuz !== null) ?value.name +" (CUSTOMIZATION CHARGES TO PAID AT DELIVERY)": value.name}
                                     </td>
+                                    <td className='q'>{value.quant}</td>
                                     <td>Rs {value.oldprice}</td>
                                     <td>Rs {value.newprice}</td>
                                 </tr>

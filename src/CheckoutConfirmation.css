@@ -36,7 +36,11 @@
 }
 
 .name-th{
-    width : 60% ;
+    width : 50% ;
+}
+
+.q{
+    padding-left: 2em;
 }
 
 .p-th{

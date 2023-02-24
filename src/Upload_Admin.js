@@ -15,7 +15,7 @@ function Upload_User(){
 
     useEffect(
         ()=>{
-            Axios.post("https://clear-slug-teddy.cyclic.app/adminMailer" , {
+            Axios.post("http://localhost:3001/adminMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -30,7 +30,7 @@ function Upload_User(){
         const FileReference = ref(storage , `Admin_DP/${Location.state.file.name+Location.state.name+Location.state.email}`);
         uploadBytes(FileReference , Location.state.file).then((FileData) => {
             getDownloadURL(FileData.ref).then((url) => {
-                Axios.post("https://clear-slug-teddy.cyclic.app/addAdmin" , 
+                Axios.post("http://localhost:3001/addAdmin" , 
                 {
                     image_url : url,
                     name : Location.state.name,
