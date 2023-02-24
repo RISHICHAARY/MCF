@@ -109,10 +109,11 @@ function WishList(){
                                             Navigate("/Login")
                                         }}><i class="fi fi-rs-heart end-icons"></i></button>
                                         <button className='view-button'
-                                        onClick={()=>{setActiveProduct(value._id);
-                                            setExpand(true);}}
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})
+                                        }}
                                         >
-                                            <i className="fi fi-rr-eye end-icons"></i>
+                                            <i className="fi fi-rr-eye end-icons view-icon"></i>
                                         </button>
                                     </>
                                     :
@@ -141,8 +142,9 @@ function WishList(){
                                         }}
                                         ><i class="fi fi-rs-heart end-icons wish-icon"></i></button>}
                                         <button className='view-button'
-                                            onClick={()=>{setActiveProduct(value._id);
-                                            setExpand(true);}}
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
+                                        }}
                                         >
                                             <i className="fi fi-rr-eye end-icons view-icon"></i>
                                         </button>

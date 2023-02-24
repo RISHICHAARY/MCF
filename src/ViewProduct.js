@@ -1,12 +1,15 @@
 import {useEffect , useState} from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation } from 'react-router-dom';
 import './ViewProduct.css';
 import './product_card.css';
+import NavBar from './navbar';
+import SideBar from './SideBar';
 
-const ProductView = (Received) => {
+function ProductView(){
 
     const Navigate = useNavigate();
+    const Location = useLocation();
     const [ ActiveImage , setActiveImage ] = useState("")
     const [ NonActiveImage , setNonActiveImage ] = useState([])
     const [ Loading , setLoading ] = useState(true);
@@ -28,8 +31,8 @@ const ProductView = (Received) => {
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("https://clear-slug-teddy.cyclic.app/deleteWishList" , {id:Received.Received.id , type : Received.Received.type , file : CartItems}).then(()=>{
-			Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
+		Axios.put("https://clear-slug-teddy.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -38,12 +41,12 @@ const ProductView = (Received) => {
 
     useEffect( () => {
         setLoading(true);
-        Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProductss" , {id:Received.Received.Product_id}).then((response) => {
+        Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveImage(response.data[0].image[0])
             setNonActiveImage(response.data[0].image)
-            if(Received.Received.check === "in"){
-                Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Received.Received.type , id:Received.Received.id}).then((response)=>{
+            if(Location.state.check === "in"){
+                Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setCartItems(response.data[0].wishlist);
                     setLoading(false);
             })}
@@ -56,6 +59,14 @@ const ProductView = (Received) => {
 
     return (
         <div className="view-pop">
+            {
+                (Location.state === null)?<NavBar Received={{page : "J"}}/>:(Location.state.user === undefined)?<NavBar Received={{page : "J"}}/>:
+                <NavBar Received={ {page : "H", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
+            {
+                (Location.state === null)?<SideBar Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
             {
                 (Loading)?
                 <div className='loader-main'>
@@ -89,13 +100,13 @@ const ProductView = (Received) => {
                         <p className="product-discount-price">{parseInt(((parseInt(Item.oldprice) - parseInt(Item.newprice))/parseInt(Item.oldprice))*100)}% off</p>
                         <s className="strike"><p className="slashed-price">Rs: {Item.oldprice}</p></s>
                         <p className="live-price">Rs: {Item.newprice}</p>
-                        {(Received.Received.check === "in")?
+                        {(Location.state.check === "in")?
                         <>
                             <button className="cart-button" onClick={() =>{
                                 setLoading(true);
-                                Axios.put("https://clear-slug-teddy.cyclic.app/addToCart" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
+                                Axios.put("https://clear-slug-teddy.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
                                     setLoading(false);
-                                    Navigate("/cart" , { state: {status: Received.Received.status, name : Received.Received.name , user:Received.Received.user , type:Received.Received.type , id:Received.Received.id} })
+                                    Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                 });
                             }}>ADD TO CART</button>
                             {(CartItems.includes(Item._id , 0) || OnPageCart.includes(Item._id))?
@@ -107,7 +118,7 @@ const ProductView = (Received) => {
                                 <button className='wish-button'
                                 onClick={() =>{
                                 setLoading(true);
-                                Axios.put("https://clear-slug-teddy.cyclic.app/addToWishList" , {type : Received.Received.type , id:Received.Received.id , user:Received.Received.user , product_id:Item._id}).then(() =>{
+                                Axios.put("https://clear-slug-teddy.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{
                                     setOnPageCart((p) => [...p , Item._id])
                                     setLoading(false);
                                 });
