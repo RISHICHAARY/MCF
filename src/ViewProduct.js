@@ -92,9 +92,9 @@ function ProductView(){
                         <p className="view-product-name">{Item.name}</p>
                         <p className="product-description">{Item.description}</p>
                         <p className="product-description">Dimensions : {Item.length} x {Item.width} x {Item.height} M(L x B x H)</p>
-                        <textarea row="3" column="200%" placeholder='Tell us how you want to customize your product.' onChange={(e)=>{setCuz(e.target.value)}}></textarea>
-                        <p className="product-description">Quantity :</p>
-                        <input type="number" min="1" max="10" defaultValue="1" onChange={(e)=>{setQuant(e.target.value)}} />
+                        <textarea className='text-area' row="3" column="200%" placeholder='Tell us how you want to customize your product.' onChange={(e)=>{setCuz(e.target.value)}}></textarea>
+                        <p className="quantity">Quantity :</p>
+                        <input className='quantity-input' type="number" min="1" max="10" defaultValue="1" onChange={(e)=>{setQuant(e.target.value)}} />
                         <p className="product-extras">Seller Tell's:</p>
                         <p className='extra-desc'>{Item.extras}</p>
                         <p className="product-discount-price">{parseInt(((parseInt(Item.oldprice) - parseInt(Item.newprice))/parseInt(Item.oldprice))*100)}% off</p>
