@@ -64,7 +64,7 @@ function Products(){
     useEffect(() =>{
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-        Axios.put("https://magiccorner-b.onrender.com/addProduct" , 
+        Axios.put("https://clear-slug-teddy.cyclic.app/addProduct" , 
             {
                 image_url : FileUrls,
                 name : Name.toUpperCase(),

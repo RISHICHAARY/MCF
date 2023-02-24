@@ -13,7 +13,7 @@ function Upload_User(){
 
     useEffect(
         ()=>{
-            Axios.put("https://magiccorner-b.onrender.com/OtpMailer" , {
+            Axios.put("https://clear-slug-teddy.cyclic.app/OtpMailer" , {
                 type : Location.state.type,
                 otp : Location.state.otp,
                 email : Location.state.email,
@@ -26,7 +26,7 @@ function Upload_User(){
         setLoading(true);
         if(Captchaa.toString() === Location.state.captcha.toString()){
             if(OOTP.toString() === Location.state.otp.toString()){
-                Axios.put("https://magiccorner-b.onrender.com/PasswordMailer" , {type : Location.state.type,email : Location.state.email}).then(()=> {
+                Axios.put("https://clear-slug-teddy.cyclic.app/PasswordMailer" , {type : Location.state.type,email : Location.state.email}).then(()=> {
                     setLoading(false)
                     Navigate("/Login");
                 })

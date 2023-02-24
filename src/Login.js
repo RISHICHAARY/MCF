@@ -10,10 +10,10 @@ function Login(){
 
     useEffect(
         () =>{
-            Axios.get("https://magiccorner-b.onrender.com/allUsers").then((response) => {
+            Axios.get("https://clear-slug-teddy.cyclic.app/allUsers").then((response) => {
                 setUsers_list(response.data);
             });
-            Axios.get("https://magiccorner-b.onrender.com/allAdmins").then((response) => {
+            Axios.get("https://clear-slug-teddy.cyclic.app/allAdmins").then((response) => {
                 setAdmins_list(response.data);
             });
         } , []

@@ -12,8 +12,8 @@ function Chat(){
     const [ Conversations , setConversations ] = useState([]);
 
     const AddQuery = () => {
-        Axios.put("https://magiccorner-b.onrender.com/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
-            Axios.put("https://magiccorner-b.onrender.com/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
                 setConversations(response.data);
                 setMessage("");
             })
@@ -21,7 +21,7 @@ function Chat(){
     }
 
     useEffect(()=>{
-        Axios.put("https://magiccorner-b.onrender.com/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
             setConversations(response.data);
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps

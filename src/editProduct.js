@@ -28,7 +28,7 @@ function EditProducts(){
 
     const update = (id) => {
         setLoading(true);
-            Axios.put("https://magiccorner-b.onrender.com/updateProducts" , 
+            Axios.put("https://clear-slug-teddy.cyclic.app/updateProducts" , 
             {
                 id : id,
                 name : Name,

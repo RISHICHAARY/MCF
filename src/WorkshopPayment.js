@@ -43,14 +43,14 @@ export default function PaymentForm(state , {Received}) {
         try {
             setLoading(true);
             const {id} = paymentMethod
-            const response = await axios.post("https://magiccorner-b.onrender.com/payment", {
+            const response = await axios.post("https://clear-slug-teddy.cyclic.app/payment", {
                 amount: Location.total*100,
                 id,
                 name : Location.name+" for Workshop "+Location.wn,
             })
 
             if(response.data.success) {
-                axios.put("https://magiccorner-b.onrender.com/addEnrollment" , { wn : Location.wn, type : Location.type , id : Location.id , name : Location.name , mobile : Location.mobile , email : Location.email , total : Location.total }).then(
+                axios.put("https://clear-slug-teddy.cyclic.app/addEnrollment" , { wn : Location.wn, type : Location.type , id : Location.id , name : Location.name , mobile : Location.mobile , email : Location.email , total : Location.total }).then(
                 ()=>{
                     setLoading(false);
                     Navigate("/Confirmed" , { state: {status: Location.status, name : Location.name , user:Location.email , type:Location.type , id:Location.id}});

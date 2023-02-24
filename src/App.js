@@ -47,7 +47,7 @@ function App() {
   }
 
   useEffect(()=>{
-    Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+    Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
       setOffers(response.data);
     })
   },[])

@@ -20,7 +20,7 @@ function EditWorkshops(){
 
     const update = (id) => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/UpdateWorkshops" , 
+        Axios.put("https://clear-slug-teddy.cyclic.app/UpdateWorkshops" , 
         {
             id : id,
             name : Name,

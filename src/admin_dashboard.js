@@ -35,17 +35,17 @@ function AdminDashBoard(){
 
     const AddReply = (id) => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
-            Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
                             QueryCheck(response.data);
                         } )
@@ -57,7 +57,7 @@ function AdminDashBoard(){
     }
 
     const QueryCheck =(Received) =>{
-        Axios.get("https://magiccorner-b.onrender.com/entireQueries").then((response)=>{
+        Axios.get("https://clear-slug-teddy.cyclic.app/entireQueries").then((response)=>{
             setQueryPercentage(String(parseFloat(parseFloat(Received.length)/parseFloat(response.data.length))*100));
             setLoading(false);
             setOpen(false);
@@ -81,18 +81,18 @@ function AdminDashBoard(){
 
     const AddOffer = () => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
             ()=>{
-                Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
                                     QueryCheck(response.data);
                             })
@@ -106,17 +106,17 @@ function AdminDashBoard(){
 
     const DeleteOrder = (id) => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/deleteOrder" , {id : id}).then(()=>{
-            Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/deleteOrder" , {id : id}).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                 setOrders(response.data);
                 Calculations(response.data);
-                Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setUserData(response.data[0]);
-                    Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                         setOffers(response.data);
-                        Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
                                     QueryCheck(response.data);
                             })
@@ -129,16 +129,16 @@ function AdminDashBoard(){
 
     const UpdateOrder = (id) => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/updateOrder" , { id : id , status : Status }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/updateOrder" , { id : id , status : Status }).then(
             ()=>{
-                Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
                                     QueryCheck(response.data);
                             })
@@ -151,18 +151,18 @@ function AdminDashBoard(){
 
     const DeleteOffer = (id) => {
         setLoading(true);
-        Axios.put("https://magiccorner-b.onrender.com/deleteOffers" , { id: id }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/deleteOffers" , { id: id }).then(
             ()=>{
-                Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
                                     QueryCheck(response.data);})
                             })
@@ -179,16 +179,16 @@ function AdminDashBoard(){
         , {"BackgroundColor":"#AE431E" , "ForegroundColor":"white"} , {"BackgroundColor":"#558776" , "ForegroundColor":"#EAE2B6"}
         , {"BackgroundColor":"#D8C292" , "ForegroundColor":"#C19065"}]);
         setLoading(true);
-        Axios.get("https://magiccorner-b.onrender.com/getOrders").then((response)=>{
+        Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("https://magiccorner-b.onrender.com/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("https://magiccorner-b.onrender.com/getOffers").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("https://magiccorner-b.onrender.com/getEnrollments").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("https://magiccorner-b.onrender.com/allQueries").then( (response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
                             QueryCheck(response.data);
                         } )
