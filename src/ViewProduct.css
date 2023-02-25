@@ -1,6 +1,8 @@
-.view-pop::-webkit-scrollbar{
-    display: none;
+.view-pop{
+    overflow: auto;
     background-color: white;
+    background-blend-mode: hard-light;
+    margin-bottom: 2em;
 }
 
 .n-active-images{
