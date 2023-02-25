@@ -91,16 +91,6 @@ function ProductView(){
                                     setActiveImage(NonActiveImage[ActiveValue]);
                                 }
                             }}
-                            onTouchStart={()=>{
-                                if(ActiveValue < NonActiveImage.length-1){
-                                    setActiveValue(ActiveValue+1);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
-                                }
-                                else{
-                                    setActiveValue(0);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
-                                }
-                            }}
                             ><i class="fi fi-rr-angle-right"></i></button>
                             <button className='prev-button' onClick={()=>{
                                 if(ActiveValue > 0){
