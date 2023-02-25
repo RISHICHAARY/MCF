@@ -19,6 +19,47 @@ function ProductView(){
     const [ ActiveValue , setActiveValue ] = useState(0);
     const [ CartItems , setCartItems ] = useState([]);
     const [ OnPageCart , setOnPageCart ] = useState([]);
+    const [touchPosition, setTouchPosition] = useState(null)
+
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX
+        setTouchPosition(touchDown)
+    }
+
+    const handleTouchMove = (e) => {
+        const touchDown = touchPosition
+    
+        if(touchDown === null) {
+            return
+        }
+    
+        const currentTouch = e.touches[0].clientX
+        const diff = touchDown - currentTouch
+    
+        if (diff > 5) {
+            if(ActiveValue < NonActiveImage.length-1){
+                setActiveValue(ActiveValue+1);
+                setActiveImage(NonActiveImage[ActiveValue]);
+            }
+            else{
+                setActiveValue(0);
+                setActiveImage(NonActiveImage[ActiveValue]);
+            }
+        }
+    
+        if (diff < -5) {
+            if(ActiveValue > 0){
+                setActiveValue(ActiveValue-1);
+                setActiveImage(NonActiveImage[ActiveValue]);
+            }
+            else{
+                setActiveValue(NonActiveImage.length-1);
+                setActiveImage(NonActiveImage[ActiveValue]);
+            }
+        }
+    
+        setTouchPosition(null)
+    }
 
     const Delete = (id) => {
 		setLoading(true);
@@ -78,10 +119,9 @@ function ProductView(){
                 :
                 < >
                     <div className='container col-5  mt-2 first-container'>
-                        <div className="col-12 active-image-div">
+                        <div className="col-12 active-image-div" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
                             <img src={ActiveImage} alt="MainImage" className="active-image" />
                             <button className='next-button' onClick={()=>{
-                                console.log("clicked");
                                 if(ActiveValue < NonActiveImage.length-1){
                                     setActiveValue(ActiveValue+1);
                                     setActiveImage(NonActiveImage[ActiveValue]);
