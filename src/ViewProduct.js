@@ -110,12 +110,12 @@ function ProductView(){
                                 });
                             }}>ADD TO CART</button>
                             {(CartItems.includes(Item._id , 0) || OnPageCart.includes(Item._id))?
-                                <button className='wish-button'
+                                <button className='wish-button-vp'
                                 onClick={() =>{
                                 Delete(Item._id);
                             }}
                             ><i class="fi fi-ss-heart end-icons full-wish-icon"></i></button>:
-                                <button className='wish-button'
+                                <button className='wish-button-vp'
                                 onClick={() =>{
                                 setLoading(true);
                                 Axios.put("https://clear-slug-teddy.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{

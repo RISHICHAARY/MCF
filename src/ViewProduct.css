@@ -111,7 +111,6 @@
     padding:0.5em;
     float:left;
     transition-duration: 0.5s;
-    margin-bottom: 2rem;
 }
 
 .cart-button:hover{
@@ -126,7 +125,7 @@
     color:#FF0032;
 }
 
-.wish-button{
+.wish-button-vp{
     font-size:1.8em;
     float:left;
 }

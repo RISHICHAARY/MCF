@@ -80,7 +80,7 @@ function Display(){
                         <div className='display-column' key={value._id} >
                             <div className='image-div'>
                                 {
-                                    (Location.state === null)?
+                                    (Location.state === null || Location.state.user === undefined)?
                                     <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{Navigate("/ViewProduct" , 
                                         {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
                                     :
