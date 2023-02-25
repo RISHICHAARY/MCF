@@ -92,7 +92,6 @@ function ProductView(){
                                 }
                             }}
                             onTouchStart={()=>{
-                                console.log("clicked");
                                 if(ActiveValue < NonActiveImage.length-1){
                                     setActiveValue(ActiveValue+1);
                                     setActiveImage(NonActiveImage[ActiveValue]);
@@ -104,7 +103,6 @@ function ProductView(){
                             }}
                             ><i class="fi fi-rr-angle-right"></i></button>
                             <button className='prev-button' onClick={()=>{
-                                console.log("clicked");
                                 if(ActiveValue > 0){
                                     setActiveValue(ActiveValue-1);
                                     setActiveImage(NonActiveImage[ActiveValue]);
