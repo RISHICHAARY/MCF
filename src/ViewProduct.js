@@ -16,6 +16,7 @@ function ProductView(){
     const [ Item, setItem ] = useState([]);
     const [ Cuz , setCuz ] = useState(null);
     const [ Quant , setQuant ] = useState("1");
+    const [ ActiveValue , setActiveValue ] = useState(0);
     const [ CartItems , setCartItems ] = useState([]);
     const [ OnPageCart , setOnPageCart ] = useState([]);
 
@@ -43,8 +44,9 @@ function ProductView(){
         setLoading(true);
         Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
             setItem(response.data[0]);
-            setActiveImage(response.data[0].image[0])
-            setNonActiveImage(response.data[0].image)
+            setActiveValue(0);
+            setActiveImage(response.data[0].image[0]);
+            setNonActiveImage(response.data[0].image);
             if(Location.state.check === "in"){
                 Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setCartItems(response.data[0].wishlist);
@@ -78,6 +80,40 @@ function ProductView(){
                     <div className='container col-5  mt-2 first-container'>
                         <div className="col-12 active-image-div">
                             <img src={ActiveImage} alt="MainImage" className="active-image" />
+                            <button className='next-button' onClick={()=>{
+                                console.log("clicked");
+                                if(ActiveValue < NonActiveImage.length-1){
+                                    setActiveValue(ActiveValue+1);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                                else{
+                                    setActiveValue(0);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                            }}
+                            onTouchStart={()=>{
+                                console.log("clicked");
+                                if(ActiveValue < NonActiveImage.length-1){
+                                    setActiveValue(ActiveValue+1);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                                else{
+                                    setActiveValue(0);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                            }}
+                            ><i class="fi fi-rr-angle-right"></i></button>
+                            <button className='prev-button' onClick={()=>{
+                                console.log("clicked");
+                                if(ActiveValue > 0){
+                                    setActiveValue(ActiveValue-1);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                                else{
+                                    setActiveValue(NonActiveImage.length-1);
+                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                }
+                            }}><i class="fi fi-rr-angle-left"></i></button>
                         </div>
                         <div className="row">
                             {NonActiveImage.map((value) => {
