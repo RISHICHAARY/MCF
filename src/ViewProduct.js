@@ -75,7 +75,7 @@ function ProductView(){
                 </div>
                 :
                 < >
-                    <div className='container col-6 float-start  mt-2 first-container'>
+                    <div className='container col-5  mt-2 first-container'>
                         <div className="col-12 active-image-div">
                             <img src={ActiveImage} alt="MainImage" className="active-image" />
                         </div>

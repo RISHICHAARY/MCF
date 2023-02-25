@@ -3,7 +3,6 @@ import { useNavigate , useLocation } from 'react-router-dom';
 import Axios  from 'axios';
 import NavBar from './navbar';
 import SideBar from './SideBar';
-import ProductView from './ViewProduct';
 import './product_card.css';
 import './cart.css';
 import wishlistempty from './wishlistempty.png'
@@ -39,15 +38,13 @@ function WishList(){
     const [ Loading , setLoading ] = useState(false);
     const [ OnPageCart , setOnPageCart ] = useState([]);
     const [ Wishlist , setWishlist ] = useState([]);
-    const [ ActiveProduct , setActiveProduct ] = useState(null);
-    const [ Expand , setExpand ] = useState(false);
     const [ CartItems , setCartItems ] = useState([]);
 
     useEffect(() => {
         setLoading(true);
         Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
             setOnCart(response.data[0].wishlist);
-            Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProducts" , {id:response.data[0].wishlist}).then((response1) => {
+            Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedProductss" , {id:response.data[0].wishlist}).then((response1) => {
                 setWishlist(response1.data);
                 setCartItems(response1.data);
                 setLoading(false);
@@ -73,7 +70,7 @@ function WishList(){
                     {/* <p className='loader-text'>Loading...</p> */}
                 </div>
                 :
-                <div style={{'height':'100vh'}}>
+                <div>
                 {
                     (OnCart.length === 0)?
                     <main class="nothing-content">
@@ -88,7 +85,14 @@ function WishList(){
                         return(
                             <div className='display-column' key={value._id} >
                             <div className='image-div'>
-                                <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{setActiveProduct(value._id);setExpand(true);}} alt="Product" className='image'></img>
+                                {
+                                    (Location.state.user === undefined)?
+                                    <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
+                                    :
+                                    <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})}} alt="Product" className='image'></img>
+                                }
                                 <div className='product-discount-div'>
                                     <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
                                     <p className='product-discount'>OFF</p>
@@ -161,40 +165,6 @@ function WishList(){
                 </div>
                 }
                 </div>
-            }
-            {
-                (Expand)?<>
-                {(Location.state !== null)?
-                <div className="pop w-100">
-                <button className='Terminator' onClick={()=>{
-                setExpand(false)
-                setLoading(true);
-                if(Location.state !== null){
-                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                            setCartItems(response.data[0].wishlist);
-                            setLoading(false);
-                    })}
-                else{
-                    setLoading(false);}
-                }}><i class="fi fi-sr-cross"></i></button>
-                <ProductView Received={{ check: "in" , Product_id : ActiveProduct , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}}/>
-                </div>
-                :
-                <div className="pop w-100">
-                <button className='Terminator' onClick={()=>{
-                setExpand(false)
-                setLoading(true);
-                if(Location.state !== null){
-                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                            setCartItems(response.data[0].wishlist);
-                            setLoading(false);
-                    })}
-                else{
-                    setLoading(false);}
-                }}><i class="fi fi-sr-cross"></i></button>
-                <ProductView Received={{ check: "out" , Product_id : ActiveProduct}}/>
-                </div>}
-                </>:<></>
             }
         </div>
     )

@@ -124,7 +124,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-      <div className="footer h-20 mb-0 mt-0">
+      <div className="footer h-20 mb-0">
         <footer className="bg-light text-center text-white">
           <div className="container ">
             <section className="mb-4">

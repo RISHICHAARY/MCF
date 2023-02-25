@@ -112,4 +112,8 @@
         max-width: 50%;
         margin: 0.1em 0;
     }
+    .type-space{
+        height: 5.3vh;
+        text-align: center;
+    }
 }

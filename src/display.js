@@ -3,14 +3,11 @@ import {useLocation , useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 import NavBar from './navbar';
 import SideBar from './SideBar';
-import ProductView from './ViewProduct';
 import './product_card.css';
 
 function Display(){
     const Location = useLocation();
     const Navigate = useNavigate();
-    const [ ActiveProduct , setActiveProduct ] = useState(null);
-    const [ Expand , setExpand ] = useState(false);
     const [Loading , setLoading] = useState(false);
     const [ Products , setProducts ] = useState([]);
     const [ CartItems , setCartItems ] = useState([]);
@@ -82,7 +79,14 @@ function Display(){
                         // Product cart
                         <div className='display-column' key={value._id} >
                             <div className='image-div'>
-                                <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{setActiveProduct(value._id);setExpand(true);}} alt="Product" className='image'></img>
+                                {
+                                    (Location.state === null)?
+                                    <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
+                                    :
+                                    <img src={value.image[Math.floor((Math.random()*(value.image.length))+0)]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})}} alt="Product" className='image'></img>
+                                }
                                 <div className='product-discount-div'>
                                     <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
                                     <p className='product-discount'>OFF</p>
@@ -152,40 +156,6 @@ function Display(){
                     }
                     )
                 }
-                {
-                    (Expand)?<>
-                        {(Location.state !== null)?
-                        <div className="pop w-100">
-                        <button className='Terminator' onClick={()=>{
-                        setExpand(false)
-                        setLoading(true);
-                        if(Location.state !== null){
-                            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                                    setCartItems(response.data[0].wishlist);
-                                    setLoading(false);
-                            })}
-                        else{
-                            setLoading(false);}
-                        }}><i class="fi fi-sr-cross"></i></button>
-                        <ProductView Received={{ check: "in" , Product_id : ActiveProduct , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}}/>
-                        </div>
-                        :
-                        <div className="pop w-100">
-                        <button className='Terminator' onClick={()=>{
-                        setExpand(false)
-                        setLoading(true);
-                        if(Location.state !== null){
-                            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                                    setCartItems(response.data[0].wishlist);
-                                    setLoading(false);
-                            })}
-                        else{
-                            setLoading(false);}
-                        }}><i class="fi fi-sr-cross"></i></button>
-                        <ProductView Received={{ check: "out" , Product_id : ActiveProduct}}/>
-                        </div>}
-                        </>:<></>
-                    }
             </div>
         </div>
     );
