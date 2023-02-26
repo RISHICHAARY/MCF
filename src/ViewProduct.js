@@ -37,24 +37,30 @@ function ProductView(){
         const diff = touchDown - currentTouch
     
         if (diff > 5) {
+            var f = ActiveValue;
             if(ActiveValue < NonActiveImage.length-1){
                 setActiveValue(ActiveValue+1);
-                setActiveImage(NonActiveImage[ActiveValue]);
+                f=f+1;
+                setActiveImage(NonActiveImage[f]);
             }
             else{
                 setActiveValue(0);
-                setActiveImage(NonActiveImage[ActiveValue]);
+                f=0;
+                setActiveImage(NonActiveImage[0]);
             }
         }
     
         if (diff < -5) {
+            var f = ActiveValue;
             if(ActiveValue > 0){
                 setActiveValue(ActiveValue-1);
-                setActiveImage(NonActiveImage[ActiveValue]);
+                f=f-1;
+                setActiveImage(NonActiveImage[f]);
             }
             else{
                 setActiveValue(NonActiveImage.length-1);
-                setActiveImage(NonActiveImage[ActiveValue]);
+                f=NonActiveImage.length-1
+                setActiveImage(NonActiveImage[f]);
             }
         }
     
@@ -122,24 +128,30 @@ function ProductView(){
                         <div className="col-12 active-image-div" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
                             <img src={ActiveImage} alt="MainImage" className="active-image" />
                             <button className='next-button' onClick={()=>{
+                                var f = ActiveValue;
                                 if(ActiveValue < NonActiveImage.length-1){
                                     setActiveValue(ActiveValue+1);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                    f=f+1;
+                                    setActiveImage(NonActiveImage[f]);
                                 }
                                 else{
                                     setActiveValue(0);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                    f=0;
+                                    setActiveImage(NonActiveImage[0]);
                                 }
                             }}
                             ><i class="fi fi-rr-angle-right"></i></button>
                             <button className='prev-button' onClick={()=>{
+                                var f = ActiveValue;
                                 if(ActiveValue > 0){
                                     setActiveValue(ActiveValue-1);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                    f=f-1;
+                                    setActiveImage(NonActiveImage[f]);
                                 }
                                 else{
                                     setActiveValue(NonActiveImage.length-1);
-                                    setActiveImage(NonActiveImage[ActiveValue]);
+                                    f=NonActiveImage.length-1
+                                    setActiveImage(NonActiveImage[f]);
                                 }
                             }}><i class="fi fi-rr-angle-left"></i></button>
                         </div>
@@ -147,7 +159,14 @@ function ProductView(){
                             {NonActiveImage.map((value) => {
                                 return(
                                     <>
-                                        <img key={value} src={value} alt="SubImages" className='col-1 n-active-images' onClick={() => {setActiveImage(value)}} />
+                                        <img key={value} src={value} alt="SubImages" className='col-1 n-active-images' onClick={() => {
+                                            setActiveImage(value)
+                                            for(var i=0;i<NonActiveImage.length;i++){
+                                                if(NonActiveImage[i] === value){
+                                                    setActiveValue(i);
+                                                }
+                                            }
+                                            }} />
                                     </>);
                             })}
                         </div>
