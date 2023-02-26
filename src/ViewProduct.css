@@ -209,4 +209,7 @@
     .prev-button{
         margin-top: 30%;
     }
+    .quantity {
+        width: 40%;
+    }
 }
