@@ -37,30 +37,31 @@ function ProductView(){
         const diff = touchDown - currentTouch
     
         if (diff > 5) {
-            var f = ActiveValue;
-            if(ActiveValue < NonActiveImage.length-1){
-                setActiveValue(ActiveValue+1);
-                f=f+1;
-                setActiveImage(NonActiveImage[f]);
-            }
-            else{
-                setActiveValue(0);
-                f=0;
-                setActiveImage(NonActiveImage[0]);
-            }
-        }
-    
-        if (diff < -5) {
-            var f = ActiveValue;
+            var f11 = ActiveValue;
             if(ActiveValue > 0){
                 setActiveValue(ActiveValue-1);
-                f=f-1;
-                setActiveImage(NonActiveImage[f]);
+                f11=f11-1;
+                setActiveImage(NonActiveImage[f11]);
             }
             else{
                 setActiveValue(NonActiveImage.length-1);
-                f=NonActiveImage.length-1
-                setActiveImage(NonActiveImage[f]);
+                f11=NonActiveImage.length-1
+                setActiveImage(NonActiveImage[f11]);
+            }
+            
+        }
+    
+        if (diff < -5) {
+            var f1 = ActiveValue;
+            if(ActiveValue < NonActiveImage.length-1){
+                setActiveValue(ActiveValue+1);
+                f1=f1+1;
+                setActiveImage(NonActiveImage[f1]);
+            }
+            else{
+                setActiveValue(0);
+                f1=0;
+                setActiveImage(NonActiveImage[f1]);
             }
         }
     
