@@ -104,7 +104,7 @@ function WishList(){
                                     <p className='product-price'><s className='strike'><span className='text-color'>Rs:{value.oldprice}</span></s> Rs:{value.newprice}</p>
                                 </div>
                                 <div className='buttons'>
-                                    {(Location.state === null)?
+                                    {(Location.state === null || Location.state.user === undefined)?
                                     <>
                                         <button className='add-button' onClick={()=>{
                                             Navigate("/Login")

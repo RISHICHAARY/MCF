@@ -158,8 +158,8 @@ function Confirmation(){
                         {OnCart.map((value)=>{
                             return(
                                 <tr key={value.name}>
-                                    <td className='p-td'>
-                                    {(value.cod !== "YES")?value.name +" (NO CASH ON DELIVERY)":(value.cuz !== null && value.cod !== "YES") ?value.name +" (NO CASH ON DELIVERY + CUSTOMIZATION CHARGES INCLUDE)": (value.cuz !== null) ?value.name +" (CUSTOMIZATION CHARGES TO PAID AT DELIVERY)": value.name}
+                                    <td className='p-td'>va
+                                    {(value.cuz !== null && value.cod !== "YES")?value.name +" (NO CASH ON DELIVERY + CUSTOMIZATION CHARGES INCLUDE)":(value.cod !== "YES")?value.name +" (NO CASH ON DELIVERY)": (value.cuz !== null) ?value.name +" (CUSTOMIZATION CHARGES TO PAID AT DELIVERY)": value.name}
                                     </td>
                                     <td className='q'>{value.quant}</td>
                                     <td>Rs {value.oldprice}</td>

@@ -155,6 +155,9 @@
 .wish-button-vp{
     font-size:1.8em;
     float:left;
+    background: transparent;
+    border: none;
+    outline: none;
 }
 
 .first-container{
