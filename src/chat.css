@@ -2,12 +2,12 @@
     width: 95%;
     box-shadow: 0 0 10em #FCFDF2;
     border-radius: 0.5em;
-    padding: 0;
     background-color: #FCFDF2;
 }
 
 .chat-space{
     margin: 0;
+    padding: 1em;
     height:65vh;
     overflow-y:auto;
 }
@@ -23,9 +23,10 @@
 
 .type-space{
     margin: 0;
-    height:10vh;
+    height:5vh;
     background-color: black;
     border-radius: 0 0 0.5em 0.5em;
+    text-align: center;
 }
 
 .default-chat-sub-space{
