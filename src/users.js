@@ -37,12 +37,12 @@ function Products()
 
     useEffect(
         () =>{
-            Axios.get("http://localhost:3001/allUsers").then(
+            Axios.get("https://clear-slug-teddy.cyclic.app/allUsers").then(
                 (response) => {
                     setExistingUsers(response.data);
                 }
             );
-            Axios.get("http://localhost:3001/allAdmins").then(
+            Axios.get("https://clear-slug-teddy.cyclic.app/allAdmins").then(
                 (response) => {
                     setExistingAdmins(response.data);
                 }
@@ -180,7 +180,7 @@ function Products()
                 else{
                     for(var l =0 ; l < ExistingUsers.length ; l++){
                             if(Email.toString() === ExistingUsers[l].email.toString()){
-                                Axios.post("http://localhost:3001/DeleteUser" , {email:Email});
+                                Axios.post("https://clear-slug-teddy.cyclic.app/DeleteUser" , {email:Email});
                                 generator();
                                 Navigate('/adminVerification' , 
                                     {   
@@ -243,7 +243,7 @@ function Products()
                             if( k === ExistingAdmins.length - 1){
                                 for( l =0 ; l < ExistingUsers.length ; l++){
                                     if(Email.toString() === ExistingUsers[l].email.toString()){
-                                        Axios.post("http://localhost:3001/DeleteUser" , {email:Email});
+                                        Axios.post("https://clear-slug-teddy.cyclic.app/DeleteUser" , {email:Email});
                                         generator();
                                         Navigate('/adminVerification' , 
                                             {   

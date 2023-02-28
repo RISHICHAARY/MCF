@@ -47,7 +47,7 @@ function App() {
   }
 
   useEffect(()=>{
-    Axios.get("http://localhost:3001/getOffers").then((response)=>{
+    Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
       setOffers(response.data);
     })
   },[])
