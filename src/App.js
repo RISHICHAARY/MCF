@@ -45,7 +45,6 @@ function App() {
   else{
     document.body.style.overflowY = "scroll";
   }
-
   useEffect(()=>{
     Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
       setOffers(response.data);
