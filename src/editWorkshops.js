@@ -14,19 +14,21 @@ function EditWorkshops(){
     const [ NewPrice , setNewPrice ] = useState(0);
     const [ OldPrice , setOldPrice ] = useState(0);
     const [ Loading , setLoading ] = useState(false);
+    const [ WG , setWG ] =useState(null);
 
     //const fileref = ref(storage, "Files/");
     const Received = Location.state;
 
     const update = (id) => {
         setLoading(true);
-        Axios.put("https://clear-slug-teddy.cyclic.app/UpdateWorkshops" , 
+        Axios.put("http://localhost:3001/UpdateWorkshops" , 
         {
             id : id,
             name : Name,
             description : Description,
             newprice : NewPrice,
             oldprice : OldPrice,
+            wg : WG,
         }).then(() =>{
             setLoading(false);
             Navigate("/displayWorkshops" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
@@ -94,6 +96,17 @@ function EditWorkshops(){
                                     className="input-attributes w-100"
                                     defaultValue={Received.oldprice}
                                     onChange={(event)=>{setOldPrice(event.target.value)}} required>
+                                </input>
+                            </div>
+                            <div className="col-12 float-start">
+                                <p className="label-attributes">
+                                    WATSAPP GROUP LINK:
+                                </p>
+                                <br></br>
+                                <input type="text" placeholder="Watsapp Group Link" 
+                                    className="input-attributes w-100"
+                                    defaultValue={Received.wg}
+                                    onChange={(event)=>{setWG(event.target.value)}} required>
                                 </input>
                             </div>
                         </div>

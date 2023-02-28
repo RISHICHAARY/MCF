@@ -17,6 +17,7 @@ function Products(){
     const [ NewPrice , setNewPrice ] = useState(0);
     const [ OldPrice , setOldPrice ] = useState(0);
     const [ File , setFile ] = useState([]);
+    const [ Watsapp_grp , setWatsapp_grp ] = useState([]);
     const [ FileUrls , setFileUrls ] = useState([]);
 
     const filled = () =>{
@@ -24,6 +25,7 @@ function Products(){
         if(Description === null){alert("Fill Description");return}
         if( NewPrice === null){alert("Fill NewPrice");return}
         if(File === null){alert("Select Image");return}
+        if(Watsapp_grp === null){alert("Enter Watsapp group link");return}
     }
 
     //const fileref = ref(storage, "Files/");
@@ -52,13 +54,14 @@ function Products(){
     useEffect(() => {
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-                Axios.put("https://clear-slug-teddy.cyclic.app/addWorkshop" , 
+                Axios.put("http://localhost:3001/addWorkshop" , 
                     {
                         image_url : FileUrls,
                         name : Name,
                         description : Description,
                         newprice : NewPrice,
                         oldprice : OldPrice,
+                        watsapp_grp : Watsapp_grp,
                     }).then(()=>{
                         setLoading(false);
                         Navigate("/displayWorkshops" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
@@ -130,6 +133,16 @@ function Products(){
                                 <input type="text" placeholder="Eg: 999" 
                                     className="input-attributes w-100"
                                     onChange={(event)=>{setOldPrice(event.target.value)}} required>
+                                </input>
+                            </div>
+                            <div className="col-12 float-start">
+                                <p className="label-attributes">
+                                    WATSAPP GROUP LINK:
+                                </p>
+                                <br></br>
+                                <input type="text" placeholder="grp link" 
+                                    className="input-attributes w-100"
+                                    onChange={(event)=>{setWatsapp_grp(event.target.value)}} required>
                                 </input>
                             </div>
                             <div className="col-12">

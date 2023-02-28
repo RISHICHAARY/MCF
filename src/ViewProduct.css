@@ -187,6 +187,7 @@
     }
 
     .active-image-div {
+        padding-top:0;
         width: 100%;
     }
 
@@ -201,8 +202,10 @@
     }
 
     .active-image{
+        margin-top:0;
+        margin: 0 1%;
         height:250px;
-        max-width:100%;
+        max-width:94%;
     }
 
     .next-button{

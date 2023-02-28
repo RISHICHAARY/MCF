@@ -8,6 +8,8 @@ import './product_card.css';
 import SideBar from './SideBar';
 import {useNavigate , useLocation } from 'react-router-dom';
 
+import noproduct from './noproduct.png'
+
 function Workshop() {
     const [ Loading , setLoading ] = useState(false);
     const [ ActiveProduct , setActiveProduct ] = useState(null);
@@ -18,8 +20,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://clear-slug-teddy.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -30,7 +32,7 @@ function Workshop() {
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -55,8 +57,12 @@ function Workshop() {
                         {/* <p className='loader-text'>Loading...</p> */}
                     </div>
                     :
-                    (Products === [])?
-                    <p>NOTHING FOUND</p>
+                    (Products.length === 0)?
+                    <main class="nothing-content">
+                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
+                        <img className='noprouduct-img' src={noproduct} alt="no product" />
+                        <h2 className='noproduct-text'>No Workshops found</h2>
+                        </main>
                     :
                     Products.map((value) => {
                     return(
@@ -75,7 +81,7 @@ function Workshop() {
                                         {
                                             state:{id : value._id , name: value.name , 
                                             description : value.description , newprice : value.newprice , 
-                                            oldprice : value.oldprice ,
+                                            oldprice : value.oldprice , wg : value.watsapp_grp,
                                             user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , Product_id : value._id , type:Location.state.type , user_id:Location.state.id}} 
                                             )}
                                         }
@@ -99,8 +105,9 @@ function Workshop() {
                                         }}>ENROLL</button>
                                         <button className='view-button'
                                             onClick={()=>{
-                                                setActiveProduct(value._id);
-                                                setExpand(true);
+                                                Navigate("/ViewWorkShop" , 
+                                        {state:{ check: "out" , Product_id : value._id}})
+                                        
                                             }}
                                         >
                                             <i className="fi fi-rr-eye end-icons view-icon"></i>
@@ -114,8 +121,9 @@ function Workshop() {
                                         }}>ENROLL</button>
                                         <button className='view-button'
                                             onClick={()=>{
-                                                setActiveProduct(value._id);
-                                                setExpand(true);
+                                                Navigate("/ViewWorkShop" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
+                                        
                                             }}
                                         >
                                             <i className="fi fi-rr-eye end-icons view-icon"></i>

@@ -27,7 +27,7 @@ a{
   /* for mobile */
   @media screen and (max-width: 767px) {
     .floaticons {
-      top: 20%;
+      top: 50%;
     }
     .icon {
         margin-top: 12px;
