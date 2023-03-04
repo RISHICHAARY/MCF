@@ -33,6 +33,7 @@ import WorkshopConfirmation from './workshopenrollment';
 import Confirm from './confirmationpage';
 import Chat from './chat';
 import Account from './account';
+import Faqs from './faqs';
 
 function App() {
 
@@ -120,6 +121,7 @@ function App() {
             <Route path="/Confirmed" element={<Confirm/>} />
             <Route path="/Chat" element={<Chat/>} />
             <Route path="/Account" element={<Account/>} />
+            <Route path="/faqs" element={<Faqs/>} />
           </Routes>
         </Router>
       </div>
@@ -161,6 +163,8 @@ function App() {
           <div className="text-center p-3" style={{background: "rgba(0, 0, 0, 0.2)"}}>
             {/* © 2022 Copyright: */}
             <b><a href="#!" className="text-black">MagicCorner.com</a></b>
+            <div className="straight-line"/>
+            <a className='faqs' href='/faqs'><b>FAQ's</b></a>
           </div>
         </footer>  
       </div>
