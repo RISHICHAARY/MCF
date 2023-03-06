@@ -20,6 +20,10 @@
   pointer-events: none;
 }
 
+.tile-about{
+  color: black;
+}
+
 .whatsapp_float {
   position: fixed;
   width: 60px;
