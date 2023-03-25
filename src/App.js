@@ -7,6 +7,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "/node_modules/bootstrap/dist/js/bootstrap.bundle";
 import './home.css'
 import './App.css';
+import './Footer.css'
 
 // import homeimage from './home.jpg'
 import Display from './display';
@@ -33,7 +34,10 @@ import WorkshopConfirmation from './workshopenrollment';
 import Confirm from './confirmationpage';
 import Chat from './chat';
 import Account from './account';
-
+import Faqs from './faqs';
+import Privacy from './privacy';
+import Termsandconditions from './termsandconditions';
+import Cancelpolicy from './cancelpolicy';
 
 function App() {
 
@@ -121,64 +125,72 @@ function App() {
             <Route path="/Confirmed" element={<Confirm/>} />
             <Route path="/Chat" element={<Chat/>} />
             <Route path="/Account" element={<Account/>} />
+            <Route path="/faqs" element={<Faqs/>} />
+            <Route path="/privacy-policy" element={<Privacy/>} />
+            <Route path="/terms-and-conditions" element={<Termsandconditions/>} />
+            <Route path="/cancellation-policy" element={<Cancelpolicy/>} />
           </Routes>
         </Router>
       </div>
-      <div className="footer h-20 mb-0">
-        <footer className="bg-light text-center text-white">
+      <footer className="site-footer footer-main mb-0">
+        <div className="bg-light text-center text-white">
           <div className="container ">
             <section className="mb-4">
-              <a className="btn btn-primary btn-floating m-1"
+              <a className="btn btn-primary btn-floating m-class"
                 style={{background: "#3b5998"}}
-                href="#!"
+                href="https://www.facebook.com/profile.php?id=100077511198592"
                 role="button"
                 ><i className="fab fa-facebook-f"></i></a>
 
-              <a className="btn btn-primary btn-floating m-1"
+              {/* <a className="btn btn-primary btn-floating m-1"
                 style={{background: "#55acee"}}
                 href="#!"
                 role="button"
-                ><i className="fab fa-twitter"></i></a>
+                ><i className="fab fa-twitter"></i></a> */}
 
-              <a className="btn btn-primary btn-floating m-1"
+              <a className="btn btn-primary btn-floating m-class"
                 style={{background: "#dd4b39"}}
-                href="#!"
+                href="https://www.magiccorner.in/"
                 role="button"
                 ><i className="fab fa-google"></i></a>
 
-              <a className="btn btn-primary btn-floating m-1"
+              <a className="btn btn-primary btn-floating m-class"
                 style={{background: "#ac2bac"}}
-                href="#!"
+                href="https://www.instagram.com/magic_._corner/"
                 role="button"
                 ><i className="fab fa-instagram"></i></a>
 
-              <a className="btn btn-primary btn-floating m-1"
+              {/* <a className="btn btn-primary btn-floating m-1"
                 style={{background: "#0082ca"}}
                 href="#!"
                 role="button"
-                ><i className="fab fa-linkedin-in"></i></a>
+                ><i className="fab fa-linkedin-in"></i></a> */}
             </section>
           </div>
-          <div className="text-center p-3" style={{background: "rgba(0, 0, 0, 0.2)"}}>
+          {/* <div className="text-center p-3" style={{background: "rgba(0, 0, 0, 0.1)"}}> */}
             {/* © 2022 Copyright: */}
-            <div className="notice tile-about">
-                <div className="owner" data-block="owner">
-                    <div className='information'>
-                            <h2>FAQ's</h2>
-                        <div className="author">
-                                {/* -. */}
-                        </div>
-                        <div className="description">
-                            <p></p><p><b><u>Disclaimer</u><br /></b></p><p>Our beautiful products are 100% hand made with love, so as a result of human manual involvement there might be slight irregularities in color, size and knots than portrayed in pictures. These irregularities are the hallmark of hand made product and make each exquisite piece one-of-its-kind.</p><p></p><p><b><u>IMPORTANT</u></b></p><p><b>1. </b><b>Spools below 50meter will be handmade. For machine made spools buy above 50meter.</b></p><p><b>2.Please make a video while opening your package to claim any damage or missing article.</b></p><p><b>3. Cancellation after booking an order will cost you Razorpay fee. </b><b>Remaining </b><b>balance</b><b> will be refunded.</b></p><p></p><p></p><p><u><b>SHIPPING</b></u></p><p>We now ship worldwide!!!</p><p>Macramé is a handmade product which is made to order. Please coordinate with us after placing the order. (For your estimate delivery date)</p><p>Kindly allow 5-20 days(as per product kind) for dispatch.&nbsp;</p><p>Bulk or custom orders might take longer to dispatch.&nbsp;</p><p>However, shipping time is completely dependent on the shipping vendor and your locations.</p><p></p><p></p><p><u><b>RETURN</b></u></p><p>We want you to be happy with your order from us. However, since we are a small business, we are unable to offer refunds if you change your mind about an order. We will happily replace any defective or broken product. Please contact us within 48 hours via Instagram with supporting pictures as a proof of damage. After 48 hours return of the damaged product will not be liable. After the approval of images the product need to be sent by the customer itself within 7 days. WE WILL NOT COVER RETURN SHIPPING FROM THE CUSTOMER'S END. We will then send a fresh piece of same defective product within the time limit mentioned above. Please take care when mailing any items back to us. We cannot be responsible for any further damage which occurs during transit.</p><p></p><p></p><p></p><p></p><p><u><b>DURABILITY</b></u></p><p>For better durability and color don’t hang in sunlight. As these are dyed ropes so there is No Guarantee of color longevity.</p><p></p><p><u><b>CITY OF ORIGIN</b></u> – INDIA</p><p></p>
-                        </div>
-                        <div className="cb"></div>
-                    </div>
-                </div>
+           
+            {/* <a href="magiccorner.in" className="text-black">Magiccorner.in</a> */}
+          {/* </div> */}
+          <div className="footer-main site-info items-vertical">
+            <div className="footer-container konte-container-fluid">
+
+              <div class="footer-items footer-left">
+                <div className="copyright"><a href="https://magiccorner.in">Magiccorner.in</a> </div>	</div>
+
+
+              <div className="footer-items footer-right">
+                <nav className="menu-footer-menu-container"><ul id="footer-menu" class="footer-menu nav-menu menu">
+                  <li id="menu-item-166" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-166"><a href="https://magiccorner.in/privacy-policy/">Privacy Policy</a></li>
+                  <li id="menu-item-167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a href='https://magiccorner.in/terms-and-conditions/'>Terms and Conditions</a></li>
+                  <li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168"><a href="https://magiccorner.in/faqs/">FAQs</a></li>
+                  <li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-169"><a href="https://magiccorner.in/cancellation-policy/">Cancellation Policy</a></li>
+                </ul></nav></div>
+
             </div>
-            <b><a href="#!" className="text-black">MagicCorner.com</a></b>
           </div>
-        </footer>  
-      </div>
+        </div>  
+      </footer>
     </div>
   );
 }

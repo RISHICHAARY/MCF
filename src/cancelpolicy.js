@@ -1,12 +1,12 @@
 import React from 'react'
 import './CheckoutConfirmation.css';
 
-function Faqs() {
+function Cancelpolicy() {
   return (
     <div className="notice tile-about">
                     <div className="owner" data-block="owner">
                         <div className='information'>
-                                <h2>FAQ's</h2>
+                                <h2>Cancellation Policy</h2>
                             <div className="author">
                                     {/* -. */}
                             </div>
@@ -20,4 +20,4 @@ function Faqs() {
   )
 }
 
-export default Faqs
+export default Cancelpolicy
