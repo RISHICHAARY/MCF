@@ -10,6 +10,11 @@
 
 }
 
+.E-det{
+    text-align: center;
+    width: 100%;
+}
+
 .main-container-login {
     padding:1em;
     border-radius: 0.19em;
@@ -82,7 +87,22 @@
     cursor: pointer;
     font-weight: 550;
     font-weight: 700;
+    max-height: 5.5vh;
     letter-spacing: 0.04em;
+    border:none;
+    outline:none;
+    color:white;
+    background-color:black;
+}
+
+.resend-button{
+    padding: 0.5em;
+    margin: 0.5em;
+    cursor: pointer;
+    font-weight: 550;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    max-height: 5.5vh;
     border:none;
     outline:none;
     color:white;

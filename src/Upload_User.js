@@ -9,9 +9,20 @@ function Upload_User(){
     const [ Captchaa , setCaptchaa ] = useState("");
     const [ OOTP , setOOTP ] = useState("");
     const [ Loading , setLoading ] = useState(false);
+    const [ Resend , setResend ] = useState(false);
 
     const  Navigate = useNavigate();
     const Location = useLocation();
+
+    const resend = () =>{
+        setResend(false);
+        Axios.post("https://clear-slug-teddy.cyclic.app/userMailer" , {
+                name : Location.state.name,
+                otp : Location.state.otp,
+                mail : Location.state.email,
+            });
+        setResend(true);
+    }
 
     useEffect(
         ()=>{
@@ -20,7 +31,6 @@ function Upload_User(){
                 otp : Location.state.otp,
                 mail : Location.state.email,
             });
-            console.log(Location.state.otp);
         // eslint-disable-next-line react-hooks/exhaustive-deps
         } , []
     );
@@ -55,8 +65,10 @@ function Upload_User(){
         });
     }
     else{
+        setLoading(true);
         Axios.put("https://clear-slug-teddy.cyclic.app/addUser" , 
                 {
+                    image : "https://firebasestorage.googleapis.com/v0/b/codemath-99434.appspot.com/o/ProFo.png?alt=media&token=04fe1a30-816b-435c-8653-d14466b64fcb",
                     name : Location.state.name,
                     email : Location.state.email,
                     mobile : Location.state.mobile,
@@ -102,6 +114,7 @@ function Upload_User(){
                 :
                 <div className="overall-log" id="Home">
                     <div className="main-container">
+                        {(Resend)?<div className='E-det'><p>OTP Re-Sent to {Location.state.email}.</p></div>:<div className='E-det'><p>OTP Sent to {Location.state.email}.</p></div>}
                         <div className="container">
                             <button className="float-start general-button disabled-button" disabled>
                                 VERIFICATION
@@ -133,6 +146,15 @@ function Upload_User(){
                                         <i className="fi fi-br-angle-right end-icons-err"></i>
                                         </p>
                                     </button>
+                                    <div className='E-det'>
+                                    <button className="resend-button general-button"
+                                        onClick={resend} type="button">
+                                        <p className="final-label">
+                                        RESEND OTP
+                                        <i className="fi fi-br-angle-right end-icons-err"></i>
+                                        </p>
+                                    </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

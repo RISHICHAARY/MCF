@@ -36,10 +36,10 @@ import WorkshopConfirmation from './workshopenrollment';
 import Confirm from './confirmationpage';
 import Chat from './chat';
 import Account from './account';
-import Faqs from './faqs';
-import Privacy from './privacy';
-import Termsandconditions from './termsandconditions';
-import Cancelpolicy from './cancelpolicy';
+import TC from './TC';
+import CP from './CP';
+import FA from './Faq';
+import PP from './PP';
 
 function App() {
 
@@ -107,10 +107,10 @@ function App() {
             <Route path="/Confirmed" element={<Confirm/>} />
             <Route path="/Chat" element={<Chat/>} />
             <Route path="/Account" element={<Account/>} />
-            <Route path="/faqs" element={<Faqs/>} />
-            <Route path="/privacy-policy" element={<Privacy/>} />
-            <Route path="/terms-and-conditions" element={<Termsandconditions/>} />
-            <Route path="/cancellation-policy" element={<Cancelpolicy/>} />
+            <Route path="/terms-and-conditions" element={<TC/>} />
+            <Route path="/cancellation-policy" element={<CP/>} />
+            <Route path="/faq's" element={<FA/>} />
+            <Route path="/privacy-policy" element={<PP/>} />
           </Routes>
         </Router>
       </div>
@@ -120,6 +120,7 @@ function App() {
             <section className="mb-4">
               <a className="btn btn-primary btn-floating m-class"
                 style={{background: "#3b5998"}}
+                target="blank"
                 href="https://www.facebook.com/profile.php?id=100077511198592"
                 role="button"
                 ><i className="fab fa-facebook-f"></i></a>
@@ -130,14 +131,15 @@ function App() {
                 role="button"
                 ><i className="fab fa-twitter"></i></a> */}
 
-              <a className="btn btn-primary btn-floating m-class"
+              {/*<a className="btn btn-primary btn-floating m-class"
                 style={{background: "#dd4b39"}}
                 href="https://www.magiccorner.in/"
                 role="button"
-                ><i className="fab fa-google"></i></a>
+                ><i className="fab fa-google"></i></a>*/}
 
               <a className="btn btn-primary btn-floating m-class"
-                style={{background: "#ac2bac"}}
+                style={{background: "#ac2bac"}} 
+                target="blank"
                 href="https://www.instagram.com/magic_._corner/"
                 role="button"
                 ><i className="fab fa-instagram"></i></a>
@@ -154,23 +156,7 @@ function App() {
            
             {/* <a href="magiccorner.in" className="text-black">Magiccorner.in</a> */}
           {/* </div> */}
-          <div className="footer-main site-info items-vertical">
-            <div className="footer-container konte-container-fluid">
-
-              <div class="footer-items footer-left">
-                <div className="copyright"><a href="https://magiccorner.in">Magiccorner.in</a> </div>	</div>
-
-
-              <div className="footer-items footer-right">
-                <nav className="menu-footer-menu-container"><ul id="footer-menu" class="footer-menu nav-menu menu">
-                  <li id="menu-item-166" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-166"><a href="https://magiccorner.in/privacy-policy/">Privacy Policy</a></li>
-                  <li id="menu-item-167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a href='https://magiccorner.in/terms-and-conditions/'>Terms and Conditions</a></li>
-                  <li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168"><a href="https://magiccorner.in/faqs/">FAQs</a></li>
-                  <li id="menu-item-168" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-169"><a href="https://magiccorner.in/cancellation-policy/">Cancellation Policy</a></li>
-                </ul></nav></div>
-
-            </div>
-          </div>
+          
         </div>  
       </footer>
     </div>

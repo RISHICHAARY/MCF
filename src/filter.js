@@ -4,6 +4,7 @@ import Axios from 'axios';
 import "./filter.css"
 import NavBar from './navbar';
 import SideBar from './SideBar';
+import Faqs from './faqs';
 import './product_card.css';
 import {useNavigate , useLocation } from 'react-router-dom';
 import noproduct from './noproduct.png'
@@ -343,6 +344,10 @@ function Filter() {
                     )
                 }
             </div>
+            {
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
         </div>
     )
 }

@@ -34,6 +34,7 @@ function Products()
     const [ Decision , setDecision ] = useState(null);
     const [ ExistingUsers , setExistingUsers ] = useState([]);
     const [ ExistingAdmins , setExistingAdmins ] = useState([]);
+    const [ FormValid , setFormValid ] = useState(true);
 
     useEffect(
         () =>{
@@ -53,14 +54,13 @@ function Products()
     //const fileref = ref(storage, "Files/");
 
     const filled = () =>{
-        if(Name === null){alert("Fill Name");return}
-            if(Email === null){alert("Fill Email");return}
-            if(Mobile === null){alert("Fill Mobile");return}
-            if(Gender === null){alert("Select Gender");return}
-            if(Age === null){alert("Fill Age");return}
-            if(DOB === null){alert("Fill DOB");return}
-            if(File === null){alert("Select Image");return}
-            if(Password === null){alert("Enter Password");return}
+        if(Name === null){alert("Fill Name");setFormValid(false);return}
+            if(Email === null){alert("Fill Email");setFormValid(false);return}
+            if(Mobile === null){alert("Fill Mobile");setFormValid(false);return}
+            if(Gender === null){alert("Select Gender");setFormValid(false);return}
+            if(Age === null){alert("Fill Age");setFormValid(false);return}
+            if(DOB === null){alert("Fill DOB");setFormValid(false);return}
+            if(Password === null){alert("Enter Password");setFormValid(false);return}
     }
 
     const Decide = ()=>{
@@ -68,6 +68,7 @@ function Products()
         if(Decision === null){
 
             filled()
+            if(FormValid){
             if(ExistingUsers.length === 0){
                 if(ExistingAdmins.length === 0){
                     generator();
@@ -161,7 +162,7 @@ function Products()
                         }
                     }
                 }
-            }
+            }}
         }
         else{
             if(ExistingAdmins.length === 0){
@@ -300,7 +301,7 @@ function Products()
                                 <br></br>
                                 <input type="text" placeholder="Eg: Walter White" 
                                     className="input-attributes w-100"
-                                    onChange={(event)=>{setName(event.target.value)}} required>
+                                    onChange={(event)=>{setName(event.target.value);setAge(3);setGender("none");setDOB("none")}} required>
                                 </input>
                             </div>
                             {

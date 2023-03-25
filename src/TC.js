@@ -1,9 +1,24 @@
-import React from 'react'
-import './CheckoutConfirmation.css';
+import React from 'react';
+import {useLocation} from 'react-router-dom';
+import NavBar from './navbar';
+import SideBar from './SideBar';
+import Faqs from './faqs';
 
-function Termsandconditions() {
-  return (
-    <div className="notice tile-about">
+export default function TC(){
+
+    const Location = useLocation();
+
+    return(
+        <>
+            {
+                (Location.state === null)?<NavBar Received={{page : "Q"}}/>:(Location.state.user === undefined)?<NavBar Received={{page : "Q"}}/>:
+                <NavBar Received={ {page : "H", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
+            {
+                (Location.state === null)?<SideBar Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
+            <div className="notice tile-about">
                     <div className="owner" data-block="owner">
                         <div className='information'>
                                 <h2>Terms and Conditions</h2>
@@ -17,7 +32,10 @@ function Termsandconditions() {
                         </div>
                     </div>
                 </div>
-  )
+        {
+            (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+            <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+        }
+        </>
+    )
 }
-
-export default Termsandconditions

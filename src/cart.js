@@ -4,6 +4,7 @@ import Axios  from 'axios';
 import NavBar from './navbar';
 import ProductView from './ViewProduct';
 import SideBar from './SideBar';
+import Faqs from './faqs';
 import './product_card.css';
 import './cart.css';
 import cartempty from './cartempty.png'
@@ -271,6 +272,10 @@ function Cart(){
                 <ProductView Received={{ check: "out" , Product_id : ActiveProduct}}/>
                 </div>}
                 </>:<></>
+            }
+            {
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
         </div>
     )

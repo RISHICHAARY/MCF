@@ -6,6 +6,7 @@ import NavBar from './navbar';
 import WorkshopView from './ViewWorkshops';
 import './product_card.css';
 import SideBar from './SideBar';
+import Faqs from './faqs';
 import {useNavigate , useLocation } from 'react-router-dom';
 
 import noproduct from './noproduct.png'
@@ -157,6 +158,10 @@ function Workshop() {
                 </>:<></>
             }
             </div>
+            {
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
         </div>
     )
 }

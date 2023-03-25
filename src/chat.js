@@ -4,6 +4,8 @@ import Axios from 'axios';
 
 import NavBar from './navbar';
 import SideBar from './SideBar';
+import Faqs from './faqs';
+
 import './chat.css';
 
 function Chat(){
@@ -95,6 +97,10 @@ function Chat(){
                 </div>
                 <div className='clear'></div>
             </div>
+            {
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
+            }
         </>
     );
 }
