@@ -20,12 +20,13 @@ function Upload_User(){
                 otp : Location.state.otp,
                 mail : Location.state.email,
             });
+            console.log(Location.state.otp);
         // eslint-disable-next-line react-hooks/exhaustive-deps
         } , []
     );
 
     const Upload = () => {
-        if (Location.state.file == null) return;
+        if (Location.state.file !== null){
         setLoading(true);
         const FileReference = ref(storage , `User_DP/${Location.state.file.name+Location.state.name+Location.state.email}`);
         uploadBytes(FileReference , Location.state.file).then((FileData) => {
@@ -52,6 +53,28 @@ function Upload_User(){
                 })
             });
         });
+    }
+    else{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addUser" , 
+                {
+                    name : Location.state.name,
+                    email : Location.state.email,
+                    mobile : Location.state.mobile,
+                    gender : Location.state.gender,
+                    dob : Location.state.dob,
+                    age : Location.state.age,
+                    house : Location.state.house,
+                    street : Location.state.street,
+                    area : Location.state.area,
+                    city : Location.state.city,
+                    state : Location.state.status,
+                    password : Location.state.password,
+                    pincode : Location.state.pinCode,
+                }).then(()=>{
+                    setLoading(false);
+                    Navigate('/Login');
+                })
+    }
     };
 
     const check = () => {

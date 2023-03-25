@@ -3,6 +3,8 @@ import {BrowserRouter as Router , Route , Routes} from 'react-router-dom';
 import Axios from 'axios';
 import {useEffect,useState} from 'react';
 
+import Modal from './popup';
+
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "/node_modules/bootstrap/dist/js/bootstrap.bundle";
 import './home.css'
@@ -73,28 +75,8 @@ function App() {
               </div>
         </div>
       </div>
-      {
-        (PopUp)?
-        <div className="pb" id="pb">
-        <div className="PopUp">
-          <button onClick={()=>{setPopUp(false)}} className="close"><i class="fi fi-rr-cross"></i></button>
-          <br></br>
-          <h1 className="popup-h1">Magic Corner Offers</h1>
-          {
-            Offers.map((value)=>{
-              return(
-                <>
-                  <p key={value} className="offers" >FLAT <p className='offer-rate'>{(value.method === "P")?value.discount+"%":"Rs "+value.discount} OFF <br /></p> ON MINIMUM PURCHASE OF {value.min_price} & ABOVE.</p>
-                </>
-              );
-            })
-          }
-          <div className="shape1"></div>
-        </div>
-        </div>
-        :<></>
-      }
       <div className="App" id="App">
+      <Modal open={PopUp} onClose={() => setPopUp(false)}></Modal>
         <Router>
           <Routes>
             <Route path='/' element={<Display />} />

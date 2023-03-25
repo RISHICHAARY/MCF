@@ -20,9 +20,9 @@ function Products()
     const [ Name , setName ] = useState(null);
     const [ Email , setEmail ] = useState(null);
     const [ Mobile , setMobile ] = useState(0);
-    const [ Gender , setGender ] = useState(null);
+    const [ Gender , setGender ] = useState("");
     const [ Age , setAge ] = useState(0);
-    const [ DOB , setDOB ] = useState(null);
+    const [ DOB , setDOB ] = useState("");
     const [ House , setHouse ] = useState(null);
     const [ Street , setStreet ] = useState(null);
     const [ Area , setArea ] = useState(null);
@@ -303,7 +303,8 @@ function Products()
                                     onChange={(event)=>{setName(event.target.value)}} required>
                                 </input>
                             </div>
-                            <div className="col-4 min-input">
+                            {
+                             /*<div className="col-4 min-input">
                                 <p className="label-attributes">
                                     GENDER:
                                 </p>
@@ -332,7 +333,7 @@ function Products()
                                 <br></br>
                                 <input type="date" className="input-attributes w-100" onChange={(event)=>{setDOB(event.target.value)}} required>
                                 </input>
-                            </div>
+                            </div>*/}
                             <div className="col-6 min-input-2 float-start">
                                 <p className="label-attributes">
                                     E-MAIL:
