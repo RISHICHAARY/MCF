@@ -77,6 +77,7 @@ function RetrivePassword(){
     return(
         <div className="overall-log" id="Home">
             <div className="main-container">
+            <p className="text-center font-class">Please enter your username or email address. You will receive a link at your email to reset password.</p>
                 <div className="container">
                     <button className="float-start general-button disabled-button" disabled>
                         LOGIN

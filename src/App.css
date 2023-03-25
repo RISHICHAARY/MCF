@@ -75,9 +75,15 @@ a{
   color:white;
 }
 
-a:hover{
-  color:white;
+.font-class {
+  font-weight: 500;
 }
+.m-class{
+  margin-right: 15px;
+}
+/* a:hover{
+  color:white;
+} */
 
 .whatsapp-icon {
   margin-top: 16px;
