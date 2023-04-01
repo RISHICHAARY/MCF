@@ -31,6 +31,7 @@ function AdminDashBoard(){
     const [ Colors ,setColors ] = useState([]);
     const [ Open , setOpen ] = useState(false);
     const [ Queries , setQueries ] = useState([]);
+    const [ ContactQueries , setContactQueries ] = useState([]);
     const [ Reply , setReply ] = useState("");
     const [ QueryPercentage , setQueryPercentage ] = useState("0");
 
@@ -48,7 +49,9 @@ function AdminDashBoard(){
                         setEnrollments(response.data)
                         Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            QueryCheck(response.data);
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                setContactQueries(response1.data);
+                                QueryCheck(response.data);})
                         } )
                     })
                 });
@@ -57,11 +60,37 @@ function AdminDashBoard(){
         })
     }
 
-    const QueryCheck =(Received) =>{
+    const AddContactReply = (id) => {
+        setLoading(true);
+        Axios.put("https://clear-slug-teddy.cyclic.app/addContactReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
+            setOrders(response.data);
+            Calculations(response.data);
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                setUserData(response.data[0]);
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
+                    setOffers(response.data);
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
+                        setEnrollments(response.data)
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
+                            setQueries(response.data);
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                setContactQueries(response1.data);
+                                QueryCheck(response.data , response1.data );})
+                        } )
+                    })
+                });
+            });
+        });
+        })
+    }
+
+    const QueryCheck =(Received , Received1) =>{
         Axios.get("https://clear-slug-teddy.cyclic.app/entireQueries").then((response)=>{
-            setQueryPercentage(String(parseFloat(parseFloat(Received.length)/parseFloat(response.data.length))*100));
+            Axios.get("https://clear-slug-teddy.cyclic.app/entireContactQueries").then((response1)=>{
+            setQueryPercentage(String((parseFloat(parseFloat(Received.length)/parseFloat(response.data.length)))+(parseFloat(parseFloat(Received1.length)/parseFloat(response1.data.length)))*100));
             setLoading(false);
-            setOpen(false);
+            setOpen(false);})
         });
     }
 
@@ -95,7 +124,10 @@ function AdminDashBoard(){
                                 setEnrollments(response.data)
                                 Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    QueryCheck(response.data);
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                    setContactQueries(response1.data);
+                                    QueryCheck(response.data , response1.data);
+                            })
                             })
                             });
                         });
@@ -119,7 +151,10 @@ function AdminDashBoard(){
                                 setEnrollments(response.data)
                                 Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    QueryCheck(response.data);
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                    setContactQueries(response1.data);
+                                    QueryCheck(response.data , response1.data);
+                            })
                             })
                         });
                     });
@@ -141,7 +176,10 @@ function AdminDashBoard(){
                                 setEnrollments(response.data)
                                 Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    QueryCheck(response.data);
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                    setContactQueries(response1.data);
+                                    QueryCheck(response.data , response1.data);
+                            })
                             })
                         });
                     });
@@ -165,13 +203,16 @@ function AdminDashBoard(){
                                 setEnrollments(response.data)
                                 Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    QueryCheck(response.data);})
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                    setContactQueries(response1.data);
+                                    QueryCheck(response.data , response1.data);
+                            })
                             })
                         });
                     });
                 });
             }
-        )
+        )})
     }
 
     useEffect(()=>{
@@ -191,12 +232,14 @@ function AdminDashBoard(){
                         setEnrollments(response.data)
                         Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            QueryCheck(response.data);
-                        } )
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
+                                    setContactQueries(response1.data);
+                                    QueryCheck(response.data , response1.data);
+                            })
                     })
                 });
             });
-        });
+        })});
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -441,6 +484,47 @@ function AdminDashBoard(){
                                                     <>
                                                         <input type="text" onChange={(e)=>{setReply(e.target.value)}} className='col-10 order-column query-input' placeholder='Reply...'/>
                                                         <button className='col-1 send--button' onClick={()=>{AddReply(value._id)}}><i class="fa-solid fa-paper-plane"></i></button>
+                                                    </>
+                                                    :
+                                                    <p className='col-12 order-column'>{value.answer}</p>
+                                                }
+                                            </>
+                                            :
+                                            <p className='col-2 order-column'>
+                                                <button className='expand-button'
+                                                    onClick={()=>{setExpandQueries(value._id)}}
+                                                >
+                                                    <p className='button-text'>Answer Query</p>
+                                                    <i class="fa-solid fa-chevron-down end-icon"></i>
+                                                </button>
+                                            </p>
+                                        }
+                                        <div className='clear'></div>
+                                    </div>
+                                );
+                            })
+                        }
+                        {
+                            ContactQueries.map((value)=>{
+                                return(
+                                    <div className='container w-100 row order-row'>
+                                        <p className='col-10 order-column order-id'>{value.question}</p>
+                                        {
+                                            (ExpandQueries === value._id)?
+                                            <>
+                                                <p className='col-2 order-column'>
+                                                    <button className='expand-button'
+                                                        onClick={()=>{setExpandQueries("")}}
+                                                    >
+                                                        <p className='button-text'>Hide</p>
+                                                        <i class="fa-solid fa-chevron-up end-icon"></i>
+                                                    </button>
+                                                </p>
+                                                {
+                                                    (value.answer === undefined)?
+                                                    <>
+                                                        <input type="text" onChange={(e)=>{setReply(e.target.value)}} className='col-10 order-column query-input' placeholder='Reply...'/>
+                                                        <button className='col-1 send--button' onClick={()=>{AddContactReply(value._id)}}><i class="fa-solid fa-paper-plane"></i></button>
                                                     </>
                                                     :
                                                     <p className='col-12 order-column'>{value.answer}</p>
