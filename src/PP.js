@@ -1,11 +1,13 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom';
+import { useRef } from 'react';
 import NavBar from './navbar';
 import SideBar from './SideBar';
 import Faqs from './faqs';
 
 export default function PP(){
 
+    const pageRef = useRef(null)
     const Location = useLocation();
 
     return(
@@ -18,7 +20,7 @@ export default function PP(){
                 (Location.state === null)?<SideBar Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
                 <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
-            <div className="notice tile-about">
+            <div className="notice tile-about" ref={pageRef}>
                     <div className="owner" data-block="owner">
                         <div className='information'>
                                 <h2>Privacy Policy</h2>
