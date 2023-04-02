@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import {BrowserRouter as Router , Route , Routes} from 'react-router-dom';
 import Axios from 'axios';
-import {useEffect,useState} from 'react';
+import {useEffect,useState } from 'react';
 
 import Modal from './popup';
 
@@ -41,6 +41,7 @@ import TC from './TC';
 import CP from './CP';
 import FA from './Faq';
 import PP from './PP';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
 
@@ -83,6 +84,7 @@ function App() {
       <div className="App" id="App">
       <Modal open={PopUp} onClose={() => setPopUp(false)}></Modal>
         <Router>
+          <ScrollToTop/>
           <Routes>
             <Route path='/' element={<Display />} />
             <Route path='/products' element={<Products />} />
