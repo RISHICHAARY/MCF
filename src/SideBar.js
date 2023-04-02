@@ -36,7 +36,7 @@ function icons({Received}) {
                         <Link className="nav-link" to="/Login"><i className="fi fi-ss-user" ></i></Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/Login"><i class="fi fi-sr-comment-alt"></i></Link>
+                        <Link className="nav-link" to="/ContactUS"><i class="fi fi-sr-comment-alt"></i></Link>
                     </li>
                 </>
             }

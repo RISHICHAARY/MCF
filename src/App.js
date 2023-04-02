@@ -36,6 +36,7 @@ import WorkshopConfirmation from './workshopenrollment';
 import Confirm from './confirmationpage';
 import Chat from './chat';
 import Account from './account';
+import Contact from './contactus';
 import TC from './TC';
 import CP from './CP';
 import FA from './Faq';
@@ -111,6 +112,7 @@ function App() {
             <Route path="/cancellation-policy" element={<CP/>} />
             <Route path="/faq's" element={<FA/>} />
             <Route path="/privacy-policy" element={<PP/>} />
+            <Route path="/ContactUS" element={<Contact/>} />
           </Routes>
         </Router>
       </div>
