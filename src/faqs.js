@@ -3,6 +3,7 @@ import './CheckoutConfirmation.css';
 import { Link } from 'react-router-dom';
 
 function Faqs({Received}) {
+  console.log(Received)
   return (
     <div className="footer-items footer-right">
         <nav className="menu-footer-menu-container">
