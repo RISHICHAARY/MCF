@@ -54,7 +54,7 @@ function Products(){
     useEffect(() => {
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-                Axios.put("http://localhost:3001/addWorkshop" , 
+                Axios.put("https://clear-slug-teddy.cyclic.app/addWorkshop" , 
                     {
                         image_url : FileUrls,
                         name : Name,

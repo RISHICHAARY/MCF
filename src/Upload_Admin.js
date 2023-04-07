@@ -16,7 +16,7 @@ function Upload_User(){
 
     const resend = () =>{
         setResend(false);
-        Axios.post("http://localhost:3001/userMailer" , {
+        Axios.post("https://clear-slug-teddy.cyclic.app/userMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -26,7 +26,7 @@ function Upload_User(){
 
     useEffect(
         ()=>{
-            Axios.post("http://localhost:3001/adminMailer" , {
+            Axios.post("https://clear-slug-teddy.cyclic.app/adminMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -41,7 +41,7 @@ function Upload_User(){
         const FileReference = ref(storage , `Admin_DP/${Location.state.file.name+Location.state.name+Location.state.email}`);
         uploadBytes(FileReference , Location.state.file).then((FileData) => {
             getDownloadURL(FileData.ref).then((url) => {
-                Axios.put("http://localhost:3001/addAdmin" , 
+                Axios.put("https://clear-slug-teddy.cyclic.app/addAdmin" , 
                 {
                     image_url : url,
                     name : Location.state.name,
@@ -66,7 +66,7 @@ function Upload_User(){
         }
         else{
             setLoading(true);
-            Axios.put("http://localhost:3001/addAdmin" , 
+            Axios.put("https://clear-slug-teddy.cyclic.app/addAdmin" , 
                 {
                     image_url : "https://firebasestorage.googleapis.com/v0/b/codemath-99434.appspot.com/o/ProFo.png?alt=media&token=04fe1a30-816b-435c-8653-d14466b64fcb",
                     name : Location.state.name,

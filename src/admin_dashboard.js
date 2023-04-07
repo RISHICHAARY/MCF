@@ -37,19 +37,19 @@ function AdminDashBoard(){
 
     const AddReply = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
-            Axios.get("http://localhost:3001/getOrders").then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                 setContactQueries(response1.data);
                                 QueryCheck(response.data);})
                         } )
@@ -62,19 +62,19 @@ function AdminDashBoard(){
 
     const AddContactReply = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/addContactReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
-            Axios.get("http://localhost:3001/getOrders").then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addContactReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                 setContactQueries(response1.data);
                                 QueryCheck(response.data , response1.data );})
                         } )
@@ -86,8 +86,8 @@ function AdminDashBoard(){
     }
 
     const QueryCheck =(Received , Received1) =>{
-        Axios.get("http://localhost:3001/entireQueries").then((response)=>{
-            Axios.get("http://localhost:3001/entireContactQueries").then((response1)=>{
+        Axios.get("https://clear-slug-teddy.cyclic.app/entireQueries").then((response)=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/entireContactQueries").then((response1)=>{
                 if(Received.length === 0 || Received1.length === 0){
                     setQueryPercentage("0")
                 }
@@ -115,20 +115,20 @@ function AdminDashBoard(){
 
     const AddOffer = () => {
         setLoading(true);
-        Axios.put("http://localhost:3001/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
             ()=>{
-                Axios.get("http://localhost:3001/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -143,19 +143,19 @@ function AdminDashBoard(){
 
     const DeleteOrder = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/deleteOrder" , {id : id}).then(()=>{
-            Axios.get("http://localhost:3001/getOrders").then((response)=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/deleteOrder" , {id : id}).then(()=>{
+            Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                 setOrders(response.data);
                 Calculations(response.data);
-                Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setUserData(response.data[0]);
-                    Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                         setOffers(response.data);
-                        Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -169,18 +169,18 @@ function AdminDashBoard(){
 
     const UpdateOrder = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/updateOrder" , { id : id , status : Status }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/updateOrder" , { id : id , status : Status }).then(
             ()=>{
-                Axios.get("http://localhost:3001/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -194,20 +194,20 @@ function AdminDashBoard(){
 
     const DeleteOffer = (id) => {
         setLoading(true);
-        Axios.put("http://localhost:3001/deleteOffers" , { id: id }).then(
+        Axios.put("https://clear-slug-teddy.cyclic.app/deleteOffers" , { id: id }).then(
             ()=>{
-                Axios.get("http://localhost:3001/getOrders").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                                Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -225,18 +225,18 @@ function AdminDashBoard(){
         , {"BackgroundColor":"#AE431E" , "ForegroundColor":"white"} , {"BackgroundColor":"#558776" , "ForegroundColor":"#EAE2B6"}
         , {"BackgroundColor":"#D8C292" , "ForegroundColor":"#C19065"}]);
         setLoading(true);
-        Axios.get("http://localhost:3001/getOrders").then((response)=>{
+        Axios.get("https://clear-slug-teddy.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("http://localhost:3001/getOffers").then((response)=>{
+                Axios.get("https://clear-slug-teddy.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("http://localhost:3001/getEnrollments").then((response)=>{
+                    Axios.get("https://clear-slug-teddy.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("http://localhost:3001/allQueries").then( (response)=>{
+                        Axios.get("https://clear-slug-teddy.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("http://localhost:3001/allContactQueries").then( (response1)=>{
+                            Axios.get("https://clear-slug-teddy.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })

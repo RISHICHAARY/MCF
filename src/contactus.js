@@ -16,7 +16,7 @@ export default function ContactUs(){
 
     const Send = () =>{
         setLoading(true)
-        Axios.put("http://localhost:3001/addContactQuery" , {user:UserMail , query : UserQuery}).then(()=>{
+        Axios.put("https://clear-slug-teddy.cyclic.app/addContactQuery" , {user:UserMail , query : UserQuery}).then(()=>{
             setLoading(false)
         })
     }
