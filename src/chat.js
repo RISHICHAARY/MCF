@@ -14,8 +14,8 @@ function Chat(){
     const [ Conversations , setConversations ] = useState([]);
 
     const AddQuery = () => {
-        Axios.put("https://clear-slug-teddy.cyclic.app/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
-            Axios.put("https://clear-slug-teddy.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("http://localhost:3001/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
+            Axios.put("http://localhost:3001/getQuery" , { id : Location.state.id }).then((response)=>{
                 setConversations(response.data);
                 setMessage("");
             })
@@ -23,7 +23,7 @@ function Chat(){
     }
 
     useEffect(()=>{
-        Axios.put("https://clear-slug-teddy.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("http://localhost:3001/getQuery" , { id : Location.state.id }).then((response)=>{
             setConversations(response.data);
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +98,7 @@ function Chat(){
                 <div className='clear'></div>
             </div>
             {
-                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<Faqs Received={null}/>:
                 <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
         </>

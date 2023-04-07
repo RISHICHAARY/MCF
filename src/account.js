@@ -40,12 +40,12 @@ function Account(){
     }
     useEffect(()=>{
         setLoading(true);
-        Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response1)=>{
+        Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response1)=>{
             setUserData(response1.data[0]);
-            Axios.put("https://clear-slug-teddy.cyclic.app/userOrders" , {id : response1.data[0].orders}).then((response)=>{
+            Axios.put("http://localhost:3001/userOrders" , {id : response1.data[0].orders}).then((response)=>{
                 setUserOrders(response.data);
                 Calculations(response1.data[0] , response.data)
-                Axios.put("https://clear-slug-teddy.cyclic.app/userWorkshops" , {id : response1.data[0].workshops}).then((response)=>{
+                Axios.put("http://localhost:3001/userWorkshops" , {id : response1.data[0].workshops}).then((response)=>{
                     setUserWorkshops(response.data);
                 setLoading(false);
             })

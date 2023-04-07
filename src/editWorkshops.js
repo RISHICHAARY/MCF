@@ -21,7 +21,7 @@ function EditWorkshops(){
 
     const update = (id) => {
         setLoading(true);
-        Axios.put("https://clear-slug-teddy.cyclic.app/UpdateWorkshops" , 
+        Axios.put("http://localhost:3001/UpdateWorkshops" , 
         {
             id : id,
             name : Name,

@@ -21,8 +21,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://clear-slug-teddy.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -33,7 +33,7 @@ function Workshop() {
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('https://clear-slug-teddy.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -41,7 +41,7 @@ function Workshop() {
     } , [] );
 
     return (
-        <div id="Home" className='full-height'>
+        <div id="Home">
         {
             (Location.state.user === undefined)?<NavBar Received={{page : "W"}}/>:
                 <NavBar Received={ {page : "W",status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />

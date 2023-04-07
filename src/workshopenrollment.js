@@ -44,12 +44,12 @@ function Confirmation(){
 
     useEffect(()=>{
             setLoading(true);
-            Axios.put("https://clear-slug-teddy.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setName(response.data[0].full_name);
                 setMobile(response.data[0].mobile_no);
                 setEmail(response.data[0].email);
                 setId(response.data[0]._id);
-                Axios.put("https://clear-slug-teddy.cyclic.app/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response1) => {
+                Axios.put("http://localhost:3001/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response1) => {
                     setOnCart(response1.data);
                     setTotal(response1.data[0].newprice);
                     setWN(response1.data[0].name);
