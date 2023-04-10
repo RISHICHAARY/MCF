@@ -1,89 +1,57 @@
-.footer-main {
-    font-size: 14px;
-    font-size: .875rem;
-    /* padding: 40px 0 35px; */
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  background-color: #a56eb0;
+  color: #fff;
+  padding: 20px;
 }
 
-.copyright {
-    padding-bottom: 30px;
+.column {
+  margin: 0 auto;
+  /* padding: 0 40px; */
 }
 
-.site-footer {
-    /* position: absolute; */
-    bottom: 0;
-    width: 100%;
-    z-index: 999;
+h3 {
+  margin-top: 0;
 }
 
-.footer-main .footer-left, .footer-main .footer-right {
-    flex: 1;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.footer-main .footer-container {
-    display: flex;
-    position: relative;
+li {
+  margin-bottom: 10px;
+  color: white;
+}
+li:hover {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+li svg {
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+li svg:hover {
+  transition: .5 ease-in-out;
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
-.konte-container-fluid {
-    margin-left: 45px;
-    margin-right: 45px;
-    padding-left: 15px;
-    padding-right: 15px;
-    width: auto;
-}
+@media (max-width: 768px) {
+  .footer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .column:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
 
-
-.footer-main .footer-items {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-main .footer-items>*:last-child {
-    margin-bottom: 0;
-}
-
-.footer-main .footer-items>* {
-    margin-top: auto;
-    margin-bottom: 75px;
-}
-
-.footer-main .footer-left {
-    text-align: left;
-    justify-content: flex-start;
-}
-
-.footer-main .footer-right {
-    text-align: right;
-    justify-content: flex-end;
-}
-
-.footer-right .menu-item {
-    margin-bottom: 20px;
-}
-@media screen and (max-width: 991px){
-    .footer-main .footer-container {
-        flex-direction: column;
-    }
-
-    .konte-container, .konte-container-fluid {
-        margin-left: 25px;
-        margin-right: 25px;
-    }
-
-    .footer-main .footer-items {
-        justify-content: center;
-        text-align: center;
-        padding: 10px 0;
-    }
-}
-
-@media screen and (max-width: 767px){
-    .copyright {
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-right .menu-item {
-        margin: 0;
-    }
+  .column {
+    margin: 0 40px;
+  }
 }

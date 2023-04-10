@@ -9,7 +9,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "/node_modules/bootstrap/dist/js/bootstrap.bundle";
 import './home.css'
 import './App.css';
-import './Footer.css'
+
 
 // import homeimage from './home.jpg'
 import Display from './display';
@@ -118,7 +118,7 @@ function App() {
           </Routes>
         </Router>
       </div>
-      <footer className="site-footer footer-main mb-0">
+      {/* <footer className="site-footer footer-main mb-0">
         <div className="bg-light text-center text-white">
           <div className="container ">
             <section className="mb-4">
@@ -129,17 +129,6 @@ function App() {
                 role="button"
                 ><i className="fab fa-facebook-f"></i></a>
 
-              {/* <a className="btn btn-primary btn-floating m-1"
-                style={{background: "#55acee"}}
-                href="#!"
-                role="button"
-                ><i className="fab fa-twitter"></i></a> */}
-
-              {/*<a className="btn btn-primary btn-floating m-class"
-                style={{background: "#dd4b39"}}
-                href="https://www.magiccorner.in/"
-                role="button"
-                ><i className="fab fa-google"></i></a>*/}
 
               <a className="btn btn-primary btn-floating m-class"
                 style={{background: "#ac2bac"}} 
@@ -148,11 +137,6 @@ function App() {
                 role="button"
                 ><i className="fab fa-instagram"></i></a>
 
-              {/* <a className="btn btn-primary btn-floating m-1"
-                style={{background: "#0082ca"}}
-                href="#!"
-                role="button"
-                ><i className="fab fa-linkedin-in"></i></a> */}
             </section>
           </div>
           {/* <div className="text-center p-3" style={{background: "rgba(0, 0, 0, 0.1)"}}> */}
@@ -161,8 +145,9 @@ function App() {
             {/* <a href="magiccorner.in" className="text-black">Magiccorner.in</a> */}
           {/* </div> */}
           
-        </div>  
-      </footer>
+        {/* </div>   */}
+      {/* </footer> */} 
+     
     </div>
   );
 }
