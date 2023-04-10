@@ -88,9 +88,13 @@ function AdminDashBoard(){
     const QueryCheck =(Received , Received1) =>{
         Axios.get("https://clear-slug-teddy.cyclic.app/entireQueries").then((response)=>{
             Axios.get("https://clear-slug-teddy.cyclic.app/entireContactQueries").then((response1)=>{
-            setQueryPercentage(String((parseFloat(parseFloat(Received.length)/parseFloat(response.data.length)))+(parseFloat(parseFloat(Received1.length)/parseFloat(response1.data.length)))*100));
-            setLoading(false);
-            setOpen(false);})
+                if(Received.length === 0 || Received1.length === 0){
+                    setQueryPercentage("0")
+                }
+                else{
+                setQueryPercentage(String((parseFloat(parseFloat(Received.length)/parseFloat(response.data.length)))+(parseFloat(parseFloat(Received1.length)/parseFloat(response1.data.length)))*100));
+                }setLoading(false);
+                setOpen(false);})
         });
     }
 
@@ -549,7 +553,7 @@ function AdminDashBoard(){
                 </>
             }
             {
-                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<SideBar Received={null}/>:
+                (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<Faqs Received={null}/>:
                 <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
         </div>

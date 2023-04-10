@@ -4,7 +4,6 @@ import './Footer.css'
 import { AiOutlineInstagram, AiOutlineFacebook, AiOutlineWhatsApp, AiOutlineMail } from 'react-icons/ai';
 
 function Faqs({Received}) {
-
   return (
     <div className="footer">
       <div className="column">
