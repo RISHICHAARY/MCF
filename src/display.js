@@ -5,6 +5,7 @@ import NavBar from './navbar';
 import SideBar from './SideBar';
 import Faqs from './faqs';
 import './product_card.css';
+import Review from './review';
 
 function Display(){
     const Location = useLocation();
@@ -158,6 +159,7 @@ function Display(){
                     )
                 }
             </div>
+            <Review rating="5"/>
             {
                 (Location.state === null)?<Faqs Received={null}/>:(Location.state.user === undefined)?<Faqs Received={null}/>:
                 <Faqs Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
