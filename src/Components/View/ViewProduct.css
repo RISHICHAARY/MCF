@@ -1,0 +1,222 @@
+.view-pop{
+    overflow: auto;
+    overflow-x: hidden;
+    background-color: white;
+    background-blend-mode: hard-light;
+    margin-bottom: 2em;
+    min-height: 80vh;
+}
+
+.n-active-images{
+    cursor: pointer;
+    height:50px;
+    width:70px;
+    border:solid 0.1em;
+    margin:0.5em;
+}
+
+.active-image-div{
+    position: relative;
+}
+
+.next-button{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 2em;
+    position: absolute;
+    right: 0;
+    margin-top:30%;
+}
+
+.prev-button{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 2em;
+    position: absolute;
+    left:0;
+    margin-top:30%;
+}
+
+.active-image{
+    height:400px;
+    max-width:100%;
+}
+
+.active-image-div{
+    text-align: center;
+    border:solid 0.1em;
+}
+
+.view-product-name{
+    font-family: 'Kanit', sans-serif;
+    font-size:1.7em;
+    margin-bottom: 0;
+}
+
+.product-description{
+    font-family: 'Kanit', sans-serif;
+    font-size:1.4em;
+}
+
+.text-area {
+    width: 90%;
+}
+
+.quantity {
+    font-family: 'Kanit', sans-serif;
+    font-size:1.4em;
+    display: inline-block;
+    width: 25%;
+}
+
+.quantity-input {
+    display: inline-block;
+}
+
+.content-div{
+    text-align:left;
+}
+
+.product-links{
+    color:black;
+}
+
+.product-extras{
+    font-family: 'Kanit', sans-serif;
+    margin-bottom:0;
+    font-size:1.4em;
+}
+
+.extra-desc {
+    font-family: 'Kanit', sans-serif;
+}
+
+.view-warning{
+    color: red;
+    font-size: 0.7em;
+}
+
+.product-discount-price{
+    font-family: 'Garamond';
+    background-color:red;
+    color:white;
+    border-radius:2em;
+    padding: 0 1em;
+    width:6em;
+    text-align: center;
+}
+
+.strike{
+    color:red;
+    opacity:0.75;
+    /* font-size:1.2em; */
+    margin-bottom:0;
+    margin-top:1em;
+}
+
+.slashed-price{
+    font-size:1.3em;
+    font-family: 'Garamond';
+    color:black;
+    margin-bottom:0;
+}
+
+.live-price{
+    font-family: 'Garamond';
+    font-size:1.7em;
+    margin-top:0em;
+    padding-top:0em;
+}
+
+.cart-button{
+    font-family: 'Garamond';
+    border:none;
+    outline:none;
+    background-color:#a56eb0;
+    color:white;
+    padding:0.5em;
+    float:left;
+    transition-duration: 0.5s;
+}
+
+.cart-button:hover{
+    background-color: #5f2f87;
+}
+
+.wish-icon:hover{
+    color:#FF0032;
+}
+
+.full-wish-icon{
+    color:#FF0032;
+}
+
+.wish-button-vp{
+    font-size:1.8em;
+    float:left;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.first-container{
+    float: left;
+}
+
+@media (max-width: 767px) {
+    .view-product-name {
+        font-size: 1.5em;
+    }
+
+    .product-description {
+        font-size: 1.2em;
+    }
+
+    .live-price {
+        font-size: 1.5em;
+    }
+
+    .view-pop {
+        overflow: auto;
+        overflow-x: hidden;
+    }
+    .first-container {
+        width: 100%;
+        float: none;
+    }
+
+    .active-image-div {
+        padding-top:0;
+        width: 100%;
+    }
+
+    .content-div {
+        width: 100%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .cart-button {
+        margin-bottom: 1em;
+    }
+
+    .active-image{
+        margin-top:0;
+        margin: 0 1%;
+        height:250px;
+        max-width:94%;
+    }
+
+    .next-button{
+        margin-top: 30%;
+        right: 2%;
+    }
+    .prev-button{
+        margin-top: 30%;
+    }
+    .quantity {
+        width: 40%;
+    }
+}

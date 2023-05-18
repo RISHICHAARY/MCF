@@ -1,0 +1,167 @@
+.general-input{
+    width: 220px;
+    border : none ;
+    outline : none ;
+    margin : 0.5em ;
+    border-bottom : solid 0.05em ;
+}
+
+.bill{
+    text-align: center;
+    /* margin-bottom: 10px; */
+    /* text-decoration: solid underline 0.1em ; */
+}
+
+.confirmation-text{
+    float : left ;
+    font-size : 1.3em ;
+    font-weight: 500;
+    /* text-decoration : solid underline 0.1em ; */
+}
+
+.radio{
+    margin-left: 1em;
+    accent-color: #5f2f87;
+}
+
+.chck{
+    accent-color: #5f2f87;
+}
+
+.form-div{
+    margin-top: 1em;
+    text-align: center;
+    width: 50%;
+}
+
+.bill-box{
+    width: 90%;
+    margin-bottom: 20px;
+    border : solid 0.1em ;
+}
+
+.name-th{
+    width : 50% ;
+}
+
+.q{
+    padding-left: 2em;
+}
+
+.p-th{
+    width : 20% ;
+}
+
+.p-td{
+    float : left ;
+    font-weight: 500;
+}
+
+.discount{
+    float: right;
+    /* display: inline; */
+}
+
+.clear{
+    clear: both ;
+}
+
+.paynow {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.check-box-text{
+    text-align: center;
+    display: inline ;
+    /* margin-right: 1em ; */
+    margin-left: 0.3em ;
+    font-weight: 500;
+}
+
+.terms-conditions
+
+.check-text{
+    display: inline ;
+    margin-right: 1em ;
+    margin-left: 0.3em ;
+    /* font-weight: 500;     */
+}
+
+.final-button-cc{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 160px ;
+    height: 40px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border:none;
+    outline:none;
+    color:white;
+    background-color:#a56eb0;
+    border-radius: 0.2em;
+    transition-duration: 0.5s;
+}
+
+.final-button-cc:hover{
+    background-color: #5f2f87;
+}
+
+.full-width-line {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: black;
+    margin: 60px 0 20px 0;
+  }
+  
+.notice {
+    margin-top: 5rem;
+    text-align: justify;
+}
+
+.notice .information {
+        padding: 32px 16px;
+        max-width: 80%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        font-family: 'Kanit', sans-serif;
+    /* max-width: 767px; */
+}
+
+.notice .information h2 {
+    text-align: center;
+    font-size: 28px;
+    
+}
+
+.prices-div {
+    /* float: right; */
+    flex-direction: column;
+    display: flex;
+    /* justify-content: right; */
+    align-items: flex-end;
+}
+
+.pay-now {
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 1200px) {
+    .form-div{
+        width: 80%;
+    }   
+}
+
+@media screen and (max-width: 650px) {
+    .form-div{
+        width: 100%;
+    }   
+    .notice .information {
+        max-width: 92%;
+        margin-left: 5px;
+    }
+}

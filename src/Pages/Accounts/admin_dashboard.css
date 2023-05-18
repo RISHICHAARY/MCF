@@ -1,0 +1,375 @@
+.clear{
+    clear : both ;
+}
+
+#Home{
+    margin-top: 5.6rem;
+}
+
+.data{
+    background-color: #d2b7d8;
+    margin: 0 2rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 0.2rem black;
+    margin-top: 7rem;
+}
+
+.profile{
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 1.3rem;
+    max-height: 250px ;
+}
+
+.personal-data{
+    display: inline;
+    padding: 2em 0.5em;
+    text-align : left ;
+}
+
+.admin-name{
+    margin-bottom: 0;
+    font-size: 1.3em;
+}
+
+.admin{
+    margin-top: 0;
+}
+
+.admin-mail{
+    margin-bottom: 0;
+}
+
+.in-progress-div-one{
+    margin: 1em;
+    width: 220px;
+    background-color: #a56eb0;
+    color: white;
+    border-radius: 1em;
+    padding: 1em 0.9em;
+    box-shadow: 0 0 0.2rem black;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.in-progress-div-two{
+    margin: 1em;
+    width: 220px;
+    background-color: #5f2f87;
+    color: white;
+    border-radius: 1em;
+    padding: 1em 0.9em;
+    box-shadow: 0 0 0.2rem black;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.progress-text{
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+}
+
+.add-buttons{
+    margin-bottom: 0.5em;
+    border:none;
+    outline:none;
+    background-color:#5f2f87;
+    color:white;
+    transition-duration:0.5s;
+    margin-right:0.5em;
+    width: 10rem;
+}
+
+.order-total{
+    text-align: right;
+    padding-right: 3em;
+}
+
+.add-buttons:hover{
+    background-color:#a56eb0;
+}
+
+.admin-mobile{
+    margin-top: 0;
+}
+
+.main-orders-div{
+    text-align : center ;
+    width : 100% ;
+    margin : 0em ;
+    margin-top: 1em;
+    padding: 0 2rem;
+}
+
+.offer{
+    text-align: center;
+    width : 100% ;
+    margin-top: 1em;
+    padding: 0 2rem;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.add-offer-input{
+    border: none;
+    outline: none;
+    border-bottom: solid 0.1em;
+    float: left;
+    margin: 0.5em 0;
+}
+
+.add-offer-input-dd{
+    border: none;
+    outline: none;
+    border-bottom: solid 0.1em;
+    float: left;
+    margin-top: 0.65em;
+    margin-bottom: 0.5em;
+    margin-left: 0.3em;
+}
+
+.offer-add-button{
+    width: 30%;
+    border: none;
+    outline: none;
+    background-color: #82CD47;
+    margin: 0.5em 0.5em;
+    float: right;
+}
+
+.popup-main{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.popup{
+    position: relative;
+}
+
+.offer-name{
+    font-size: 1.2em;
+    margin-bottom: 0;
+    text-decoration: underline solid 0.1em;
+}
+
+.off{
+    display: inline;
+    font-size: 0.4em;
+}
+
+.offer-value{
+    font-size: 1.8em;
+    margin-bottom: 0;
+}
+
+.offer-min{
+    font-size: 1.5em;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.offer-rest{
+    font-size: 1em;
+    margin: 0;
+    display: inline;
+}
+
+.offer-delete-button{
+    border: none;
+    outline: none;
+    background: transparent;
+    color: red;
+    float: right;
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+.offer-div{
+    border-radius: 0.5em ;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0.3em black;
+    height: fit-content;
+    text-align: center;
+    padding: 2.57em 0;
+    margin: 0.5em 0;
+    margin-left: 0.5em ;
+}
+
+.add-product-div {
+    width: 390px;
+}
+
+.offer-div-valid{
+    width: 253px;
+    border-radius: 0.5em ;
+    box-shadow: 0 0 0.3em;
+    text-align: center;
+    margin: 0.5em 0;
+    margin-left: 0.5em ;
+    padding-top: 1.7em;
+    padding-bottom: 0.5em;
+}
+
+.opened-offer-div{
+    border-radius: 0.5em ;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0.3em;
+    height: fit-content;
+    text-align: center;
+    padding: 0.25rem 0;
+    margin: 0.5em 0;
+    margin-left: 0.5em;
+}
+
+.close-button{
+    border: none;
+    outline: none;
+    background: transparent;
+    float: right;
+    margin: 0.5em 0;
+}
+
+.offer-icon{
+    font-size: 4em;
+}
+
+.offer-button{
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.order-id{
+    text-align : left;
+    /* padding-left: 2em ; */
+}
+.order-details{
+    text-align : left;
+    padding-left: 3em ;
+}
+
+.order-row{
+    border-radius : 0.5em ;
+    text-align : center ;
+    padding: 1em 0em ;
+    padding-bottom : 0 ;
+    margin: 0.5em 0;
+    box-shadow: 0 0 0.3em;
+}
+
+.order-column{
+    background : transparent ;
+}
+
+.end-icon{
+    margin-left : 0.3em ;
+}
+
+.expand-button{
+    border : none ;
+    outline : none ;
+    background : transparent ;
+}
+
+.button-div{
+    padding: 1em 0;
+    float:right;
+}
+
+.update-button{
+    border : none ;
+    outline : none ;
+    background-color : black ;
+    margin: 0 0.5em;
+    color:white;
+    transition-duration: 0.5s;
+}
+
+.update-button:hover{
+    background-color: grey;
+}
+
+.select{
+    border: none;
+    outline: none;
+    border-bottom: solid 0.1em;
+    background: transparent;
+}
+
+.button-text{
+    display : inline ;
+}
+
+.query-input{
+    border: none;
+    outline: none;
+    border-bottom: solid 0.1em black;
+    margin: 0.5em;
+}
+
+.send--button{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    width: fit-content;
+    transition-duration: 0.1s;
+}
+
+.send--button:hover{
+    color:grey
+}
+
+h1{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 550px) {
+    .in-progress-div-one, .in-progress-div-two {
+        padding: 0.5em 0.9em;
+        width: 90%;
+    }
+
+    .data .personal-data {
+        text-align: center;
+        width: 100%;
+    }
+    .order-id {
+        word-wrap: break-word;
+    }
+    .order-row{
+        font-size: 12px;
+    }
+    .offer-div-valid{
+        width: 90%;
+    }
+    
+}
+
+@media screen and (max-width: 767px) {
+    .in-progress-div-one, .in-progress-div-two {
+        padding: 0.5em 0.9em;
+        width: 90%;
+    }
+    .data .personal-data {
+        text-align: center;
+        width: 100%;
+    }
+    .order-id {
+        word-wrap: break-word;
+    }
+    .order-row{
+        font-size: 12px;
+    }
+    .offer-div-valid{
+        width: 97%;
+    }
+}

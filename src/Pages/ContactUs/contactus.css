@@ -1,0 +1,53 @@
+.contactus-div {
+    margin-top: 7rem;
+    margin-bottom: 5rem;
+}
+
+
+.MailId-Input{
+    margin-bottom: 0.5em;
+    border: 0;
+    outline: 0;
+    border-bottom:0.1em solid black;
+    background: transparent;
+    color: black;
+    font-size: 1em;
+    min-width: 40%;
+    max-width: 40%;
+}
+
+.Query-Input{
+    margin-bottom: 0.5em;
+    border: 0.1em solid black;
+    outline: 0;
+    background: transparent;
+    color: black;
+    font-size: 1em;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.warning{
+    text-align: center;
+    font-size: 1.2em;
+
+}
+
+.Send-Button{
+    border: none;
+    outline: none;
+    padding: 0.2em 0.5em;
+    font-size: 1.2em;
+    background-color: #a56eb0;
+    color: white;
+}
+
+.Send-Button:hover{
+    background-color: #5f2f87;
+}
+
+@media screen and (max-width: 767px) {
+    .MailId-Input {
+        min-width: 100%;
+    }
+}

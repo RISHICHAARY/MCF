@@ -1,0 +1,57 @@
+.Clear{
+    clear: both;
+}
+
+.D-header{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.HomeSlider{
+    width: 100%;
+}
+
+.HomeSlider-Content-Main{
+    width: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+}
+
+.HomeSlider-Content{
+    font-family: 'Great Vibes', cursive;
+    font-size: 6rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.HomeSlider-SubContent{
+    font-size: 2rem;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.HomeSlider-Main{
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0 80% 10%;
+    height: 65vh;
+    background-color: #a56eb0;
+    display: table;
+}
+
+@media screen and (max-width: 767px) {
+    .HomeSlider-Main{
+        border-radius: 0 0 70% 10%;
+    }
+    .HomeSlider-Content{
+        font-size: 4rem;
+    }
+    .HomeSlider-SubContent{
+        font-size: 1rem;
+    }
+}

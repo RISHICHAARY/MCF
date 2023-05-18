@@ -1,0 +1,70 @@
+.main-review-div {
+    margin: 2rem auto;
+    display: grid;
+    place-items: center;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .review-div {
+    width: 80vw;
+    max-width: 680px;
+  }
+  
+  .title {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .review {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s linear;
+    text-align: center;
+  }
+  .review:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .quote {
+    margin: 0 10px;
+  }
+
+  /* .mission-text {
+    text-align: justify;
+  } */
+  
+  .author {
+    margin-bottom: 0.25rem;
+  }
+  .job {
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: var(--clr-primary-5);
+    font-size: 0.85rem;
+  }
+  .info {
+    margin-bottom: 0.75rem;
+  }
+  
+  .prev-btn,
+  .next-btn {
+    color: var(--clr-primary-7);
+    font-size: 1.25rem;
+    background: transparent;
+    border-color: transparent;
+    margin: 0 0.5rem;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .prev-btn:hover,
+  .next-btn:hover {
+    color: var(--clr-primary-5);
+  }
+  
+  .customer-review-card-rating {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: gold;
+  }

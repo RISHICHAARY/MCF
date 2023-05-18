@@ -1,0 +1,377 @@
+.full-height {
+    height: 100vh;
+}
+
+.expanded{
+    overflow:hidden;
+}
+.display-column{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+    -ms-flex: 22%; /* IE10 */
+    flex: 20%;
+    max-height:auto;
+    max-width:20%;
+    float: left;
+    margin: 1em;
+    border-radius: 1rem 0 1rem 1rem;
+    transition-duration: 0.1s;
+    position: relative;
+}
+
+.display-column-1{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 200;
+    -ms-flex: 17%; /* IE10 */
+    flex: 15%;
+    max-height:auto;
+    /* max-width:15%; */
+    float: left;
+    margin: 1em;
+    border-radius: 1rem 1rem 1rem 1rem;
+    transition-duration: 0.1s;
+    position: relative;
+    padding: 0;
+}
+
+.display-row{
+    text-align: center;
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 0px;
+    margin-top:1em;
+}
+
+.display-column:hover{
+    box-shadow: 0 0 0.75em;
+    background-color: rgba(0,0,0,0.03);
+    backdrop-filter: blur(10px);
+}
+
+/* .display-column-1:hover{
+    width: 100%;
+    padding: 0;
+} */
+
+.strike{
+    opacity:0.5;
+    color: red;
+}
+
+.wish-icon{
+    transition-duration: 0.2s;
+}
+
+.wish-icon:hover{
+    color:#FF0032;
+}
+
+.view-icon{
+    transition-duration: 0.2s;
+}
+
+.full-wish-icon{
+    color:#FF0032;
+}
+
+.view-icon:hover{
+    color:#FF7000;
+}
+
+.text-color{
+    color: black;
+}
+
+.image-div{
+    padding: 1em 1em 0 1em;
+    border-radius: 0.5em 0.5em  0 0;
+    max-height: 68%;
+    width: 100%;
+}
+
+.image-div-1{
+    filter: brightness(50%);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.image-1{
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 1rem;
+    padding: 0;
+}
+
+.product-discount-div-1{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    color: white;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.Cate-text{
+    position: relative;
+    width: 100%;
+    left: -50%;
+    top: -40%;
+}
+
+.product-discount-div{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: white;
+    background-color: rgba(250,0,0,0.80);
+    border-radius: 10rem 1rem 10rem 10rem;
+    font-size: 0.75em;
+    padding: 1em;
+}
+
+.quant-div{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: white;
+    background-color: rgba(250,0,0,0.80);
+    border-radius: 10em;
+    font-size: 1em;
+    padding: 1em;
+}
+
+.cuz-div{
+    position: absolute;
+    top: 2px;
+    left: 45px;
+    color: white;
+    background-color: rgba(27, 185, 212, 0.8);
+    border-radius: 10em;
+    font-size: 1em;
+    padding: 1em;
+}
+
+.contents-div{
+    text-align: left;
+    padding: 1em;
+}
+
+.image{
+    height: 250px;
+    max-width: 100%;
+    margin: auto;
+    margin: 0;
+}
+
+.content{
+    text-align: left;
+    margin-top: 0;
+    padding: 0;
+}
+
+.product-name{
+    font-size: 1.2em;
+    margin: 0;
+}
+.product-price{
+    font-size: 1.5em;
+    margin: 0;
+}
+.cut-price {
+    font-size: 0.9em;
+}
+
+.product-discount{
+    margin: 0;
+    padding: 0;
+}
+
+.edit-button {
+    position: absolute;
+    bottom: 80px;
+    right: 13px;
+    background-color:transparent;
+    color: green;
+    border: none;
+    outline:none;
+    font-size:1.5em;
+    transition-duration: 0.1s;
+}
+
+.edit-button:hover{
+    font-size: 1.6em;
+}
+
+.remove-button{
+    float: left;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    font-size: 1em;
+    margin-top: 0.1em;
+    color:white;
+    background-color:red;
+    padding:0 0.5em;
+}
+
+.delete-button {
+    position: absolute;
+    bottom: 40px;
+    right: 13px;
+    background-color:transparent;
+    border: none;
+    color:red;
+    outline:none;
+    font-size:1.5em;
+    transition-duration: 0.1s;
+}
+
+.delete-button:hover{
+    font-size: 1.6em;
+}
+
+.clear{
+    clear:both;
+}
+
+.banner{
+    height: 55vh;
+    background-color: #03989e;
+    border: #f9d486 solid 1em;
+}
+
+.end-icons{
+    margin-left: 0.5em;
+}
+
+.Terminator{
+    position:fixed;
+    top:2vh;
+    right:10px;
+    background:transparent;
+    border:none;
+    outline:none;
+}
+
+.pop{
+    position:fixed;
+    top:0;
+    background-color:rgba(0,0,0,0.001);
+    height:100vh;
+}
+
+.add-button{
+    float: left;
+    background-color:#a56eb0;
+    color:white;
+    border: 0;
+    border-radius: 0.5rem;
+    outline: 0;
+    padding: 0;
+    font-size: 1em;
+    margin-top: 0.1em;
+    padding:0 0.5em;
+    transition-duration: 0.5s;
+}
+
+.add-button:hover{
+    background-color: #5f2f87;
+}
+
+.view-button{
+    float: right;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 1.3em;
+    transition-duration: 0.5s;
+}
+
+.wish-button{
+    float: right;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 1.2em;
+    transition-duration: 0.5s;
+}
+
+#header{
+    font-family: 'Sarabun', sans-serif;
+    font-size: 3em;
+    text-decoration: underline 0.05em;
+}
+.contents{
+    width: 100%;
+    align-self: baseline;
+    display: inline-block;
+}
+
+.buttons{
+    width: 100%;
+    align-self:center;
+    margin-bottom: 0;
+    padding-bottom: 1em;
+    border-radius: 0 0 0.5em 0.5em;
+
+}
+
+.delete_float{
+    position : relative ;
+}
+.see-more-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.see-more {
+    color: black;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1300px) {
+.display-column {
+    -ms-flex: 30%;
+    flex: 30%;
+    max-width: 30%;
+    max-height:auto;
+}
+}
+
+@media screen and (max-width: 1030px) {
+    .display-column {
+        -ms-flex: 46%;
+        flex: 46%;
+        max-width: 46%;
+        max-height:auto;
+    }
+    }
+
+@media screen and (max-width: 800px) {
+    .Terminator {
+        top: 0.5;
+    }
+    .display-column {
+        -ms-flex: 40%;
+        flex: 40%;
+        max-width: 46%;
+        max-height:auto;
+    }
+    }
+
+@media screen and (max-width: 540px) {
+.display-column {
+    -ms-flex: 100%;
+    flex: 100%;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    font-size: auto;
+}
+}

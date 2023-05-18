@@ -1,0 +1,82 @@
+#Navbar-Edit{
+  padding: 0.3rem;
+  width: 100%;
+  background-color: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.Navbar-Link:not(.Login , .account , .Navbar-Search){
+  font-family: 'Kanit', sans-serif;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.Navbar-Link.Login{
+  color: #a56eb0;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border: 0.2rem solid;
+  border-radius: 10rem;
+  padding: 0.1rem;
+  margin-top:0.1rem;
+  transition-duration:0.5s;
+  text-align: center;
+}
+
+.Navbar-Link.account{
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  color: #a56eb0;
+  border: 0.2rem solid;
+  border-radius: 10rem;
+  font-weight: 400;
+}
+
+.Navbar-Account-UserName{
+  display: inline;
+  font-size: 1rem;
+}
+
+.Navbar-Logo{
+  height:80px;
+  width:80px;
+}
+
+.Navbar-Search{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-family: 'Kanit', sans-serif;
+  border: 0.2rem solid;
+  color: #a56eb0;
+  border-radius: 10rem;
+  width: 100%;
+}
+
+.Navbar-Search:focus{
+  color: #a56eb0;
+  outline: #a56eb0;
+}
+
+.Navbar-Link:hover{
+  color: #a56eb0;
+}
+
+.Navbar-Link.Active{
+  color: #a56eb0;
+  text-decoration: underline solid 0.2rem;
+}
+
+#navbarCollapse.Navbar-Search{
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .w_100, .Navbar-Search{
+    width: 100%!important;
+  }
+}
