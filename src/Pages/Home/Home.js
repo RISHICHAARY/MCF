@@ -155,6 +155,8 @@ function Display(){
         setRReview(people[index+1].rev);
         setRRating(people[index+1].rating);
         setRImage(people[index+1].rating);
+        setActiveImage(people[index+1].image[0]);
+        setNonActiveImage(people[index+1].image);
     }
     else{
         setIndex(0);
@@ -163,6 +165,8 @@ function Display(){
         setRReview(people[0].rev);
         setRRating(people[0].rating);
         setRImage(people[0].rating);
+        setActiveImage(people[0].image[0]);
+        setNonActiveImage(people[0].image);
     }
   };
 
@@ -174,6 +178,8 @@ function Display(){
         setRReview(people[index-1].rev);
         setRRating(people[index-1].rating);
         setRImage(people[index-1].rating);
+        setActiveImage(people[index-1].image[0]);
+        setNonActiveImage(people[index-1].image);
     }
     else{
         setIndex(Length-1);
@@ -182,6 +188,8 @@ function Display(){
         setRReview(people[Length-1].rev);
         setRRating(people[Length-1].rating);
         setRImage(people[Length-1].rating);
+        setActiveImage(people[Length-1].image[0]);
+        setNonActiveImage(people[Length-1].image);
     }
   };
 
