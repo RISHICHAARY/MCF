@@ -26,8 +26,59 @@ function Display(){
     const [ RLoc , setRLoc ] = useState(null);
     const [ RReview , setRReview ] = useState(null);
     const [ RRating , setRRating ] = useState(null);
+    const [ RImage , setRImage ] = useState([]);
     const [ Length , setLength ] = useState(0);
     const [ Category , setCategory ] = useState([]);
+    const [ ActiveImage , setActiveImage ] = useState("");
+    const [ NonActiveImage , setNonActiveImage ] = useState([]);
+    const [ ActiveValue , setActiveValue ] = useState(0);
+    const [touchPosition, setTouchPosition] = useState(null);
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX
+        setTouchPosition(touchDown)
+    }
+
+    const handleTouchMove = (e) => {
+        const touchDown = touchPosition
+    
+        if(touchDown === null) {
+            return
+        }
+    
+        const currentTouch = e.touches[0].clientX
+        const diff = touchDown - currentTouch
+    
+        if (diff > 5) {
+            var f11 = ActiveValue;
+            if(ActiveValue > 0){
+                setActiveValue(ActiveValue-1);
+                f11=f11-1;
+                setActiveImage(NonActiveImage[f11]);
+            }
+            else{
+                setActiveValue(NonActiveImage.length-1);
+                f11=NonActiveImage.length-1
+                setActiveImage(NonActiveImage[f11]);
+            }
+            
+        }
+    
+        if (diff < -5) {
+            var f1 = ActiveValue;
+            if(ActiveValue < NonActiveImage.length-1){
+                setActiveValue(ActiveValue+1);
+                f1=f1+1;
+                setActiveImage(NonActiveImage[f1]);
+            }
+            else{
+                setActiveValue(0);
+                f1=0;
+                setActiveImage(NonActiveImage[f1]);
+            }
+        }
+    
+        setTouchPosition(null)
+    }
 
     const Delete = (id) => {
 		setLoading(true);
@@ -61,6 +112,9 @@ function Display(){
                     setRLoc(response.data[0].loc);
                     setRReview(response.data[0].rev);
                     setRRating(response.data[0].rating);
+                    setRImage(response.data[0].image);
+                    setActiveImage(response.data[0].image[0]);
+                    setNonActiveImage(response.data[0].image);
                     setLength(response.data.length);
                     if(Location.state !== null){
                         if(Location.state.user !== undefined){
@@ -100,6 +154,7 @@ function Display(){
         setRLoc(people[index+1].loc);
         setRReview(people[index+1].rev);
         setRRating(people[index+1].rating);
+        setRImage(people[index+1].rating);
     }
     else{
         setIndex(0);
@@ -107,6 +162,7 @@ function Display(){
         setRLoc(people[0].loc);
         setRReview(people[0].rev);
         setRRating(people[0].rating);
+        setRImage(people[0].rating);
     }
   };
 
@@ -117,6 +173,7 @@ function Display(){
         setRLoc(people[index-1].loc);
         setRReview(people[index-1].rev);
         setRRating(people[index-1].rating);
+        setRImage(people[index-1].rating);
     }
     else{
         setIndex(Length-1);
@@ -124,6 +181,7 @@ function Display(){
         setRLoc(people[Length-1].loc);
         setRReview(people[Length-1].rev);
         setRRating(people[Length-1].rating);
+        setRImage(people[Length-1].rating);
     }
   };
 
@@ -310,6 +368,38 @@ function Display(){
       <p className="job">{RLoc}</p>
       <p className="info">{RReview}</p>
       <div className="customer-review-card-rating">{stars}</div>
+      <div>
+<div  onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+<button className='prev-button-1' onClick={()=>{
+            var f = ActiveValue;
+            if(ActiveValue > 0){
+                setActiveValue(ActiveValue-1);
+                f=f-1;
+                setActiveImage(NonActiveImage[f]);
+            }
+            else{
+                setActiveValue(NonActiveImage.length-1);
+                f=NonActiveImage.length-1
+                setActiveImage(NonActiveImage[f]);
+            }
+        }}><i class="fi fi-rr-angle-left"></i></button>
+        <img src={ActiveImage} alt="MainImage" className="active-image" />
+        <button className='next-button-1' onClick={()=>{
+            var f = ActiveValue;
+            if(ActiveValue < NonActiveImage.length-1){
+                setActiveValue(ActiveValue+1);
+                f=f+1;
+                setActiveImage(NonActiveImage[f]);
+            }
+            else{
+                setActiveValue(0);
+                f=0;
+                setActiveImage(NonActiveImage[0]);
+            }
+        }}
+        ><i class="fi fi-rr-angle-right"></i></button>
+    </div>
+      </div>
       <div className="button-container">
         <button className="prev-btn" onClick={prevPerson}>
           <FaChevronLeft />

@@ -1,6 +1,9 @@
-import { useState} from 'react';
+import { useState , useEffect } from 'react';
 import { useNavigate  , useLocation} from 'react-router-dom';
 import Axios from 'axios';
+import _ from 'lodash';
+import { ref , uploadBytes , getDownloadURL } from 'firebase/storage';
+import { storage } from '../../cloud';
 
 import '../../Styles/Login_Register.css';
 
@@ -19,9 +22,23 @@ function Products(){
     const [ Loc , setLoc ] = useState(null);
     const [ Review , setReview ] = useState(null);
     const [ Rating , setRating ] = useState(0);
+    const [ File , setFile ] = useState([]);
+    const [ FileUrls , setFileUrls ] = useState([]);
     const [ Verify , setVerify ] = useState(true);
 
     //const fileref = ref(storage, "Files/");
+    const FileStorer = (e) =>{
+        let { files } = e.target;
+
+        _.forEach(files, file => {
+            setFile((prevState) => [ ...prevState , file]);
+        });
+        /*for(var i=0 ; i<e.target.files.length ; i++){
+            var file = e.target.files[i];
+            // eslint-disable-next-line no-loop-func
+            setFile((prevState) => [ ...prevState , file]);
+        }*/
+    }
 
     const filled = () =>{
         if(Name === null){alert("Fill Name");setVerify(false)}
@@ -32,10 +49,42 @@ function Products(){
     }
 
     const upload = () => {
+        setLoading(true);
+        if (File == null) return;
+        for(var j=0 ; j<File.length ; j++){
+            const FileReference = ref(storage , `Review_DP/${File[j].name+Name+j}`);
+            uploadBytes(FileReference , File[j]).then((FileData) => {
+                getDownloadURL(FileData.ref).then((url) => {
+                    setFileUrls((prev)=>[...prev , url]);
+                })
+            });
+        }
+    }
+
+    useEffect(() =>{
+        if(FileUrls.length !== 0){
+            if(FileUrls.length === File.length){
+                setLoading(true);
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
+                            {
+                                image_url : FileUrls,
+                                name : Name.toUpperCase(),
+                                loc : Loc,
+                                rev : Review,
+                                rating : Rating
+                            }).then(() => {
+                                setLoading(false);
+                                Navigate("/Dashboard" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
+                            });}}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [FileUrls])
+
+    /*const upload = () => {
         if(Verify){
             setLoading(true);
                 Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
                             {
+                                image_url : FileUrls,
                                 name : Name.toUpperCase(),
                                 loc : Loc,
                                 rev : Review,
@@ -45,7 +94,7 @@ function Products(){
                                 Navigate("/Dashboard" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
                             });
                     }
-            }
+            }*/
 
     return(
         <>
@@ -108,6 +157,18 @@ function Products(){
                                         <input type="text" placeholder="Eg: Hariyana" 
                                             className="input-attributes w-100"
                                             onChange={(event)=>{setRating(parseInt(event.target.value))}} required>
+                                        </input>
+                                    </div>
+                                    <div className="col-12">
+                                        <p className="label-attributes">
+                                            PRODUCT IMAGES:
+                                        </p>
+                                        <br></br>
+                                        <input type="file" accept='image/*' 
+                                            className="input-attributes w-100"
+                                            multiple="multiple"
+                                            id="files" name="files"
+                                            onChange={(event) =>{FileStorer(event)}} required>
                                         </input>
                                     </div>
                                 <button className="final-button-ap general-button" onClick={filled}>

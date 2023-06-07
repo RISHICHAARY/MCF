@@ -335,6 +335,22 @@
     font-size: 1.5rem;
 }
 
+.next-button-1{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 2em;
+    right: 0;
+}
+
+.prev-button-1{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 2em;
+    left: 0;
+}
+
 @media screen and (max-width: 1300px) {
 .display-column {
     -ms-flex: 30%;
