@@ -12,36 +12,17 @@
 
 .HomeSlider{
     width: 100%;
-}
-
-.HomeSlider-Content-Main{
-    width: 100%;
+    padding-top: 5.4rem;
     text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-    color: white;
+    background-color:#864D9E;
+    min-height: 66.5vh;
+    border-radius: 0 0 2rem 2rem;
 }
 
-.HomeSlider-Content{
-    font-family: 'Great Vibes', cursive;
-    font-size: 6rem;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.HomeSlider-SubContent{
-    font-size: 2rem;
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.HomeSlider-Main{
-    height: 100%;
-    width: 100%;
-    border-radius: 0 0 80% 10%;
-    height: 65vh;
-    background-color: #a56eb0;
-    display: table;
+.banner{
+    max-width: 100%;
+    border: none;
+    animation: ease-in 2s;
 }
 
 @media screen and (max-width: 767px) {

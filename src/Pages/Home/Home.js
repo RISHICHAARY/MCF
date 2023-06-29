@@ -1,4 +1,4 @@
-import { useEffect , useState } from 'react';
+import { useEffect , useState , useRef} from 'react';
 import {useLocation , useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Axios from 'axios';
@@ -8,7 +8,9 @@ import SideBar from '../../Components/SideBar';
 import Footer from '../../Components/Footer/index';
 import Loader from '../../Components/Loader/index';
 import OurMission from '../../Components/Reviews/mission';
-
+import banner1 from '../../Images/banner_1.png'
+import banner2 from '../../Images/banner_2.png'
+import banner3 from '../../Images/banner_3.png'
 import '../../Styles/Product_Card.css';
 import './Home.css';
 import '../../Components/Reviews/review.css'
@@ -33,10 +35,43 @@ function Display(){
     const [ NonActiveImage , setNonActiveImage ] = useState([]);
     const [ ActiveValue , setActiveValue ] = useState(0);
     const [touchPosition, setTouchPosition] = useState(null);
+    const [ ActiveBanner , setActiveBanner ] = useState(0);
+
+    const Banners = [banner1,banner2,banner3]
+
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX
         setTouchPosition(touchDown)
     }
+
+    const delay = 3500;
+
+    const timeoutRef = useRef(null);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
+
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>{
+      if(ActiveBanner===2){
+        //await delay(100000);
+        setActiveBanner(0)
+    }
+    else{
+        setActiveBanner(ActiveBanner+1)
+    }},
+      delay
+    );
+
+    return () => {
+      resetTimeout();
+    };
+  }, [ActiveBanner]);
 
     const handleTouchMove = (e) => {
         const touchDown = touchPosition
@@ -204,14 +239,8 @@ function Display(){
                 <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
             <div className='HomeSlider'>
-                <div className='HomeSlider-Main'>
-                    <div  className='HomeSlider-Content-Main'>
-                        <p className='HomeSlider-Content'>Magic Corner</p>
-                        <p className='HomeSlider-SubContent'>Handmade with Love</p>
-                    </div>
-                </div>
-                <div className='HomeSlider-Sub'>
-                </div>
+                <img src={Banners[ActiveBanner]} className='banner'>
+                </img>
             </div>
             <div className='categories display-row'>
                 <p className='D-header'>CATERGORIES</p>
@@ -357,71 +386,69 @@ function Display(){
                 </div>
             </div>
             <OurMission/>
-            
-
             <div className="main-review-div">
-    <section className="review-div">
-      <div className="title">
-  <h2>REVIEWS</h2>
-<div className="underline"></div>
-    </div>
-    <article className="review">
-      {/* <div className="img-container">
-        <img src={image} alt={name} className="person-img" />
-        <span className="quote-icon">
-          <FaQuoteRight />
-        </span>
-      </div> */}
-      <h4 className="author">{RName}</h4>
-      <p className="job">{RLoc}</p>
-      <p className="info">{RReview}</p>
-      <div className="customer-review-card-rating">{stars}</div>
-      <div>
-<div  onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-<button className='prev-button-1' onClick={()=>{
-            var f = ActiveValue;
-            if(ActiveValue > 0){
-                setActiveValue(ActiveValue-1);
-                f=f-1;
-                setActiveImage(NonActiveImage[f]);
-            }
-            else{
-                setActiveValue(NonActiveImage.length-1);
-                f=NonActiveImage.length-1
-                setActiveImage(NonActiveImage[f]);
-            }
-        }}><i class="fi fi-rr-angle-left"></i></button>
-        <img src={ActiveImage} alt="MainImage" className="active-image" />
-        <button className='next-button-1' onClick={()=>{
-            var f = ActiveValue;
-            if(ActiveValue < NonActiveImage.length-1){
-                setActiveValue(ActiveValue+1);
-                f=f+1;
-                setActiveImage(NonActiveImage[f]);
-            }
-            else{
-                setActiveValue(0);
-                f=0;
-                setActiveImage(NonActiveImage[0]);
-            }
-        }}
-        ><i class="fi fi-rr-angle-right"></i></button>
-    </div>
-      </div>
-      <div className="button-container">
-        <button className="prev-btn" onClick={prevPerson}>
-          <FaChevronLeft />
-        </button>
-        <button className="next-btn" onClick={nextPerson}>
-          <FaChevronRight />
-        </button>
-      </div>
-      {/* <button className="random-btn" onClick={getRandomPerson}>Get Random Review</button> */}
-    </article>
-    </section>
-    </div>
-
-
+                <section className="review-div">
+                    <div className="title">
+                        <h2>REVIEWS</h2>
+                        <div className="underline"></div>
+                    </div>
+                    <article className="review">
+                        <div className='flex-container'>
+                            <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+                                <button className='prev-button-rev' onClick={()=>{
+                                    var f = ActiveValue;
+                                    if(ActiveValue > 0){
+                                    setActiveValue(ActiveValue-1);
+                                    f=f-1;
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    else{
+                                    setActiveValue(NonActiveImage.length-1);
+                                    f=NonActiveImage.length-1
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    }}
+                                >
+                                        <i class="fi fi-rr-angle-left"></i>
+                                </button>
+                                <img src={ActiveImage} alt="MainImage" className="active-image-rev" />
+                                <button className='next-button-rev' onClick={()=>{
+                                    var f = ActiveValue;
+                                    if(ActiveValue < NonActiveImage.length-1){
+                                    setActiveValue(ActiveValue+1);
+                                    f=f+1;
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    else{
+                                    setActiveValue(0);
+                                    f=0;
+                                    setActiveImage(NonActiveImage[0]);
+                                    }
+                                    }}
+                                >
+                                        <i class="fi fi-rr-angle-right"></i>
+                                </button>
+                            </div>
+                            <div className='flex-child'>
+                                <div className='inner-rev-det'>
+                                    <h4 className="author">{RName}</h4>
+                                    <p className="job">{RLoc}</p>
+                                    <p className="info">{RReview}</p>
+                                    <div className="customer-review-card-rating">{stars}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="button-container">
+                            <button className="prev-btn" onClick={prevPerson}>
+                            <FaChevronLeft />
+                            </button>
+                            <button className="next-btn" onClick={nextPerson}>
+                            <FaChevronRight />
+                            </button>
+                        </div>
+                    </article>
+                </section>
+            </div>
             {
                 (Location.state === null)?<Footer Received={null}/>:(Location.state.user === undefined)?<Footer Received={null}/>:
                 <Footer Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
