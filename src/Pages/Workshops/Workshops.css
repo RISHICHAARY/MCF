@@ -1,0 +1,19 @@
+.WorkshopSlider{
+    width: 100%;
+    padding-top: 5.4rem;
+    text-align: center;
+    background-color:#864D9E;
+    min-height:max-content;
+    border-radius: 0 0 2rem 2rem;
+}
+
+.banner{
+    max-width: 100%;
+    border: none;
+    animation: ease-in 2s;
+}
+@media screen and (max-width: 767px){
+    .floaticons{
+        top:60%;
+    }
+}

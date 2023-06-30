@@ -15,7 +15,7 @@
     padding-top: 5.4rem;
     text-align: center;
     background-color:#864D9E;
-    min-height: 66.5vh;
+    min-height: max-content;
     border-radius: 0 0 2rem 2rem;
 }
 
@@ -24,7 +24,7 @@
     border: none;
     animation: ease-in 2s;
 }
-
+/*
 @media screen and (max-width: 767px) {
     .HomeSlider-Main{
         border-radius: 0 0 70% 10%;
@@ -34,5 +34,12 @@
     }
     .HomeSlider-SubContent{
         font-size: 1rem;
+    }
+}
+*/
+@media screen and (max-width: 420px) {
+    .banner{
+        width: auto;
+        height: auto;
     }
 }

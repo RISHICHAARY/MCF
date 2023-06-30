@@ -4,7 +4,8 @@ import {useNavigate , useLocation } from 'react-router-dom';
 import Axios from 'axios'; 
 import "../../Styles/Products_Workshops.css"
 import '../../Styles/Product_Card.css';
-
+import './Workshops.css';
+import banner from '../../Images/workshop.png'
 import NavBar from '../../Components/NavBar';
 import SideBar from '../../Components/SideBar';
 import Footer from '../../Components/Footer/index';
@@ -40,7 +41,7 @@ function Workshop() {
     } , [] );
 
     return (
-        <div id="Home">
+        <div id="W-Home">
         {
             (Location.state.user === undefined)?<NavBar Received={{page : "W"}}/>:
                 <NavBar Received={ {page : "W",status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
@@ -49,6 +50,10 @@ function Workshop() {
             (Location.state.user === undefined)?<SideBar Received={null}/>:
             <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
         }
+        <div className='WorkshopSlider'>
+            <img src={banner} className='banner'>
+            </img>
+        </div>
         <div className='display-row'>
                 {
                     (Loading)?
