@@ -3,11 +3,13 @@
     display: grid;
     place-items: center;
     font-family: 'Kanit', sans-serif;
+    transition: ease 1000ms;
   }
   
   .review-div {
     width: 80vw;
     max-width: 680px;
+    transition: ease 1000ms;
   }
   
   .title {
@@ -22,6 +24,7 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s linear;
     text-align: center;
+    transition: ease 1000ms;
   }
   .review:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -71,6 +74,7 @@
 
 .flex-container {
   display: flex;
+  transition: ease 1000ms;
 }
 
 .flex-child {
@@ -96,6 +100,9 @@
   outline: 0;
 }
 
+.active-image-rev{
+  border-radius: 10rem;
+}
 
 @media screen and (max-width: 550px) {
   .flex-container{

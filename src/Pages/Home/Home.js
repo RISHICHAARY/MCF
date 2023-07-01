@@ -57,14 +57,10 @@ function Display(){
   useEffect(() => {
     resetTimeout();
     timeoutRef.current = setTimeout(
-      () =>{
-      if(ActiveBanner===2){
-        //await delay(100000);
-        setActiveBanner(0)
-    }
-    else{
-        setActiveBanner(ActiveBanner+1)
-    }},
+      () =>
+        setActiveBanner((prevActiveBanner) =>
+          prevActiveBanner === Banners.length - 1 ? 0 : prevActiveBanner + 1
+        ),
       delay
     );
 
@@ -239,8 +235,20 @@ function Display(){
                 <SideBar Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />
             }
             <div className='HomeSlider'>
-                <img src={Banners[ActiveBanner]} className='banner'>
-                </img>
+                <div className="slideshow">
+                    <div
+                        className="slideshowSlider"
+                        style={{ transform: `translate3d(${-ActiveBanner * 100}%, 0, 0)` }}
+                    >
+                        {Banners.map((backgroundImage, index) => (
+                        <div
+                            className="slide"
+                            key={index}
+                            style={{ backgroundImage: `url(${backgroundImage})` }}
+                        ></div>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div className='categories display-row'>
                 <p className='D-header'>CATERGORIES</p>
