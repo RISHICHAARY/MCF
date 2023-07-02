@@ -10,7 +10,6 @@ import NavBar from '../../Components/NavBar';
 import SideBar from '../../Components/SideBar';
 import Footer from '../../Components/Footer/index';
 import Loader from '../../Components/Loader/index';
-
 import NoProduct from '../../Images/NoProduct.png'
 
 function Workshop() {
@@ -30,13 +29,41 @@ function Workshop() {
     };
 
     const [ Products , setProducts ] = useState([]);
+    const [ Modes , setModes ] = useState([]);
+
+    const Filter2 = (Cata) => {
+        setLoading(true);
+        if(Cata === "All"){
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+            setProducts(response.data);
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+                setModes(response.data);
+                setLoading(false);
+            })
+        });
+        }
+        else{
+        Axios.put('https://bored-wasp-top-hat.cyclic.app/getWs' , {Category : Cata}).then((response) => {
+            setProducts(response.data);
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+                setModes(response.data);
+                setLoading(false);
+            });
+        });
+    }
+    }
 
     useEffect( () => {
         setLoading(true);
+        if(Location.state.Cata !== undefined){Filter2()}
+        else{
         Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            setLoading(false);
-        });
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+                setModes(response.data);
+                setLoading(false);
+            })
+        });}
     // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [] );
 
@@ -54,11 +81,42 @@ function Workshop() {
             <img src={banner} className='banner'>
             </img>
         </div>
+        {
+            (Loading)?
+            <Loader/>
+            :<>
+            <div className='categories display-row'>
+                <p className='D-header'>CATERGORIES</p>
+                <button className='display-column-1-butt' onClick={()=>{Filter2("All")}} >
+                    <div className='display-column-1'>
+                        <div className='image-div-1'>
+                        </div>
+                        <div className='product-discount-div-1'>
+                            <p className='Cate-text All'>ALL</p>
+                        </div>
+                    </div>
+                </button>
+                {
+                    Modes.map((value)=>{
+                        return(
+                            <>                            
+                            <button className='display-column-1-butt' onClick={()=>{Filter2(value.name)}}>
+                                <div className='display-column-1' key={value._id} >
+                                    <div className='image-div-1'>
+                                        <img src={value.image} alt='Category' className='image-1'/>
+                                    </div>
+                                    <div className='product-discount-div-1'>
+                                        <p className='Cate-text'>{value.name}</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </>
+                        );
+                    })
+                }
+            </div>
         <div className='display-row'>
                 {
-                    (Loading)?
-                    <Loader/>
-                    :
                     (Products.length === 0)?
                     <main class="nothing-content">
                         {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
@@ -148,6 +206,8 @@ function Workshop() {
                 )
             }
             </div>
+            </>
+}
             {
                 (Location.state === null)?<Footer Received={null}/>:(Location.state.user === undefined)?<Footer Received={null}/>:
                 <Footer Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />

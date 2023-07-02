@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .search-container > input[type="text"] {

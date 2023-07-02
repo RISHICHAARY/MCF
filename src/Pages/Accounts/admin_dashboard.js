@@ -290,8 +290,9 @@ function AdminDashBoard(){
                             <button className='add-buttons' onClick={()=>{Navigate("/AddWorkshops" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD WORKSHOP</button>
                             <br/>
                             <button className='add-buttons' onClick={()=>{Navigate("/AddCategory" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD CATEGORY</button>
-                            <button className='add-buttons' onClick={()=>{Navigate("/AddTag" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD TAG</button>
+                            <button className='add-buttons' onClick={()=>{Navigate("/AddMode" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD MODE</button>
                             <br/>
+                            <button className='add-buttons' onClick={()=>{Navigate("/AddTag" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD TAG</button>
                             <button className='add-buttons' onClick={()=>{Navigate("/AddReview" , { state:{user_status: Location.state.status, user_name : Location.state.name , user:Location.state.user , type:Location.state.type , user_id:Location.state.id} })}}><i class="fa-solid fa-plus me-1"></i>ADD REVIEW</button>
                         </div>
                         <div className='in-progress-div-one'>

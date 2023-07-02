@@ -3,6 +3,10 @@ import './SideBar.css'
 import { Link } from 'react-router-dom';
 import "../NavBar/navbar.css";
 
+import { AiOutlineShoppingCart , AiOutlineHeart } from "react-icons/ai";
+import { BsChatLeftDots } from "react-icons/bs";
+import { HiOutlineShoppingCart , HiOutlineHeart , HiOutlineChatAlt } from "react-icons/hi";
+
 function icons({Received}) {
     return (
         <div className='floaticons'>
@@ -11,24 +15,24 @@ function icons({Received}) {
                     (Received !== null)?
                     <>
                         <li className="side-item">
-                            <Link className="side-link" to="/Cart" state={Received}><i class="fi fi-ss-shopping-bag"></i></Link>
+                            <Link className="side-link" to="/Cart" state={Received}><AiOutlineShoppingCart/></Link>
                         </li>
                         <li className="side-item">
-                            <Link className="side-link" to="/WishList" state={Received}><i class="fi fi-ss-heart"></i></Link>
+                            <Link className="side-link" to="/WishList" state={Received}><AiOutlineHeart/></Link>
                         </li>
                         <li className="side-item">
-                                <Link className="side-link" to="/Chat" state={Received}><i class="fi fi-sr-comment-alt"></i></Link>
+                                <Link className="side-link" to="/Chat" state={Received}><BsChatLeftDots/></Link>
                         </li>
                     </>:
                     <>
                         <li className="side-item">
-                            <Link className="side-link" to="/Login" state={Received}><i class="fi fi-ss-shopping-bag"></i></Link>
+                            <Link className="side-link" to="/Login" state={Received}><HiOutlineShoppingCart/></Link>
                         </li>
                         <li className="side-item">
-                            <Link className="side-link" to="/Login" state={Received}><i class="fi fi-ss-heart"></i></Link>
+                            <Link className="side-link" to="/Login" state={Received}><HiOutlineHeart/></Link>
                         </li>
                         <li className="side-item">
-                            <Link className="side-link" to="/ContactUS"><i class="fi fi-sr-comment-alt"></i></Link>
+                            <Link className="side-link" to="/ContactUS"><HiOutlineChatAlt/></Link>
                         </li>
                     </>
                 }

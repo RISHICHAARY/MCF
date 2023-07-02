@@ -177,7 +177,7 @@ function ProductView(){
                     <div className='container col-6 float-start mt-2 content-div'>
                         <p className="view-product-name">{Item.name}</p>
                         <p className="product-description">{Item.description}</p>
-                        <p className="product-description">Dimensions : {Item.length} x {Item.width} x {Item.height} M(L x B x H)</p>
+                        <p className="product-description-dimen">Dimensions : {Item.length} x {Item.width} x {Item.height} M(L x B x H)</p>
                         <textarea className='text-area' row="3" column="200%" placeholder='Tell us how you want to customize your product.' onChange={(e)=>{setCuz(e.target.value)}}></textarea>
                         <p className="quantity">Quantity :</p>
                         <input className='quantity-input' type="number" min="1" max="10" defaultValue="1" onChange={(e)=>{setQuant(e.target.value)}} />

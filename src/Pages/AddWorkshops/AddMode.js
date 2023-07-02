@@ -11,7 +11,7 @@ import SideBar from '../../Components/SideBar';
 import Footer from '../../Components/Footer/index';
 import Loader from '../../Components/Loader/index';
 
-function Products(){
+function Modes(){
 
     const Navigate = useNavigate();
     const Location = useLocation();
@@ -32,10 +32,10 @@ function Products(){
     const upload = () => {
             if(Verify){
             setLoading(true);
-                const FileReference = ref(storage , `Category_DP/${File.name+Name}`);
+                const FileReference = ref(storage , `Mode_DP/${File.name+Name}`);
                 uploadBytes(FileReference , File).then((FileData) => {
                     getDownloadURL(FileData.ref).then((url) => {
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/addCategory" , 
+                        Axios.put("https://bored-wasp-top-hat.cyclic.app/addMode" , 
                             {
                                 img : url,
                                 name : Name.toUpperCase(),
@@ -70,20 +70,20 @@ function Products(){
                         <div className="overall">
                             <div className="">
                                 <div className="container row">
-                                <p className="Login-Header">ADD CATEGORY</p>
+                                <p className="Login-Header">ADD MODE</p>
                                     <div className="col-12 float-start">
                                         <p className="label-attributes">
-                                            CATEGORY NAME:
+                                            MODE NAME:
                                         </p>
                                         <br></br>
-                                        <input type="text" placeholder="Eg: Marcrame" 
+                                        <input type="text" placeholder="Eg: Online" 
                                             className="input-attributes w-100"
                                             onChange={(event)=>{setName(event.target.value)}} required>
                                         </input>
                                     </div>
                                     <div className="col-12">
                                         <p className="label-attributes">
-                                            CATEGORY IMAGE:
+                                            MODE IMAGE:
                                         </p>
                                         <br></br>
                                         <input type="file" accept='image/*' 
@@ -112,4 +112,4 @@ function Products(){
     );
 };
 
-export default Products;
+export default Modes;

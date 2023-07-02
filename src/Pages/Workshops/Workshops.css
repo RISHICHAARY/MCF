@@ -3,8 +3,17 @@
     padding-top: 5.4rem;
     text-align: center;
     background-color:#864D9E;
-    min-height:max-content;
-    border-radius: 0 0 2rem 2rem;
+    height:max-content;
+}
+
+.display-column-1-butt{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.All{
+    color: black;
 }
 
 .banner{

@@ -6,7 +6,7 @@
     margin-top: 15px;
     text-align: center;
     width: 100%;
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: black;
     font-size: 2rem;
     font-weight: 400;
@@ -33,7 +33,7 @@
 .UserVerify-Ul{
     list-style:decimal;
     display: block;
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: black;
     font-size: 1.2rem;
     font-weight: 200;

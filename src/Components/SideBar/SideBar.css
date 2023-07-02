@@ -1,15 +1,16 @@
 .floaticons {
-    position: fixed;
-    top: 50%;
-    right: 1%;
-    z-index: 8;
-    backdrop-filter: blur(5px);
-    padding: 0.5rem;
-    border-radius: 1rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 8;
+  backdrop-filter: blur(5px);
+  padding: 0.5rem;
+  border-radius: 1rem;
 }
 
 .side-item{
   margin: 0.4rem 0;
+  font-size: x-large;
 }
 
 .side-link{
@@ -18,7 +19,10 @@
   font-weight:600;
   cursor: pointer;
   transition-duration:0.5s;
-  text-shadow: 0.1rem 0.1rem rgba(0,0,0,0.5);
+  background-color: beige;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  padding-top: 0.1rem;
 }
 
 .side-link:hover{
@@ -30,30 +34,29 @@
 }
 
 .whatsapp_float img {
-    width: 35px;
-    height: 35px;
-    color: #FFF;
-    text-align: center;
-    z-index: 100;
+  width: 35px;
+  height: 35px;
+  color: #FFF;
+  text-align: center;
+  z-index: 100;
+}
+
+.icon {
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .floaticons {
+    bottom: 0;
+    max-height: fit-content;
   }
-  
+
   .icon {
-    margin-top: 16px;
+    margin-top: 12px;
   }
-  
-  /* for mobile */
-  @media screen and (max-width: 767px) {
-    .floaticons {
-      top: 50%;
-    }
-    .icon {
-        margin-top: 12px;
-    }
-  
-    .whatsapp_float img{
-        width: 25px;
-        height: 25px;
-        /* bottom: 20px; */
-        /* right: 10px; */
-    }
+
+  .whatsapp_float img{
+    width: 25px;
+    height: 25px;
   }
+}

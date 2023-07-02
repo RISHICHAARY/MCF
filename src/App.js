@@ -39,6 +39,7 @@ import TC from './Components/Footer/TC';
 import AboutUs from './Components/Footer/About';
 import PP from './Components/Footer/PP';
 import Category from './Pages/AddProducts/AddCategory';
+import Modes from './Pages/AddWorkshops/AddMode';
 import Tag from './Pages/AddProducts/AddTag';
 import Review from './Pages/AddProducts/AddReview';
 import ScrollToTop from './Components/Footer/ScrollToTop';
@@ -90,6 +91,7 @@ function App() {
             <Route path="/Privacy-policy" element={<PP/>} />
             <Route path="/ContactUS" element={<Contact/>} />
             <Route path="/AddCategory" element={<Category/>} />
+            <Route path="/AddMode" element={<Modes/>} />
             <Route path="/AddTag" element={<Tag/>} />
             <Route path="/AddReview" element={<Review/>} />
           </Routes>

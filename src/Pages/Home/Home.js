@@ -19,8 +19,9 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 function Display(){
     const Location = useLocation();
     const Navigate = useNavigate();
-    const [Loading , setLoading] = useState(false);
+    const [ Loading , setLoading ] = useState(false);
     const [ Products , setProducts ] = useState([]);
+    const [ ProductsUFH , setProductsUFH ] = useState([]);
     const [ CartItems , setCartItems ] = useState([]);
     const [ OnPageCart , setOnPageCart ] = useState([]);
     const [ people , setpeople ] = useState([]);
@@ -28,7 +29,6 @@ function Display(){
     const [ RLoc , setRLoc ] = useState(null);
     const [ RReview , setRReview ] = useState(null);
     const [ RRating , setRRating ] = useState(null);
-    const [ RImage , setRImage ] = useState([]);
     const [ Length , setLength ] = useState(0);
     const [ Category , setCategory ] = useState([]);
     const [ ActiveImage , setActiveImage ] = useState("");
@@ -135,32 +135,34 @@ function Display(){
         setLoading(true);
         Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllFeaturedProducts').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
-                setCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getReview').then((response) => {
-                    setpeople(response.data);
-                    setRName(response.data[0].name);
-                    setRLoc(response.data[0].loc);
-                    setRReview(response.data[0].rev);
-                    setRRating(response.data[0].rating);
-                    setRImage(response.data[0].image);
-                    setActiveImage(response.data[0].image[0]);
-                    setNonActiveImage(response.data[0].image);
-                    setLength(response.data.length);
-                    if(Location.state !== null){
-                        if(Location.state.user !== undefined){
-                            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                                setCartItems(response.data[0].wishlist);
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getProductsUFH').then((response) => {
+                setProductsUFH(response.data);
+                Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                    setCategory(response.data);
+                    Axios.get('https://bored-wasp-top-hat.cyclic.app/getReview').then((response) => {
+                        setpeople(response.data);
+                        setRName(response.data[0].name);
+                        setRLoc(response.data[0].loc);
+                        setRReview(response.data[0].rev);
+                        setRRating(response.data[0].rating);
+                        setActiveImage(response.data[0].image[0]);
+                        setNonActiveImage(response.data[0].image);
+                        setLength(response.data.length);
+                        if(Location.state !== null){
+                            if(Location.state.user !== undefined){
+                                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                                    setCartItems(response.data[0].wishlist);
+                                    setLoading(false);
+                                })
+                            }
+                            else{
                                 setLoading(false);
-                            })
+                            }
                         }
                         else{
                             setLoading(false);
                         }
-                    }
-                    else{
-                        setLoading(false);
-                    }
+                    });
                 });
             });
         });
@@ -185,7 +187,6 @@ function Display(){
         setRLoc(people[index+1].loc);
         setRReview(people[index+1].rev);
         setRRating(people[index+1].rating);
-        setRImage(people[index+1].rating);
         setActiveImage(people[index+1].image[0]);
         setNonActiveImage(people[index+1].image);
     }
@@ -195,7 +196,6 @@ function Display(){
         setRLoc(people[0].loc);
         setRReview(people[0].rev);
         setRRating(people[0].rating);
-        setRImage(people[0].rating);
         setActiveImage(people[0].image[0]);
         setNonActiveImage(people[0].image);
     }
@@ -208,7 +208,6 @@ function Display(){
         setRLoc(people[index-1].loc);
         setRReview(people[index-1].rev);
         setRRating(people[index-1].rating);
-        setRImage(people[index-1].rating);
         setActiveImage(people[index-1].image[0]);
         setNonActiveImage(people[index-1].image);
     }
@@ -218,7 +217,6 @@ function Display(){
         setRLoc(people[Length-1].loc);
         setRReview(people[Length-1].rev);
         setRRating(people[Length-1].rating);
-        setRImage(people[Length-1].rating);
         setActiveImage(people[Length-1].image[0]);
         setNonActiveImage(people[Length-1].image);
     }
@@ -241,15 +239,18 @@ function Display(){
                         style={{ transform: `translate3d(${-ActiveBanner * 100}%, 0, 0)` }}
                     >
                         {Banners.map((backgroundImage, index) => (
-                        <div
-                            className="slide"
-                            key={index}
-                            style={{ backgroundImage: `url(${backgroundImage})` }}
-                        ></div>
+                            <div className="slide">
+                                <img key={index} src={backgroundImage} className='banner'/>
+                            </div>
                         ))}
                     </div>
                 </div>
             </div>
+            {
+                (Loading)?
+                <Loader/>
+                :<>
+            
             <div className='categories display-row'>
                 <p className='D-header'>CATERGORIES</p>
                 {
@@ -298,9 +299,6 @@ function Display(){
                 <p className='D-header'>HOT DEALS</p>
                 <div className="underline"></div>
                 {
-                    (Loading)?
-                    <Loader/>
-                    :
                     Products.slice(0,9).map((value) => {
                     return(
                         // Product cart
@@ -393,6 +391,104 @@ function Display(){
                 </div>
                 </div>
             </div>
+
+
+            <div className='display-row tp'>
+                <p className='D-header'>UNDER 500</p>
+                <div className="underline"></div>
+                {
+                    ProductsUFH.slice(0,9).map((value) => {
+                    return(
+                        // Product cart
+                        <div className='display-column' key={value._id} >
+                            <div className='image-div'>
+                                {
+                                    (Location.state === null || Location.state.user === undefined)?
+                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
+                                    :
+                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})}} alt="Product" className='image'></img>
+                                }
+                                <div className='product-discount-div'>
+                                    <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
+                                    <p className='product-discount'>OFF</p>
+                                </div>
+                            </div>
+                            <div className='contents-div'>
+                                <div className='contents'>
+                                    <p className='product-name'>{value.name}</p>
+                                    <p className='product-price'><s className='strike'><span className='text-color'>Rs:{value.oldprice}</span></s> Rs:{value.newprice}</p>
+                                </div>
+                                <div className='buttons'>
+                                    {(Location.state === null || Location.state.user === undefined)?
+                                    <>
+                                        <button className='add-button' onClick={()=>{
+                                            Navigate("/Login")
+                                        }}>ADD</button>
+                                        <button className='wish-button' onClick={()=>{
+                                            Navigate("/Login")
+                                        }}><i class="fi fi-rs-heart end-icons wish-icon"></i></button>
+                                        <button className='view-button'
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})
+                                        }}
+                                        >
+                                            <i className="fi fi-rr-eye end-icons view-icon"></i>
+                                        </button>
+                                    </>
+                                    :
+                                    <>
+                                        <button className='add-button'
+                                        onClick={() =>{
+                                            setLoading(true);
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                                setLoading(false);
+                                                Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
+                                            });
+                                        }}>ADD</button>
+                                        {(CartItems.includes(value._id , 0) || OnPageCart.includes(value._id))?
+                                            <button className='wish-button'
+                                         onClick={() =>{
+                                            Delete(value._id);
+                                        }}
+                                        ><i class="fi fi-ss-heart end-icons full-wish-icon"></i></button>:
+                                            <button className='wish-button'
+                                         onClick={() =>{
+                                            setLoading(true);
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                                setOnPageCart((p) => [...p , value._id])
+                                                setLoading(false);
+                                            });
+                                        }}
+                                        ><i class="fi fi-rs-heart end-icons wish-icon"></i></button>}
+                                        <button className='view-button'
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
+                                        }}
+                                        >
+                                            <i className="fi fi-rr-eye end-icons view-icon"></i>
+                                        </button>
+                                    </>
+                                    }
+                                </div>
+                            </div>
+                            <div className='clear'></div>
+                        </div>
+                        );
+                    }
+                    )
+                }
+                <div className='display-column see-more-div'>
+                <div className='contents-div'>
+                    {
+                        (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                        (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                        <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>
+                    }
+                </div>
+                </div>
+            </div>
             <OurMission/>
             <div className="main-review-div">
                 <section className="review-div">
@@ -457,6 +553,8 @@ function Display(){
                     </article>
                 </section>
             </div>
+            </>
+}
             {
                 (Location.state === null)?<Footer Received={null}/>:(Location.state.user === undefined)?<Footer Received={null}/>:
                 <Footer Received={ {status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} } />

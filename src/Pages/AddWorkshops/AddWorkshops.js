@@ -25,6 +25,8 @@ function Products(){
     const [ File , setFile ] = useState([]);
     const [ Watsapp_grp , setWatsapp_grp ] = useState([]);
     const [ FileUrls , setFileUrls ] = useState([]);
+    const [ Mode , setMode ] = useState(null);
+    const [ Modes , setModes ] = useState([]);
 
     const filled = () =>{
         if(Name === null){alert("Fill Name");return}
@@ -72,6 +74,7 @@ function Products(){
                         description : Description,
                         newprice : NewPrice,
                         oldprice : OldPrice,
+                        mode : Mode,
                         watsapp_grp : Watsapp_grp,
                     }).then(()=>{
                         setLoading(false);
@@ -81,6 +84,13 @@ function Products(){
             }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [FileUrls])
+
+    useEffect(()=>{
+        Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            setModes(response.data);
+            setLoading(false);
+        })
+    },[])
 
     return(
         <>
@@ -145,6 +155,20 @@ function Products(){
                                     onChange={(event)=>{setOldPrice(event.target.value)}} required>
                                 </input>
                             </div>
+                            <div className="col-12 min-input-2">
+                                        <p className="label-attributes">
+                                            MODE:
+                                        </p>
+                                        <br></br>
+                                        <select className="input-attributes w-100" onChange={(event)=>{setMode(event.target.value)}} required>
+                                            <option className="option-attributes">SELECT</option>
+                                            {
+                                                Modes.map(value=>
+                                                    <option>{value.name}</option>
+                                                )
+                                            }
+                                        </select>
+                                    </div>
                             <div className="col-12 float-start">
                                 <p className="label-attributes">
                                     WATSAPP GROUP LINK:
