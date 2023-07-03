@@ -34,7 +34,7 @@ function EditProducts(){
 
     const update = (id) => {
         setLoading(true);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/updateProducts" , 
+            Axios.put("http://localhost:3001/updateProducts" , 
             {
                 id : id,
                 name : Name,

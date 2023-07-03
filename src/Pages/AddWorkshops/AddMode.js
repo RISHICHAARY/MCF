@@ -35,7 +35,7 @@ function Modes(){
                 const FileReference = ref(storage , `Mode_DP/${File.name+Name}`);
                 uploadBytes(FileReference , File).then((FileData) => {
                     getDownloadURL(FileData.ref).then((url) => {
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/addMode" , 
+                        Axios.put("http://localhost:3001/addMode" , 
                             {
                                 img : url,
                                 name : Name.toUpperCase(),

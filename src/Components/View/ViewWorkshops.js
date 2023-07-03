@@ -69,7 +69,7 @@ const ProductView = (Received) => {
 
     useEffect( () => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response) => {
+        Axios.put("http://localhost:3001/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveImage(response.data[0].image[0]);
             setNonActiveImage(response.data[0].image);

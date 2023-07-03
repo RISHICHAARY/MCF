@@ -26,7 +26,7 @@ function EditWorkshops(){
 
     const update = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/UpdateWorkshops" , 
+        Axios.put("http://localhost:3001/UpdateWorkshops" , 
         {
             id : id,
             name : Name,

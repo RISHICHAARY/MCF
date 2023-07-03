@@ -1,6 +1,7 @@
 import {useEffect , useState} from 'react';
 import Axios from 'axios';
 import { useNavigate , useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import './ViewProduct.css';
 import '../../Styles/Product_Card.css';
@@ -23,7 +24,8 @@ function ProductView(){
     const [ ActiveValue , setActiveValue ] = useState(0);
     const [ CartItems , setCartItems ] = useState([]);
     const [ OnPageCart , setOnPageCart ] = useState([]);
-    const [touchPosition, setTouchPosition] = useState(null)
+    const [touchPosition, setTouchPosition] = useState(null);
+    const [ Realted , setRelated ] = useState([]);
 
     const handleTouchStart = (e) => {
         const touchDown = e.touches[0].clientX
@@ -84,8 +86,8 @@ function ProductView(){
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("http://localhost:3001/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -94,19 +96,23 @@ function ProductView(){
 
     useEffect( () => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
+        Axios.put("http://localhost:3001/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveValue(0);
             setActiveImage(response.data[0].image[0]);
             setNonActiveImage(response.data[0].image);
-            if(Location.state.check === "in"){
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
-                    setCartItems(response.data[0].wishlist);
-                    setLoading(false);
-            })}
-            else{
-                setLoading(false);
+            Axios.put("http://localhost:3001/getAllRelatedProducts" , {id:Location.state.Product_id , Cata: response.data[0].category}).then((response) => {
+                setRelated(response.data)
+                if(Location.state.check === "in"){
+                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        setCartItems(response.data[0].wishlist);
+                        setLoading(false);
+                    })
                 }
+                else{
+                    setLoading(false);
+                }
+            })
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
@@ -127,6 +133,7 @@ function ProductView(){
                 <Loader/>
                 :
                 < >
+                    <div className='SuperMain'>
                     <div className='container col-5  mt-2 first-container'>
                         <div className="col-12 active-image-div" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
                             <img src={ActiveImage} alt="MainImage" className="active-image" />
@@ -174,10 +181,10 @@ function ProductView(){
                             })}
                         </div>
                     </div>
-                    <div className='container col-6 float-start mt-2 content-div'>
+                    <div className='container col-6 mt-2 content-div'>
                         <p className="view-product-name">{Item.name}</p>
                         <p className="product-description">{Item.description}</p>
-                        <p className="product-description-dimen">Dimensions : {Item.length} x {Item.width} x {Item.height} M(L x B x H)</p>
+                        <p className="product-description-dimen">Dimensions : {Item.length} x {Item.width} x {Item.height} CM(L x B x H)</p>
                         <textarea className='text-area' row="3" column="200%" placeholder='Tell us how you want to customize your product.' onChange={(e)=>{setCuz(e.target.value)}}></textarea>
                         <p className="quantity">Quantity :</p>
                         <input className='quantity-input' type="number" min="1" max="10" defaultValue="1" onChange={(e)=>{setQuant(e.target.value)}} />
@@ -190,7 +197,7 @@ function ProductView(){
                         <>
                             <button className="cart-button" onClick={() =>{
                                 setLoading(true);
-                                Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
+                                Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
                                     setLoading(false);
                                     Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                 });
@@ -204,7 +211,7 @@ function ProductView(){
                                 <button className='wish-button-vp'
                                 onClick={() =>{
                                 setLoading(true);
-                                Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{
+                                Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{
                                     setOnPageCart((p) => [...p , Item._id])
                                     setLoading(false);
                                 });
@@ -218,6 +225,99 @@ function ProductView(){
                         </>
                         }
                     </div>
+                </div>
+                    <br/>
+                <div className='display-row tp'>
+                <p className='D-header'>RELATED PRODUCTS</p>
+                <div className="underline"></div>
+                {
+                    (Realted === undefined || Realted === [])?
+                    <div className='SupDiv'>
+                        <p className='product-price'>NO RELATED PRODUCTS</p>
+                    </div>:
+                    Realted.slice(0,5).map((value) => {
+                    return(
+                        // Product cart
+                        <div className='display-column' key={value._id} >
+                            <div className='image-div'>
+                                {
+                                    (Location.state === null || Location.state.user === undefined)?
+                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
+                                    :
+                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})}} alt="Product" className='image'></img>
+                                }
+                                <div className='product-discount-div'>
+                                    <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
+                                    <p className='product-discount'>OFF</p>
+                                </div>
+                            </div>
+                            <div className='contents-div'>
+                                <div className='contents'>
+                                    <p className='product-name'>{value.name}</p>
+                                    <p className='product-price'><s className='strike'><span className='text-color'>Rs:{value.oldprice}</span></s> Rs:{value.newprice}</p>
+                                </div>
+                                <div className='buttons'>
+                                    {(Location.state === null || Location.state.user === undefined)?
+                                    <>
+                                        <button className='add-button' onClick={()=>{
+                                            Navigate("/Login")
+                                        }}>ADD</button>
+                                        <button className='wish-button' onClick={()=>{
+                                            Navigate("/Login")
+                                        }}><i class="fi fi-rs-heart end-icons wish-icon"></i></button>
+                                        <button className='view-button'
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "out" , Product_id : value._id}})
+                                        }}
+                                        >
+                                            <i className="fi fi-rr-eye end-icons view-icon"></i>
+                                        </button>
+                                    </>
+                                    :
+                                    <>
+                                        <button className='add-button'
+                                        onClick={() =>{
+                                            setLoading(true);
+                                            Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                                setLoading(false);
+                                                Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
+                                            });
+                                        }}>ADD</button>
+                                        {(CartItems.includes(value._id , 0) || OnPageCart.includes(value._id))?
+                                            <button className='wish-button'
+                                         onClick={() =>{
+                                            Delete(value._id);
+                                        }}
+                                        ><i class="fi fi-ss-heart end-icons full-wish-icon"></i></button>:
+                                            <button className='wish-button'
+                                         onClick={() =>{
+                                            setLoading(true);
+                                            Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                                setOnPageCart((p) => [...p , value._id])
+                                                setLoading(false);
+                                            });
+                                        }}
+                                        ><i class="fi fi-rs-heart end-icons wish-icon"></i></button>}
+                                        <button className='view-button'
+                                        onClick={()=>{Navigate("/ViewProduct" , 
+                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
+                                        }}
+                                        >
+                                            <i className="fi fi-rr-eye end-icons view-icon"></i>
+                                        </button>
+                                    </>
+                                    }
+                                </div>
+                            </div>
+                            <div className='clear'></div>
+                        </div>
+                        );
+                    }
+                    )
+                }
+            </div>
                 </>
             }
         </div>

@@ -13,7 +13,7 @@ function OurMission() {
 {/* <div className="underline"></div> */}
     </div>
       <article className="review">
-      <p className='mission-text'><FaQuoteLeft className="quote" /> Our vision is to help skilled and talented women artist to show their unique art creations to the world and becoming financially independent.<FaQuoteRight className="quote" /></p>
+      <p className='mission-text'><FaQuoteLeft className="quote" /> Our vision is to help skilled and talented women artist to show their unique art creations to the world and become financially independent.<FaQuoteRight className="quote" /></p>
       {/* <img src="mission-icon.png" alt="Mission icon" /> */}
       </article>
     </section>

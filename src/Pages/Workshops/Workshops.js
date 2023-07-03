@@ -10,18 +10,33 @@ import NavBar from '../../Components/NavBar';
 import SideBar from '../../Components/SideBar';
 import Footer from '../../Components/Footer/index';
 import Loader from '../../Components/Loader/index';
-import NoProduct from '../../Images/NoProduct.png'
+import NoProduct from '../../Images/NoProduct.png';
+
+import '../../Components/Reviews/review.css'
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 
 function Workshop() {
     const [ Loading , setLoading ] = useState(false);
+
+    const [ ActiveImage , setActiveImage ] = useState("");
+    const [ NonActiveImage , setNonActiveImage ] = useState([]);
+    const [ ActiveValue , setActiveValue ] = useState(0);
+    const [touchPosition, setTouchPosition] = useState(null);
+    const [ people , setpeople ] = useState([]);
+    const [ RName , setRName ] = useState(null);
+    const [ RLoc , setRLoc ] = useState(null);
+    const [ RReview , setRReview ] = useState(null);
+    const [ RRating , setRRating ] = useState(null);
+    const [ Length , setLength ] = useState(0);
 
     const Navigate = useNavigate();
     const Location = useLocation();
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -34,18 +49,18 @@ function Workshop() {
     const Filter2 = (Cata) => {
         setLoading(true);
         if(Cata === "All"){
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('http://localhost:3001/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             })
         });
         }
         else{
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/getWs' , {Category : Cata}).then((response) => {
+        Axios.put('http://localhost:3001/getWs' , {Category : Cata}).then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('http://localhost:3001/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             });
@@ -53,19 +68,124 @@ function Workshop() {
     }
     }
 
+    const handleTouchStart = (e) => {
+        const touchDown = e.touches[0].clientX
+        setTouchPosition(touchDown)
+    }
+
     useEffect( () => {
         setLoading(true);
         if(Location.state.Cata !== undefined){Filter2()}
         else{
-        Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('http://localhost:3001/getMode').then((response) => {
                 setModes(response.data);
-                setLoading(false);
+                Axios.get('http://localhost:3001/getWReview').then((response) => {
+                        setpeople(response.data);
+                        setRName(response.data[0].name);
+                        setRLoc(response.data[0].loc);
+                        setRReview(response.data[0].rev);
+                        setRRating(response.data[0].rating);
+                        setActiveImage(response.data[0].image[0]);
+                        setNonActiveImage(response.data[0].image);
+                        setLength(response.data.length);
+                        setLoading(false);
+                    })
             })
         });}
     // eslint-disable-next-line react-hooks/exhaustive-deps
     } , [] );
+
+
+    const [index, setIndex] = useState(0);
+
+  const stars = Array.from({ length: 5 }, (_, i) =>
+    i < RRating ? "★" : "☆"
+  );
+
+  const nextPerson = () => {
+    if(index+1<Length){
+        setIndex(index+1);
+        setRName(people[index+1].name);
+        setRLoc(people[index+1].loc);
+        setRReview(people[index+1].rev);
+        setRRating(people[index+1].rating);
+        setActiveImage(people[index+1].image[0]);
+        setNonActiveImage(people[index+1].image);
+    }
+    else{
+        setIndex(0);
+        setRName(people[0].name);
+        setRLoc(people[0].loc);
+        setRReview(people[0].rev);
+        setRRating(people[0].rating);
+        setActiveImage(people[0].image[0]);
+        setNonActiveImage(people[0].image);
+    }
+  };
+
+  const prevPerson = () => {
+    if(index-1>=0){
+        setIndex(index-1);
+        setRName(people[index-1].name);
+        setRLoc(people[index-1].loc);
+        setRReview(people[index-1].rev);
+        setRRating(people[index-1].rating);
+        setActiveImage(people[index-1].image[0]);
+        setNonActiveImage(people[index-1].image);
+    }
+    else{
+        setIndex(Length-1);
+        setRName(people[Length-1].name);
+        setRLoc(people[Length-1].loc);
+        setRReview(people[Length-1].rev);
+        setRRating(people[Length-1].rating);
+        setActiveImage(people[Length-1].image[0]);
+        setNonActiveImage(people[Length-1].image);
+    }
+}
+const handleTouchMove = (e) => {
+    const touchDown = touchPosition
+
+    if(touchDown === null) {
+        return
+    }
+
+    const currentTouch = e.touches[0].clientX
+    const diff = touchDown - currentTouch
+
+    if (diff > 5) {
+        var f11 = ActiveValue;
+        if(ActiveValue > 0){
+            setActiveValue(ActiveValue-1);
+            f11=f11-1;
+            setActiveImage(NonActiveImage[f11]);
+        }
+        else{
+            setActiveValue(NonActiveImage.length-1);
+            f11=NonActiveImage.length-1
+            setActiveImage(NonActiveImage[f11]);
+        }
+        
+    }
+
+    if (diff < -5) {
+        var f1 = ActiveValue;
+        if(ActiveValue < NonActiveImage.length-1){
+            setActiveValue(ActiveValue+1);
+            f1=f1+1;
+            setActiveImage(NonActiveImage[f1]);
+        }
+        else{
+            setActiveValue(0);
+            f1=0;
+            setActiveImage(NonActiveImage[f1]);
+        }
+    }
+
+    setTouchPosition(null)
+}
 
     return (
         <div id="W-Home">
@@ -86,7 +206,7 @@ function Workshop() {
             <Loader/>
             :<>
             <div className='categories display-row'>
-                <p className='D-header'>CATERGORIES</p>
+                <p className='D-header'>CATEGORIES</p>
                 <button className='display-column-1-butt' onClick={()=>{Filter2("All")}} >
                     <div className='display-column-1'>
                         <div className='image-div-1'>
@@ -116,6 +236,7 @@ function Workshop() {
                 }
             </div>
         <div className='display-row'>
+            <p className='D-header'>WORKSHOPS</p>
                 {
                     (Products.length === 0)?
                     <main class="nothing-content">
@@ -205,6 +326,69 @@ function Workshop() {
                     }
                 )
             }
+            </div>
+            <div className="main-review-div">
+                <section className="review-div">
+                    <div className="title">
+                        <h2>REVIEWS</h2>
+                        <div className="underline"></div>
+                    </div>
+                    <article className="review">
+                        <div className='flex-container'>
+                            <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+                                {/*<button className='prev-button-rev' onClick={()=>{
+                                    var f = ActiveValue;
+                                    if(ActiveValue > 0){
+                                    setActiveValue(ActiveValue-1);
+                                    f=f-1;
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    else{
+                                    setActiveValue(NonActiveImage.length-1);
+                                    f=NonActiveImage.length-1
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    }}
+                                >
+                                        <i class="fi fi-rr-angle-left"></i>
+                                </button>*/}
+                                <img src={ActiveImage} alt="MainImage" className="active-image-rev" />
+                                {/*<button className='next-button-rev' onClick={()=>{
+                                    var f = ActiveValue;
+                                    if(ActiveValue < NonActiveImage.length-1){
+                                    setActiveValue(ActiveValue+1);
+                                    f=f+1;
+                                    setActiveImage(NonActiveImage[f]);
+                                    }
+                                    else{
+                                    setActiveValue(0);
+                                    f=0;
+                                    setActiveImage(NonActiveImage[0]);
+                                    }
+                                    }}
+                                >
+                                        <i class="fi fi-rr-angle-right"></i>
+                                </button>*/}
+                            </div>
+                            <div className='flex-child'>
+                                <div className='inner-rev-det'>
+                                    <h4 className="author">{RName}</h4>
+                                    <p className="job">{RLoc}</p>
+                                    <p className="info">{RReview}</p>
+                                    <div className="customer-review-card-rating">{stars}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="button-container">
+                            <button className="prev-btn" onClick={prevPerson}>
+                            <FaChevronLeft />
+                            </button>
+                            <button className="next-btn" onClick={nextPerson}>
+                            <FaChevronRight />
+                            </button>
+                        </div>
+                    </article>
+                </section>
             </div>
             </>
 }

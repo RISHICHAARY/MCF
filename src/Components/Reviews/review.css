@@ -101,6 +101,8 @@
 }
 
 .active-image-rev{
+  max-width: 250px;
+  max-height: 250px;
   padding: 0.2rem;
   border-radius: 10rem;
   border: solid 0.3rem #864D9E;

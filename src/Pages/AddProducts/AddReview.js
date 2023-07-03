@@ -24,27 +24,27 @@ function Products(){
     const [ Rating , setRating ] = useState(0);
     const [ File , setFile ] = useState([]);
     const [ FileUrls , setFileUrls ] = useState([]);
-    const [ Verify , setVerify ] = useState(true);
 
-    //const fileref = ref(storage, "Files/");
+    const [ WName , setWName ] = useState(null);
+    const [ WLoc , setWLoc ] = useState(null);
+    const [ WReview , setWReview ] = useState(null);
+    const [ WRating , setWRating ] = useState(0);
+    const [ WFile , setWFile ] = useState([]);
+    const [ WFileUrls , setWFileUrls ] = useState([]);
+
     const FileStorer = (e) =>{
         let { files } = e.target;
 
         _.forEach(files, file => {
             setFile((prevState) => [ ...prevState , file]);
         });
-        /*for(var i=0 ; i<e.target.files.length ; i++){
-            var file = e.target.files[i];
-            // eslint-disable-next-line no-loop-func
-            setFile((prevState) => [ ...prevState , file]);
-        }*/
     }
 
     const filled = () =>{
-        if(Name === null){alert("Fill Name");setVerify(false)}
-        if(Loc === null){alert("Fill Location");setVerify(false)}
-        if(Review === null){alert("Fill Review");setVerify(false)}
-        if(Rating === 0){alert("Fill Ratting");setVerify(false)}
+        if(Name === null){alert("Fill Name");}
+        if(Loc === null){alert("Fill Location");}
+        if(Review === null){alert("Fill Review");}
+        if(Rating === 0){alert("Fill Ratting");}
         upload()
     }
 
@@ -65,7 +65,7 @@ function Products(){
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
                 setLoading(true);
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
+                Axios.put("http://localhost:3001/addReview" , 
                             {
                                 image_url : FileUrls,
                                 name : Name.toUpperCase(),
@@ -76,26 +76,62 @@ function Products(){
                                 setLoading(false);
                                 Navigate("/Dashboard" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
                             });}}
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [FileUrls])
 
-    /*const upload = () => {
-        if(Verify){
-            setLoading(true);
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
-                            {
-                                image_url : FileUrls,
-                                name : Name.toUpperCase(),
-                                loc : Loc,
-                                rev : Review,
-                                rating : Rating
-                            }).then(() => {
-                                setLoading(false);
-                                Navigate("/Dashboard" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
-                            });
-                    }
-            }*/
 
+
+        const WFileStorer = (e) =>{
+            let { files } = e.target;
+    
+            _.forEach(files, file => {
+                setWFile((prevState) => [ ...prevState , file]);
+            });
+        }
+    
+        const Wfilled = () =>{
+            if(WName === null){alert("Fill Name");}
+            if(WLoc === null){alert("Fill Location");}
+            if(WReview === null){alert("Fill Review");}
+            if(WRating === 0){alert("Fill Ratting");}
+            Wupload()
+        }
+    
+        const Wupload = () => {
+            setLoading(true);
+            if (WFile == null) return;
+            for(var j=0 ; j<WFile.length ; j++){
+                const FileReference = ref(storage , `WReview_DP/${WFile[j].name+WName+j}`);
+                uploadBytes(FileReference , WFile[j]).then((FileData) => {
+                    getDownloadURL(FileData.ref).then((url) => {
+                        setWFileUrls((prev)=>[...prev , url]);
+                    })
+                });
+            }
+        }
+    
+        useEffect(() =>{
+            if(WFileUrls.length !== 0){
+                if(WFileUrls.length === WFile.length){
+                    Axios.put("http://localhost:3001/addWReview" , 
+                                {
+                                    image_url : WFileUrls,
+                                    name : WName.toUpperCase(),
+                                    loc : WLoc,
+                                    rev : WReview,
+                                    rating : WRating
+                                }).then(() => {
+                                    setLoading(false);
+                                    Navigate("/Dashboard" , {state:{check: "in" , status: Location.state.user_status, name : Location.state.user_name , user:Location.state.user , type:Location.state.type , id:Location.state.user_id}});
+                                });}
+                            else{
+                                alert("Unable1 to Update!!")
+                                setLoading(false)
+                            }}
+                            else{
+                                alert("Unable to Update!!")
+                                setLoading(false)
+                            }
+            }, [WFileUrls])
     return(
         <>
         {
@@ -112,13 +148,14 @@ function Products(){
                     <Loader/>
                 </>
                 :
+                <>
                 <div id="Home">
                 <div className=''>
                     <div className="">
                         <div className="overall">
                             <div className="">
                                 <div className="container row">
-                                <p className="Login-Header">ADD REVIEW</p>
+                                <p className="Login-Header">ADD REVIEW ( PRODUCTS )</p>
                                     <div className="col-12 float-start">
                                         <p className="label-attributes">
                                             REVIEWER NAME:
@@ -183,6 +220,78 @@ function Products(){
                     <div className='clear'></div>
                 </div>
                 </div>
+                <div id="Home">
+                <div className=''>
+                    <div className="">
+                        <div className="overall">
+                            <div className="">
+                                <div className="container row">
+                                <p className="Login-Header">ADD REVIEW ( WORKSHOPS )</p>
+                                    <div className="col-12 float-start">
+                                        <p className="label-attributes">
+                                            REVIEWER NAME:
+                                        </p>
+                                        <br></br>
+                                        <input type="text" placeholder="Eg: WalterWhite" 
+                                            className="input-attributes w-100"
+                                            onChange={(event)=>{setWName(event.target.value)}} required>
+                                        </input>
+                                    </div>
+                                    <div className="col-12 float-start">
+                                        <p className="label-attributes">
+                                            REVIEWER LOCATION:
+                                        </p>
+                                        <br></br>
+                                        <input type="text" placeholder="Eg: Hariyana" 
+                                            className="input-attributes w-100"
+                                            onChange={(event)=>{setWLoc(event.target.value)}} required>
+                                        </input>
+                                    </div>
+                                    <div className="col-12 float-start">
+                                        <p className="label-attributes">
+                                            REVIEWER REVIEW:
+                                        </p>
+                                        <br></br>
+                                        <input type="text" placeholder="Eg: Nice Product....." 
+                                            className="input-attributes w-100"
+                                            onChange={(event)=>{setWReview(event.target.value)}} required>
+                                        </input>
+                                    </div>
+                                    <div className="col-12 float-start">
+                                        <p className="label-attributes">
+                                            REVIEWER RATING:
+                                        </p>
+                                        <br></br>
+                                        <input type="text" placeholder="Eg: Hariyana" 
+                                            className="input-attributes w-100"
+                                            onChange={(event)=>{setWRating(parseInt(event.target.value))}} required>
+                                        </input>
+                                    </div>
+                                    <div className="col-12">
+                                        <p className="label-attributes">
+                                            WORKSHOP IMAGES:
+                                        </p>
+                                        <br></br>
+                                        <input type="file" accept='image/*' 
+                                            className="input-attributes w-100"
+                                            multiple="multiple"
+                                            id="files" name="files"
+                                            onChange={(event) =>{WFileStorer(event)}} required>
+                                        </input>
+                                    </div>
+                                <button className="final-button-ap general-button" onClick={Wfilled}>
+                                        ADD
+                                        <i className="fi fi-br-angle-right end-icons-err"></i>
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='clear'></div>
+                    </div>
+                    <div className='clear'></div>
+                </div>
+                </div>
+                </>
             }
             {
                 (Location.state === null)?<Footer Received={null}/>:(Location.state.user === undefined)?<Footer Received={null}/>:

@@ -6,7 +6,7 @@ export default function Popup({ open,onClose }){
     const [ Offers , setOffers ]= useState([]);
 
     useEffect(()=>{
-        Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+        Axios.get("http://localhost:3001/getOffers").then((response)=>{
           setOffers(response.data);
         })
       },[])

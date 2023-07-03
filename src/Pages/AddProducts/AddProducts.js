@@ -78,7 +78,7 @@ function Products(){
     useEffect(() =>{
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addProduct" , 
+        Axios.put("http://localhost:3001/addProduct" , 
             {
                 image_url : FileUrls,
                 name : Name.toUpperCase(),
@@ -102,9 +102,9 @@ function Products(){
         }, [FileUrls])
 
         useEffect(()=>{
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('http://localhost:3001/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('http://localhost:3001/getTag').then((response) => {
                     setAvaTag(response.data);
                     setLoading(false);
                 })

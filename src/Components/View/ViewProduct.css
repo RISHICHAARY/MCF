@@ -177,7 +177,16 @@
 }
 
 .first-container{
-    float: left;
+
+}
+
+.SuperMain{
+    display: flex;
+}
+
+.SupDiv{
+    width: 100%;
+    text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -233,5 +242,8 @@
     }
     .quantity {
         width: 40%;
+    }
+    .SuperMain{
+        display: inline-block;
     }
 }

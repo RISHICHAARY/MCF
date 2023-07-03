@@ -49,7 +49,7 @@ function Confirmation(){
                 description:"Id",
                 handler: function(response){
                     setLoading(true);
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/addEnrollment" , { wg : WG , wn : WN, type : Location.type , id :Id , name : Name , mobile : Mobile , email : Email , total : Total }).then(
+                    Axios.put("http://localhost:3001/addEnrollment" , { wg : WG , wn : WN, type : Location.type , id :Id , name : Name , mobile : Mobile , email : Email , total : Total }).then(
                     ()=>{
                         setLoading(false);
                         Navigate("/Confirmed" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}});
@@ -77,12 +77,12 @@ function Confirmation(){
 
     useEffect(()=>{
             setLoading(true);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setName(response.data[0].full_name);
                 setMobile(response.data[0].mobile_no);
                 setEmail(response.data[0].email);
                 setId(response.data[0]._id);
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response1) => {
+                Axios.put("http://localhost:3001/getSelectedWorkShops" , {id:Location.state.Product_id}).then((response1) => {
                     setOnCart(response1.data);
                     setTotal(response1.data[0].newprice);
                     setWN(response1.data[0].name);
