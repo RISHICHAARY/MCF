@@ -65,7 +65,7 @@ function Products(){
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
                 setLoading(true);
-                Axios.put("http://localhost:3001/addReview" , 
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
                             {
                                 image_url : FileUrls,
                                 name : Name.toUpperCase(),
@@ -112,7 +112,7 @@ function Products(){
         useEffect(() =>{
             if(WFileUrls.length !== 0){
                 if(WFileUrls.length === WFile.length){
-                    Axios.put("http://localhost:3001/addWReview" , 
+                    Axios.put("https://bored-wasp-top-hat.cyclic.app/addWReview" , 
                                 {
                                     image_url : WFileUrls,
                                     name : WName.toUpperCase(),

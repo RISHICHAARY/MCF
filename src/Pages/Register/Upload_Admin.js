@@ -19,7 +19,7 @@ function Upload_User(){
     const Location = useLocation();
     const resend = () =>{
         setResend(false);
-        Axios.post("http://localhost:3001/adminMailer" , {
+        Axios.post("https://bored-wasp-top-hat.cyclic.app/adminMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -29,7 +29,7 @@ function Upload_User(){
 
     useEffect(
         ()=>{
-            Axios.post("http://localhost:3001/adminMailer" , {
+            Axios.post("https://bored-wasp-top-hat.cyclic.app/adminMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -44,7 +44,7 @@ function Upload_User(){
         const FileReference = ref(storage , `Admin_DP/${Location.state.file.name+Location.state.name+Location.state.email}`);
         uploadBytes(FileReference , Location.state.file).then((FileData) => {
             getDownloadURL(FileData.ref).then((url) => {
-                Axios.put("http://localhost:3001/addAdmin" , 
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/addAdmin" , 
                 {
                     image_url : url,
                     name : Location.state.name,
@@ -58,7 +58,7 @@ function Upload_User(){
                     pcode : Location.state.pincode,
                     password : Location.state.password
                 }).then(()=>{
-                    Axios.put("http://localhost:3001/Admin",{email:Location.state.email}).then((result)=>{
+                    Axios.put("https://bored-wasp-top-hat.cyclic.app/Admin",{email:Location.state.email}).then((result)=>{
                         setLoading(false);
                         Navigate('/Dashboard',{state:{name:Location.state.name,user:Location.state.email,page:"H",type:"admin",status:"LoggedIn",id:result.data[0]._id}});
                     })
@@ -68,7 +68,7 @@ function Upload_User(){
         }
         else{
             setLoading(true);
-            Axios.put("http://localhost:3001/addAdmin" , 
+            Axios.put("https://bored-wasp-top-hat.cyclic.app/addAdmin" , 
                 {
                     image_url : "https://firebasestorage.googleapis.com/v0/b/codemath-99434.appspot.com/o/ProFo.png?alt=media&token=04fe1a30-816b-435c-8653-d14466b64fcb",
                     name : Location.state.name,
@@ -82,7 +82,7 @@ function Upload_User(){
                     pcode : Location.state.pincode,
                     password : Location.state.password
                 }).then(()=>{
-                    Axios.put("http://localhost:3001/Admin",{email:Location.state.email}).then((result)=>{
+                    Axios.put("https://bored-wasp-top-hat.cyclic.app/Admin",{email:Location.state.email}).then((result)=>{
                         setLoading(false);
                         Navigate('/Dashboard',{state:{name:Location.state.name,user:Location.state.email,page:"H",type:"admin",status:"LoggedIn",id:result.data[0]._id}});
                     })

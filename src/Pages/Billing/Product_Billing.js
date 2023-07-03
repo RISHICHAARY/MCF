@@ -104,7 +104,7 @@ function Confirmation(){
         if(Validity){
             if(PaymentMode === "COD"){
                 setLoading(true);
-                Axios.put("http://localhost:3001/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : DName+","+DMobile+","+House+", Street "+Street+","+City+","+State+","+Pin , products : OnCart , pm : "COD" , total : Total }).then(
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : DName+","+DMobile+","+House+", Street "+Street+","+City+","+State+","+Pin , products : OnCart , pm : "COD" , total : Total }).then(
                     (response)=>{
                         setLoading(false);
                         Navigate("/Confirmed" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
@@ -121,7 +121,7 @@ function Confirmation(){
                     description:"Id",
                     handler: function(response){
                         setLoading(true);
-                        Axios.put("http://localhost:3001/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : DName+","+DMobile+","+House+", Street "+Street+","+City+","+State+","+Pin , products : OnCart , pm : "COD" , total : Total }).then(
+                        Axios.put("https://bored-wasp-top-hat.cyclic.app/addOrder" , { type : Location.state.type , sTotal : STotal , discount : Discount , id : Id , name : Name , mobile : Mobile , email : Email , address : DName+","+DMobile+","+House+", Street "+Street+","+City+","+State+","+Pin , products : OnCart , pm : "COD" , total : Total }).then(
                             (response)=>{
                                 setLoading(false);
                                 Navigate("/Confirmed" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
@@ -155,7 +155,7 @@ function Confirmation(){
                 }
             }
         }
-        Axios.get("http://localhost:3001/getOffers").then((response3)=>{
+        Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response3)=>{
                         Calculation(rec , response3.data);
                     })
         setOnCart(rec);
@@ -163,7 +163,7 @@ function Confirmation(){
 
     useEffect(()=>{
             setLoading(true);
-            Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setHouse(response.data[0].address.house_no);
                 setStreet(response.data[0].address.street);
                 setArea(response.data[0].address.area);
@@ -174,7 +174,7 @@ function Confirmation(){
                 setEmail(response.data[0].email);
                 setPin(response.data[0].address.pin_code);
                 setId(response.data[0]._id);
-                Axios.put("http://localhost:3001/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedProducts" , {id:response.data[0].on_cart}).then((response1) => {
                     setOnCart(response1.data);
                     add(response1.data , response.data[0].on_cart);
                 })

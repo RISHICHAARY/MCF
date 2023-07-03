@@ -18,7 +18,7 @@ function Upload_User(){
         ()=>{
             setLoading(true);
             if(Location.state.type === 'admin'){
-                Axios.put("http://localhost:3001/otpMailer" , {
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/otpMailer" , {
                     name : Location.state.name,
                     otp : Location.state.otp,
                     mail : Location.state.email,
@@ -26,14 +26,14 @@ function Upload_User(){
                 setLoading(false)
             }
             else{
-                Axios.put("http://localhost:3001/otpMailer" , {
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/otpMailer" , {
                     name : Location.state.name,
                     otp : Location.state.otp,
                     mail : Location.state.email,
                 });
                 setLoading(false)
             }
-            /*Axios.put("http://localhost:3001/OtpMailer" , {
+            /*Axios.put("https://bored-wasp-top-hat.cyclic.app/OtpMailer" , {
                 type : Location.state.type,
                 otp : Location.state.otp,
                 email : Location.state.email,
@@ -49,7 +49,7 @@ function Upload_User(){
         if(Captchaa.toString() === Location.state.captcha.toString()){
             if(OOTP.toString() === Location.state.otp.toString()){
                 setLoading(true);
-                Axios.put("http://localhost:3001/PasswordMailer" , {type : Location.state.type,name : Location.state.name,pass:Location.state.pass,email : Location.state.email}).then(()=> {
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/PasswordMailer" , {type : Location.state.type,name : Location.state.name,pass:Location.state.pass,email : Location.state.email}).then(()=> {
                     setLoading(false)
                     Navigate("/Login");
                 })

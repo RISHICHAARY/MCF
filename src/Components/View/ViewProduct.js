@@ -86,8 +86,8 @@ function ProductView(){
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("http://localhost:3001/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -96,15 +96,15 @@ function ProductView(){
 
     useEffect( () => {
         setLoading(true);
-        Axios.put("http://localhost:3001/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
+        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
             setItem(response.data[0]);
             setActiveValue(0);
             setActiveImage(response.data[0].image[0]);
             setNonActiveImage(response.data[0].image);
-            Axios.put("http://localhost:3001/getAllRelatedProducts" , {id:Location.state.Product_id , Cata: response.data[0].category}).then((response) => {
+            Axios.put("https://bored-wasp-top-hat.cyclic.app/getAllRelatedProducts" , {id:Location.state.Product_id , Cata: response.data[0].category}).then((response) => {
                 setRelated(response.data)
                 if(Location.state.check === "in"){
-                    Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setCartItems(response.data[0].wishlist);
                         setLoading(false);
                     })
@@ -197,7 +197,7 @@ function ProductView(){
                         <>
                             <button className="cart-button" onClick={() =>{
                                 setLoading(true);
-                                Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
+                                Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id , cuz:Cuz , quant:Quant}).then(() =>{
                                     setLoading(false);
                                     Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                 });
@@ -211,7 +211,7 @@ function ProductView(){
                                 <button className='wish-button-vp'
                                 onClick={() =>{
                                 setLoading(true);
-                                Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{
+                                Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:Item._id}).then(() =>{
                                     setOnPageCart((p) => [...p , Item._id])
                                     setLoading(false);
                                 });
@@ -280,7 +280,7 @@ function ProductView(){
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -294,7 +294,7 @@ function ProductView(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });

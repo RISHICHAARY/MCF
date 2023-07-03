@@ -123,8 +123,8 @@ function Display(){
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("http://localhost:3001/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -133,13 +133,13 @@ function Display(){
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('http://localhost:3001/getAllFeaturedProducts').then((response) => {
+        Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllFeaturedProducts').then((response) => {
             setProducts(response.data);
-            Axios.get('http://localhost:3001/getProductsUFH').then((response) => {
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getProductsUFH').then((response) => {
                 setProductsUFH(response.data);
-                Axios.get('http://localhost:3001/getCategory').then((response) => {
+                Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
                     setCategory(response.data);
-                    Axios.get('http://localhost:3001/getReview').then((response) => {
+                    Axios.get('https://bored-wasp-top-hat.cyclic.app/getReview').then((response) => {
                         setpeople(response.data);
                         setRName(response.data[0].name);
                         setRLoc(response.data[0].loc);
@@ -150,7 +150,7 @@ function Display(){
                         setLength(response.data.length);
                         if(Location.state !== null){
                             if(Location.state.user !== undefined){
-                                Axios.put("http://localhost:3001/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                                     setCartItems(response.data[0].wishlist);
                                     setLoading(false);
                                 })
@@ -344,7 +344,7 @@ function Display(){
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -358,7 +358,7 @@ function Display(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });
@@ -442,7 +442,7 @@ function Display(){
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -456,7 +456,7 @@ function Display(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("http://localhost:3001/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });

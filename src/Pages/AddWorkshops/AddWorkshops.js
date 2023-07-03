@@ -67,7 +67,7 @@ function Products(){
     useEffect(() => {
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-                Axios.put("http://localhost:3001/addWorkshop" , 
+                Axios.put("https://bored-wasp-top-hat.cyclic.app/addWorkshop" , 
                     {
                         image_url : FileUrls,
                         name : Name,
@@ -86,7 +86,7 @@ function Products(){
     } , [FileUrls])
 
     useEffect(()=>{
-        Axios.get('http://localhost:3001/getMode').then((response) => {
+        Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
             setModes(response.data);
             setLoading(false);
         })

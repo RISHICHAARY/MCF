@@ -35,8 +35,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('http://localhost:3001/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
+        Axios.put('https://bored-wasp-top-hat.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -49,18 +49,18 @@ function Workshop() {
     const Filter2 = (Cata) => {
         setLoading(true);
         if(Cata === "All"){
-            Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('http://localhost:3001/getMode').then((response) => {
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             })
         });
         }
         else{
-        Axios.put('http://localhost:3001/getWs' , {Category : Cata}).then((response) => {
+        Axios.put('https://bored-wasp-top-hat.cyclic.app/getWs' , {Category : Cata}).then((response) => {
             setProducts(response.data);
-            Axios.get('http://localhost:3001/getMode').then((response) => {
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             });
@@ -77,11 +77,11 @@ function Workshop() {
         setLoading(true);
         if(Location.state.Cata !== undefined){Filter2()}
         else{
-        Axios.get('http://localhost:3001/getAllWorkshops').then((response) => {
+        Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('http://localhost:3001/getMode').then((response) => {
+            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
-                Axios.get('http://localhost:3001/getWReview').then((response) => {
+                Axios.get('https://bored-wasp-top-hat.cyclic.app/getWReview').then((response) => {
                         setpeople(response.data);
                         setRName(response.data[0].name);
                         setRLoc(response.data[0].loc);

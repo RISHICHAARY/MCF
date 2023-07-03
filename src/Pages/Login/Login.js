@@ -15,10 +15,10 @@ function Login(){
 
     useEffect(
         () =>{
-            Axios.get("http://localhost:3001/allUsers").then((response) => {
+            Axios.get("https://bored-wasp-top-hat.cyclic.app/allUsers").then((response) => {
                 setUsers_list(response.data);
             });
-            Axios.get("http://localhost:3001/allAdmins").then((response) => {
+            Axios.get("https://bored-wasp-top-hat.cyclic.app/allAdmins").then((response) => {
                 setAdmins_list(response.data);
             });
         } , []

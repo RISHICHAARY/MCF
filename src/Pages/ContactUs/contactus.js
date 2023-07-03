@@ -19,7 +19,7 @@ export default function ContactUs(){
 
     const Send = () =>{
         setLoading(true)
-        Axios.put("http://localhost:3001/addContactQuery" , {user:UserMail , query : UserQuery}).then(()=>{
+        Axios.put("https://bored-wasp-top-hat.cyclic.app/addContactQuery" , {user:UserMail , query : UserQuery}).then(()=>{
             setLoading(false)
         })
     }
