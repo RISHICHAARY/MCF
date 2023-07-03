@@ -94,6 +94,20 @@ function ProductView(){
 		});
 	};
 
+    const InternalView = (Pid) =>{
+        setLoading(true);
+        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedProductss" , {id:Pid}).then((response) => {
+            setItem(response.data[0]);
+            setActiveValue(0);
+            setActiveImage(response.data[0].image[0]);
+            setNonActiveImage(response.data[0].image);
+            Axios.put("https://bored-wasp-top-hat.cyclic.app/getAllRelatedProducts" , {id:Pid , Cata: response.data[0].category}).then((response) => {
+                setRelated(response.data)
+                setLoading(false);
+            })
+        })
+    }
+
     useEffect( () => {
         setLoading(true);
         Axios.put("https://bored-wasp-top-hat.cyclic.app/getSelectedProductss" , {id:Location.state.Product_id}).then((response) => {
@@ -268,8 +282,7 @@ function ProductView(){
                                             Navigate("/Login")
                                         }}><i class="fi fi-rs-heart end-icons wish-icon"></i></button>
                                         <button className='view-button'
-                                        onClick={()=>{Navigate("/ViewProduct" , 
-                                        {state:{ check: "out" , Product_id : value._id}})
+                                        onClick={()=>{InternalView(value._id);
                                         }}
                                         >
                                             <i className="fi fi-rr-eye end-icons view-icon"></i>
@@ -301,8 +314,7 @@ function ProductView(){
                                         }}
                                         ><i class="fi fi-rs-heart end-icons wish-icon"></i></button>}
                                         <button className='view-button'
-                                        onClick={()=>{Navigate("/ViewProduct" , 
-                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})
+                                        onClick={()=>{InternalView(value._id);
                                         }}
                                         >
                                             <i className="fi fi-rr-eye end-icons view-icon"></i>
