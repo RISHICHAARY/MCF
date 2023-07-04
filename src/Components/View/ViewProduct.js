@@ -256,11 +256,9 @@ function ProductView(){
                             <div className='image-div'>
                                 {
                                     (Location.state === null || Location.state.user === undefined)?
-                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
-                                        {state:{ check: "out" , Product_id : value._id}})}} alt="Product" className='image'></img>
+                                    <img src={value.image[0]} onClick={()=>{InternalView(value._id);}} alt="Product" className='image'></img>
                                     :
-                                    <img src={value.image[0]} onClick={()=>{Navigate("/ViewProduct" , 
-                                        {state:{ check: "in" , Product_id : value._id , status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id}})}} alt="Product" className='image'></img>
+                                    <img src={value.image[0]} onClick={()=>{InternalView(value._id);}} alt="Product" className='image'></img>
                                 }
                                 <div className='product-discount-div'>
                                     <p className='product-discount'>{parseInt(((parseInt(value.oldprice) - parseInt(value.newprice))/parseInt(value.oldprice))*100)}%</p>
