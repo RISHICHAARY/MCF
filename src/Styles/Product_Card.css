@@ -94,8 +94,8 @@
 
 .image-div-1{
     filter: brightness(50%);
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     margin: 0;
     padding: 0;
 }
@@ -385,11 +385,11 @@
 
 @media screen and (max-width: 540px) {
 .display-column {
-    -ms-flex: 100%;
-    flex: 100%;
+    -ms-flex: 41%;
+    flex: 41%;
     float: none;
-    width: 100%;
-    max-width: 100%;
+    width: 41%;
+    max-width: 41%;
     font-size: auto;
 }
 .image-div-1{
@@ -399,4 +399,103 @@
 .Cate-text{
     font-size: 1rem;
 }
+.image{
+    max-height: 150px;
 }
+.view-button{
+    font-size: 1.2rem;
+}
+.wish-button{
+    font-size: 1.2rem;
+}
+.product-price{
+    font-size: 1.2rem;
+}
+.strike{
+    font-size: 1rem;
+}
+}
+
+@media screen and (max-width: 360px) {
+    .display-column {
+        -ms-flex: 41%;
+        flex: 41%;
+        float: none;
+        width: 41%;
+        max-width: 41%;
+        font-size: auto;
+    }
+    .image-div-1{
+        height: 100px;
+        width: 100px;
+    }
+    .Cate-text{
+        font-size: 1rem;
+    }
+    .image{
+        max-height: 125px;
+    }
+    .view-button{
+        font-size: 1rem;
+    }
+    .wish-button{
+        font-size: 1rem;
+    }
+    .product-price{
+        font-size: 1rem;
+    }
+    .add-button{
+        font-size: 0.9rem;
+        padding:0 0.3em;
+    }
+    .strike{
+        font-size: 0.9rem;
+    }
+    }
+
+    @media screen and (max-width: 280px) {
+        .display-column {
+            -ms-flex: 47%;
+            flex: 47%;
+            float: none;
+            width: 47%;
+            max-width: 47%;
+            font-size: auto;
+            margin: 0.2rem;
+        }
+        .image-div-1{
+            height: 100px;
+            width: 100px;
+        }
+        .Cate-text{
+            font-size: 1rem;
+        }
+        .image{
+            max-height: 125px;
+        }
+        .view-button{
+            font-size: 0.8rem;
+        }
+        .wish-button{
+            font-size: 0.8rem;
+        }
+        .product-price{
+            font-size: 0.9rem;
+        }
+        .add-button{
+            font-size: 0.8rem;
+            padding:0 0.2em;
+        }
+        .strike{
+            font-size: 0.8rem;
+        }
+        .product-name{
+            font-size: 0.9rem;
+        }
+        .product-discount-div{
+            font-size: 0.5rem;
+        }
+        .see-more{
+            font-size: 1rem;
+        }
+        }

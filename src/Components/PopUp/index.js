@@ -18,8 +18,8 @@ export default function Popup({ open,onClose }){
           <div className="PopUp">
             <button onClick={onClose} className="close"><i class="fi fi-rr-cross"></i></button>
             <br></br>
+            <h1 className="popup-h1">Magic Offers</h1>
             <div className='content-popup'>
-              <h1 className="popup-h1">Magic Corner Offers</h1>
               {
                 Offers.map((value)=>{
                   return(
