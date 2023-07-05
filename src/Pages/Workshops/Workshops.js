@@ -83,13 +83,14 @@ function Workshop() {
                 setModes(response.data);
                 Axios.get('https://bored-wasp-top-hat.cyclic.app/getWReview').then((response) => {
                         setpeople(response.data);
+                        if(response.data.length !== 0){
                         setRName(response.data[0].name);
                         setRLoc(response.data[0].loc);
                         setRReview(response.data[0].rev);
                         setRRating(response.data[0].rating);
                         setActiveImage(response.data[0].image[0]);
                         setNonActiveImage(response.data[0].image);
-                        setLength(response.data.length);
+                        setLength(response.data.length);}
                         setLoading(false);
                     })
             })
@@ -333,6 +334,7 @@ const handleTouchMove = (e) => {
                         <h2>REVIEWS</h2>
                         <div className="underline"></div>
                     </div>
+                    {(people.length !==0)?
                     <article className="review">
                         <div className='flex-container'>
                             <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
@@ -387,7 +389,10 @@ const handleTouchMove = (e) => {
                             <FaChevronRight />
                             </button>
                         </div>
-                    </article>
+                    </article>:
+                    <div className='SupDiv'>
+                    <p>NO REVIEWS</p>
+                </div>}
                 </section>
             </div>
             </>

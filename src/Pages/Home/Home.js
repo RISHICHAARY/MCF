@@ -143,13 +143,14 @@ function Display(){
                     setCategory(response.data);
                     Axios.get('https://bored-wasp-top-hat.cyclic.app/getReview').then((response) => {
                         setpeople(response.data);
+                        if(response.data.length !== 0){
                         setRName(response.data[0].name);
                         setRLoc(response.data[0].loc);
                         setRReview(response.data[0].rev);
                         setRRating(response.data[0].rating);
                         setActiveImage(response.data[0].image[0]);
                         setNonActiveImage(response.data[0].image);
-                        setLength(response.data.length);
+                        setLength(response.data.length);}
                         if(Location.state !== null){
                             if(Location.state.user !== undefined){
                                 Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
@@ -258,7 +259,7 @@ function Display(){
                 {
                     (Category.length === 0)?
                     <div className='SupDiv'>
-                        <p className='product-price'>NO CATEGORIES</p>
+                        <p>NO CATEGORIES</p>
                     </div>:
                     <>{
                     Category.map((value)=>{
@@ -310,7 +311,7 @@ function Display(){
                     <main class="nothing-content">
                         {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
-                        <h2 className='noproduct-text'>No Products found</h2>
+                        <p>NO PRODUCTS</p>
                     </main>
                     :
                     <>{
@@ -418,7 +419,7 @@ function Display(){
                     <main class="nothing-content">
                         {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
-                        <h2 className='noproduct-text'>No Products found</h2>
+                        <p>NO PRODUCTS</p>
                     </main>
                     :
                     <>{
@@ -524,6 +525,7 @@ function Display(){
                         <h2>REVIEWS</h2>
                         <div className="underline"></div>
                     </div>
+                    {(people.length !== 0)?
                     <article className="review">
                         <div className='flex-container'>
                             <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
@@ -578,7 +580,10 @@ function Display(){
                             <FaChevronRight />
                             </button>
                         </div>
-                    </article>
+                    </article>:
+                    <div className='SupDiv'>
+                    <p>NO REVIEWS</p>
+                </div>}
                 </section>
             </div>
             </>
