@@ -363,7 +363,7 @@ function Filter() {
                         {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
                         <h2 className='noproduct-text'>No Products found</h2>
-                        </main>
+                    </main>
                     :
                     Products.map((value) => {
                     return(

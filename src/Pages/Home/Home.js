@@ -13,7 +13,9 @@ import banner2 from '../../Images/banner_2.png'
 import banner3 from '../../Images/banner_3.png'
 import '../../Styles/Product_Card.css';
 import './Home.css';
-import '../../Components/Reviews/review.css'
+import '../../Components/Reviews/review.css';
+
+import NoProduct from '../../Images/NoProduct.png';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function Display(){
@@ -254,6 +256,11 @@ function Display(){
             <div className='categories display-row'>
                 <p className='D-header'>CATEGORIES</p>
                 {
+                    (Category.length === 0)?
+                    <div className='SupDiv'>
+                        <p className='product-price'>NO CATEGORIES</p>
+                    </div>:
+                    <>{
                     Category.map((value)=>{
                         return(
                             <>
@@ -292,16 +299,25 @@ function Display(){
                         }
                         </>
                         );
-                    })
+                    })}</>
                 }
             </div>
             <div className='display-row tp'>
                 <p className='D-header'>HOT DEALS</p>
                 <div className="underline"></div>
                 {
+                    (Products.length === 0)?
+                    <main class="nothing-content">
+                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
+                        <img className='noprouduct-img' src={NoProduct} alt="no product" />
+                        <h2 className='noproduct-text'>No Products found</h2>
+                    </main>
+                    :
+                    <>{
                     Products.slice(0,9).map((value) => {
                     return(
                         // Product cart
+                        <>
                         <div className='display-column' key={value._id} >
                             <div className='image-div'>
                                 {
@@ -377,19 +393,20 @@ function Display(){
                             </div>
                             <div className='clear'></div>
                         </div>
+                        <div className='display-column see-more-div'>
+                        <div className='contents-div'>
+                            {
+                                (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>
+                            }
+                        </div>
+                        </div>
+                        </>
                         );
                     }
                     )
-                }
-                <div className='display-column see-more-div'>
-                <div className='contents-div'>
-                    {
-                        (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                        (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                        <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>
-                    }
-                </div>
-                </div>
+                }</>}
             </div>
 
 
@@ -397,9 +414,18 @@ function Display(){
                 <p className='D-header'>UNDER 500</p>
                 <div className="underline"></div>
                 {
+                    (ProductsUFH.length === 0)?
+                    <main class="nothing-content">
+                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
+                        <img className='noprouduct-img' src={NoProduct} alt="no product" />
+                        <h2 className='noproduct-text'>No Products found</h2>
+                    </main>
+                    :
+                    <>{
                     ProductsUFH.slice(0,9).map((value) => {
                     return(
                         // Product cart
+                        <>
                         <div className='display-column' key={value._id} >
                             <div className='image-div'>
                                 {
@@ -475,19 +501,21 @@ function Display(){
                             </div>
                             <div className='clear'></div>
                         </div>
+                        <div className='display-column see-more-div'>
+                        <div className='contents-div'>
+                            {
+                                (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>
+                            }
+                        </div>
+                        </div>
+                        </>
                         );
                     }
-                    )
+                    )}
+                    </>
                 }
-                <div className='display-column see-more-div'>
-                <div className='contents-div'>
-                    {
-                        (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                        (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                        <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>
-                    }
-                </div>
-                </div>
             </div>
             <OurMission/>
             <div className="main-review-div">
