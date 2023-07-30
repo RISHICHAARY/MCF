@@ -394,20 +394,20 @@ function Display(){
                             <div className='clear'></div>
                         </div>
                         <div className='display-column see-more-div'>
-                        <div className='contents-div'>
-                            {
-                                (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                                (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
-                                <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>
-                            }
-                        </div>
                         </div>
                         </>
                         );
                     }
                     )
                 }</>}
-            </div>
+                <div className='contents-div'>
+                            {
+                                (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                (Location.state.user === undefined)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
+                                <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>
+                            }
+                        </div>
+                </div>
 
 
             <div className='display-row tp'>
@@ -500,7 +500,13 @@ function Display(){
                             </div>
                             <div className='clear'></div>
                         </div>
-                        <div className='display-column see-more-div'>
+                        </>
+                        );
+                    }
+                    )}
+                    </>
+                }
+                <div className='display-column see-more-div'>
                         <div className='contents-div'>
                             {
                                 (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Ye"}}><h2 className='see-more'>SEE MORE</h2></Link>:
@@ -509,12 +515,6 @@ function Display(){
                             }
                         </div>
                         </div>
-                        </>
-                        );
-                    }
-                    )}
-                    </>
-                }
             </div>
             <OurMission/>
             <div className="main-review-div">
