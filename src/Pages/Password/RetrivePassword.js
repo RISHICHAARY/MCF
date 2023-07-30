@@ -20,10 +20,10 @@ function RetrivePassword(){
 
     useEffect(
         () =>{
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/allUsers").then((response) => {
+            Axios.get("https://busy-lion-umbrella.cyclic.app/allUsers").then((response) => {
                 setUsers_list(response.data);
             });
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/allAdmins").then((response) => {
+            Axios.get("https://busy-lion-umbrella.cyclic.app/allAdmins").then((response) => {
                 setAdmins_list(response.data);
             });
         } , []

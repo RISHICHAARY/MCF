@@ -37,19 +37,19 @@ function AdminDashBoard(){
 
     const AddReply = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+        Axios.put("https://busy-lion-umbrella.cyclic.app/addReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                    Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                            Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                 setContactQueries(response1.data);
                                 QueryCheck(response.data);})
                         } )
@@ -62,19 +62,19 @@ function AdminDashBoard(){
 
     const AddContactReply = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addContactReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+        Axios.put("https://busy-lion-umbrella.cyclic.app/addContactReply" , { id : id , answer : Reply  , sender : Location.state.id }).then(()=>{
+            Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                    Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                            Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                 setContactQueries(response1.data);
                                 QueryCheck(response.data , response1.data );})
                         } )
@@ -86,8 +86,8 @@ function AdminDashBoard(){
     }
 
     const QueryCheck =(Received , Received1) =>{
-        Axios.get("https://bored-wasp-top-hat.cyclic.app/entireQueries").then((response)=>{
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/entireContactQueries").then((response1)=>{
+        Axios.get("https://busy-lion-umbrella.cyclic.app/entireQueries").then((response)=>{
+            Axios.get("https://busy-lion-umbrella.cyclic.app/entireContactQueries").then((response1)=>{
                 if(Received === undefined && Received1 === undefined){
                     setQueryPercentage("0")
                 }
@@ -135,20 +135,20 @@ function AdminDashBoard(){
 
     const AddOffer = () => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
+        Axios.put("https://busy-lion-umbrella.cyclic.app/addOffers" , { name : OfferName , min : OfferMin , discount : OfferValue , type : OfferType }).then(
             ()=>{
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                            Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                                Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -163,19 +163,19 @@ function AdminDashBoard(){
 
     const DeleteOrder = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteOrder" , {id : id}).then(()=>{
-            Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+        Axios.put("https://busy-lion-umbrella.cyclic.app/deleteOrder" , {id : id}).then(()=>{
+            Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
                 setOrders(response.data);
                 Calculations(response.data);
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setUserData(response.data[0]);
-                    Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                    Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                         setOffers(response.data);
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                                Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -189,18 +189,18 @@ function AdminDashBoard(){
 
     const UpdateOrder = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/updateOrder" , { id : id , status : Status }).then(
+        Axios.put("https://busy-lion-umbrella.cyclic.app/updateOrder" , { id : id , status : Status }).then(
             ()=>{
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                                Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -214,20 +214,20 @@ function AdminDashBoard(){
 
     const DeleteOffer = (id) => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteOffers" , { id: id }).then(
+        Axios.put("https://busy-lion-umbrella.cyclic.app/deleteOffers" , { id: id }).then(
             ()=>{
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
                     setOrders(response.data);
                     Calculations(response.data);
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setUserData(response.data[0]);
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                             setOffers(response.data);
-                            Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                            Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                                 setEnrollments(response.data)
-                                Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                                Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                                     setQueries(response.data);
-                                    Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                                    Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })
@@ -241,18 +241,18 @@ function AdminDashBoard(){
 
     useEffect(()=>{
         setLoading(true);
-        Axios.get("https://bored-wasp-top-hat.cyclic.app/getOrders").then((response)=>{
+        Axios.get("https://busy-lion-umbrella.cyclic.app/getOrders").then((response)=>{
             setOrders(response.data);
             Calculations(response.data);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+            Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setUserData(response.data[0]);
-                Axios.get("https://bored-wasp-top-hat.cyclic.app/getOffers").then((response)=>{
+                Axios.get("https://busy-lion-umbrella.cyclic.app/getOffers").then((response)=>{
                     setOffers(response.data);
-                    Axios.get("https://bored-wasp-top-hat.cyclic.app/getEnrollments").then((response)=>{
+                    Axios.get("https://busy-lion-umbrella.cyclic.app/getEnrollments").then((response)=>{
                         setEnrollments(response.data)
-                        Axios.get("https://bored-wasp-top-hat.cyclic.app/allQueries").then( (response)=>{
+                        Axios.get("https://busy-lion-umbrella.cyclic.app/allQueries").then( (response)=>{
                             setQueries(response.data);
-                            Axios.get("https://bored-wasp-top-hat.cyclic.app/allContactQueries").then( (response1)=>{
+                            Axios.get("https://busy-lion-umbrella.cyclic.app/allContactQueries").then( (response1)=>{
                                     setContactQueries(response1.data);
                                     QueryCheck(response.data , response1.data);
                             })

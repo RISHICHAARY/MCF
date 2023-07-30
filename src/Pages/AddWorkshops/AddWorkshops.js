@@ -67,7 +67,7 @@ function Products(){
     useEffect(() => {
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/addWorkshop" , 
+                Axios.put("https://busy-lion-umbrella.cyclic.app/addWorkshop" , 
                     {
                         image_url : FileUrls,
                         name : Name,
@@ -86,7 +86,7 @@ function Products(){
     } , [FileUrls])
 
     useEffect(()=>{
-        Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+        Axios.get('https://busy-lion-umbrella.cyclic.app/getMode').then((response) => {
             setModes(response.data);
             setLoading(false);
         })

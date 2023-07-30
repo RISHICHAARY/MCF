@@ -14,8 +14,8 @@ function Chat(){
     const [ Conversations , setConversations ] = useState([]);
 
     const AddQuery = () => {
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("https://busy-lion-umbrella.cyclic.app/addQuery" , { question : Message , user : Location.state.id }).then(()=>{
+            Axios.put("https://busy-lion-umbrella.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
                 setConversations(response.data);
                 setMessage("");
             })
@@ -23,7 +23,7 @@ function Chat(){
     }
 
     useEffect(()=>{
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
+        Axios.put("https://busy-lion-umbrella.cyclic.app/getQuery" , { id : Location.state.id }).then((response)=>{
             setConversations(response.data);
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps

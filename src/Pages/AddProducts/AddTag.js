@@ -28,7 +28,7 @@ function Tag(){
     const upload = () => {
         if(Verify){
             setLoading(true);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/addTag" , 
+            Axios.put("https://busy-lion-umbrella.cyclic.app/addTag" , 
                 {
                     name : Name.toUpperCase(),
                 }).then(() => {

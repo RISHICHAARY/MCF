@@ -20,7 +20,7 @@ function Upload_User(){
 
     const resend = () =>{
         setResend(false);
-        Axios.post("https://bored-wasp-top-hat.cyclic.app/userMailer" , {
+        Axios.post("https://busy-lion-umbrella.cyclic.app/userMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -30,7 +30,7 @@ function Upload_User(){
 
     useEffect(
         ()=>{
-            Axios.post("https://bored-wasp-top-hat.cyclic.app/userMailer" , {
+            Axios.post("https://busy-lion-umbrella.cyclic.app/userMailer" , {
                 name : Location.state.name,
                 otp : Location.state.otp,
                 mail : Location.state.email,
@@ -45,7 +45,7 @@ function Upload_User(){
         const FileReference = ref(storage , `User_DP/${Location.state.file.name+Location.state.name+Location.state.email}`);
         uploadBytes(FileReference , Location.state.file).then((FileData) => {
             getDownloadURL(FileData.ref).then((url) => {
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/addUser" , 
+                Axios.put("https://busy-lion-umbrella.cyclic.app/addUser" , 
                 {
                     image_url : url,
                     name : Location.state.name,
@@ -59,7 +59,7 @@ function Upload_User(){
                     pcode : Location.state.pincode,
                     password : Location.state.password
                 }).then(()=>{
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/User",{emai:Location.state.email}).then((result)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/User",{emai:Location.state.email}).then((result)=>{
                         setLoading(false);
                         Navigate('/',{state:{name:Location.state.name,user:Location.state.email,page:"H",type:"user",status:"LoggedIn",id:result.data._id}});
                     })
@@ -69,7 +69,7 @@ function Upload_User(){
     }
     else{
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/addUser" , 
+        Axios.put("https://busy-lion-umbrella.cyclic.app/addUser" , 
                 {
                     image_url : "https://firebasestorage.googleapis.com/v0/b/codemath-99434.appspot.com/o/ProFo.png?alt=media&token=04fe1a30-816b-435c-8653-d14466b64fcb",
                     name : Location.state.name,
@@ -83,7 +83,7 @@ function Upload_User(){
                     pcode : Location.state.pincode,
                     password : Location.state.password
                 }).then(()=>{
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/User",{email:Location.state.email}).then((result)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/User",{email:Location.state.email}).then((result)=>{
                         Navigate('/',{state:{name:Location.state.name,user:Location.state.email,page:"H",type:"user",status:"LoggedIn",id:result.data[0]._id}});
                     })
                 })

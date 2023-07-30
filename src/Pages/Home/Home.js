@@ -125,8 +125,8 @@ function Display(){
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("https://busy-lion-umbrella.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
                 setLoading(false);
             })
@@ -135,13 +135,13 @@ function Display(){
 
     useEffect( () => {
         setLoading(true);
-        Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllFeaturedProducts').then((response) => {
+        Axios.get('https://busy-lion-umbrella.cyclic.app/getAllFeaturedProducts').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getProductsUFH').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getProductsUFH').then((response) => {
                 setProductsUFH(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                     setCategory(response.data);
-                    Axios.get('https://bored-wasp-top-hat.cyclic.app/getReview').then((response) => {
+                    Axios.get('https://busy-lion-umbrella.cyclic.app/getReview').then((response) => {
                         setpeople(response.data);
                         if(response.data.length !== 0){
                         setRName(response.data[0].name);
@@ -153,7 +153,7 @@ function Display(){
                         setLength(response.data.length);}
                         if(Location.state !== null){
                             if(Location.state.user !== undefined){
-                                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                                Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                                     setCartItems(response.data[0].wishlist);
                                     setLoading(false);
                                 })
@@ -309,7 +309,6 @@ function Display(){
                 {
                     (Products.length === 0)?
                     <main class="nothing-content">
-                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
                         <p>NO PRODUCTS</p>
                     </main>
@@ -361,7 +360,7 @@ function Display(){
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -375,7 +374,7 @@ function Display(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });
@@ -417,7 +416,6 @@ function Display(){
                 {
                     (ProductsUFH.length === 0)?
                     <main class="nothing-content">
-                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
                         <p>NO PRODUCTS</p>
                     </main>
@@ -469,7 +467,7 @@ function Display(){
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -483,7 +481,7 @@ function Display(){
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });
@@ -529,39 +527,7 @@ function Display(){
                     <article className="review">
                         <div className='flex-container'>
                             <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-                                {/*<button className='prev-button-rev' onClick={()=>{
-                                    var f = ActiveValue;
-                                    if(ActiveValue > 0){
-                                    setActiveValue(ActiveValue-1);
-                                    f=f-1;
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    else{
-                                    setActiveValue(NonActiveImage.length-1);
-                                    f=NonActiveImage.length-1
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    }}
-                                >
-                                        <i class="fi fi-rr-angle-left"></i>
-                                </button>*/}
                                 <img src={ActiveImage} alt="MainImage" className="active-image-rev" />
-                                {/*<button className='next-button-rev' onClick={()=>{
-                                    var f = ActiveValue;
-                                    if(ActiveValue < NonActiveImage.length-1){
-                                    setActiveValue(ActiveValue+1);
-                                    f=f+1;
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    else{
-                                    setActiveValue(0);
-                                    f=0;
-                                    setActiveImage(NonActiveImage[0]);
-                                    }
-                                    }}
-                                >
-                                        <i class="fi fi-rr-angle-right"></i>
-                                </button>*/}
                             </div>
                             <div className='flex-child'>
                                 <div className='inner-rev-det'>

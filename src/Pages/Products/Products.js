@@ -33,11 +33,11 @@ function Filter() {
         event.preventDefault();
         if(SearchThis === null){return;}
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSearch" , {name : SearchThis.toUpperCase()}).then((response)=> {
+        Axios.put("https://busy-lion-umbrella.cyclic.app/getSearch" , {name : SearchThis.toUpperCase()}).then((response)=> {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                     setAvaTag(response.data);
                     setLoading(false);})});
         })
@@ -45,14 +45,14 @@ function Filter() {
 
     const Search2 = () => {
         setLoading(true);
-        Axios.put("https://bored-wasp-top-hat.cyclic.app/getSearch" , {name : Location.state.search.toUpperCase()}).then((response)=> {
+        Axios.put("https://busy-lion-umbrella.cyclic.app/getSearch" , {name : Location.state.search.toUpperCase()}).then((response)=> {
             setProducts(response.data);
             if(Location.state.user !== undefined){
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                     setCartItems(response.data[0].wishlist);
-                    Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                    Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
             })}
@@ -65,14 +65,14 @@ function Filter() {
     const Sort = () => {
         if(SortThis === null){
             setLoading(true);
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
                 setProducts(response.data);
                     if(Location.state.user !== undefined){
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                             setCartItems(response.data[0].wishlist);
-                            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
                         })
@@ -84,14 +84,14 @@ function Filter() {
         }
         else if(SortThis === "1"){
             setLoading(true);
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProductsSPA' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProductsSPA' , {Category : Category , Tag : Tag}).then((response) => {
                 setProducts(response.data);
                     if(Location.state.user !== undefined){
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                             setCartItems(response.data[0].wishlist);
-                            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
                         })
@@ -103,14 +103,14 @@ function Filter() {
         }
         else if(SortThis === "2"){
             setLoading(true);
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProductsSPD' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProductsSPD' , {Category : Category , Tag : Tag}).then((response) => {
                 setProducts(response.data);
                     if(Location.state.user !== undefined){
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                             setCartItems(response.data[0].wishlist);
-                            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                                 setAvaCategory(response.data);
-                                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
                         })
@@ -122,14 +122,14 @@ function Filter() {
         }
         else if(SortThis === "3"){
             setLoading(true);
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProductsSNA' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProductsSNA' , {Category : Category , Tag : Tag}).then((response) => {
                 setProducts(response.data);
                     if(Location.state.user !== undefined){
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                             setCartItems(response.data[0].wishlist);
-                            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
                         })
@@ -141,14 +141,14 @@ function Filter() {
         }
         else if(SortThis === "4"){
             setLoading(true);
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProductsSND' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProductsSND' , {Category : Category , Tag : Tag}).then((response) => {
                 setProducts(response.data);
                     if(Location.state.user !== undefined){
-                        Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                        Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                             setCartItems(response.data[0].wishlist);
-                            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
                         })
@@ -172,12 +172,12 @@ function Filter() {
                 OnPageCart.splice(j,1);
             }
         }
-		Axios.put("https://bored-wasp-top-hat.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
-			Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+		Axios.put("https://busy-lion-umbrella.cyclic.app/deleteWishList" , {id:Location.state.id , type : Location.state.type , file : CartItems}).then(()=>{
+			Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                 setCartItems(response.data[0].wishlist);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
             })
@@ -186,13 +186,13 @@ function Filter() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/DeleteProduct' , {id : id}).then(() =>{
+        Axios.put('https://busy-lion-umbrella.cyclic.app/DeleteProduct' , {id : id}).then(() =>{
             alert("Product Deleted");
-            Axios.put('https://bored-wasp-top-hat.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
+            Axios.put('https://busy-lion-umbrella.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
         });
@@ -203,11 +203,11 @@ function Filter() {
 
     const Filter = () => {
         setLoading(true);
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
+        Axios.put('https://busy-lion-umbrella.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
         });
@@ -215,13 +215,13 @@ function Filter() {
 
     const Filter2 = () => {
         setLoading(true);
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/getProducts' , {Category : Location.state.Cata , Tag : Tag}).then((response) => {
+        Axios.put('https://busy-lion-umbrella.cyclic.app/getProducts' , {Category : Location.state.Cata , Tag : Tag}).then((response) => {
             setCategory(Location.state.Cata);
             setExpandFilter(true);
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                                 setLoading(false);})});
         });
@@ -233,14 +233,14 @@ function Filter() {
         else if(Location.state.Cata !== undefined){Filter2()}
         else if(Location.state.HS !== undefined){
             if(Location.state.HS === "Yes"){
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllFeaturedProducts').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getAllFeaturedProducts').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                 if(Location.state.user !== undefined){
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setCartItems(response.data[0].wishlist);
                         setLoading(false);
                 })}
@@ -250,14 +250,14 @@ function Filter() {
             })})
     })}
     else if(Location.state.HS === "Ye"){
-        Axios.get('https://bored-wasp-top-hat.cyclic.app/getProductsUFH').then((response) => {
+        Axios.get('https://busy-lion-umbrella.cyclic.app/getProductsUFH').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                 if(Location.state.user !== undefined){
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setCartItems(response.data[0].wishlist);
                         setLoading(false);
                 })}
@@ -269,14 +269,14 @@ function Filter() {
     }
         }
         else{
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
+        Axios.put('https://busy-lion-umbrella.cyclic.app/getProducts' , {Category : Category , Tag : Tag}).then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getCategory').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getCategory').then((response) => {
                 setAvaCategory(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getTag').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getTag').then((response) => {
                                 setAvaTag(response.data);
                 if(Location.state.user !== undefined){
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/getCart" , {type : Location.state.type , id:Location.state.id}).then((response)=>{
                         setCartItems(response.data[0].wishlist);
                         setLoading(false);
                 })}
@@ -385,7 +385,7 @@ function Filter() {
                                     <>
                                     <button className='delete-button' onClick={() => {delete_product(value._id)}}><i class="fi fi-sr-trash"></i></button>
                                     <button className='edit-button' onClick={() => {
-                                        Axios.post("https://bored-wasp-top-hat.cyclic.app/getProducts",{id : value._id}); 
+                                        Axios.post("https://busy-lion-umbrella.cyclic.app/getProducts",{id : value._id}); 
                                         Navigate('/editProducts' , 
                                         {
                                             state:{id : value._id , name: value.name , 
@@ -430,7 +430,7 @@ function Filter() {
                                         <button className='add-button'
                                         onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToCart" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id , cuz:null , quant:"1"}).then(() =>{
                                                 setLoading(false);
                                                 Navigate("/cart" , { state: {status: Location.state.status, name : Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id} })
                                             });
@@ -444,7 +444,7 @@ function Filter() {
                                             <button className='wish-button'
                                          onClick={() =>{
                                             setLoading(true);
-                                            Axios.put("https://bored-wasp-top-hat.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
+                                            Axios.put("https://busy-lion-umbrella.cyclic.app/addToWishList" , {type : Location.state.type , id:Location.state.id , user:Location.state.user , product_id:value._id}).then(() =>{
                                                 setOnPageCart((p) => [...p , value._id])
                                                 setLoading(false);
                                             });

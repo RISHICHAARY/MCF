@@ -43,14 +43,14 @@ export default function PaymentForm(state , {Received}) {
         try {
             setLoading(true);
             const {id} = paymentMethod
-            const response = await axios.post("https://bored-wasp-top-hat.cyclic.app/payment", {
+            const response = await axios.post("https://busy-lion-umbrella.cyclic.app/payment", {
                 amount: Location.total*100,
                 id,
                 name : Location.name+" for Workshop "+Location.wn,
             })
 
             if(response.data.success) {
-                axios.put("https://bored-wasp-top-hat.cyclic.app/addEnrollment" , { wg : Location.wg , wn : Location.wn, type : Location.type , id : Location.id , name : Location.name , mobile : Location.mobile , email : Location.email , total : Location.total }).then(
+                axios.put("https://busy-lion-umbrella.cyclic.app/addEnrollment" , { wg : Location.wg , wn : Location.wn, type : Location.type , id : Location.id , name : Location.name , mobile : Location.mobile , email : Location.email , total : Location.total }).then(
                 ()=>{
                     setLoading(false);
                     Navigate("/Confirmed" , { state: {status: Location.status, name : Location.name , user:Location.email , type:Location.type , id:Location.id}});

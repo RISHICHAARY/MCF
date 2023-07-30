@@ -65,7 +65,7 @@ function Products(){
         if(FileUrls.length !== 0){
             if(FileUrls.length === File.length){
                 setLoading(true);
-                Axios.put("https://bored-wasp-top-hat.cyclic.app/addReview" , 
+                Axios.put("https://busy-lion-umbrella.cyclic.app/addReview" , 
                             {
                                 image_url : FileUrls,
                                 name : Name.toUpperCase(),
@@ -112,7 +112,7 @@ function Products(){
         useEffect(() =>{
             if(WFileUrls.length !== 0){
                 if(WFileUrls.length === WFile.length){
-                    Axios.put("https://bored-wasp-top-hat.cyclic.app/addWReview" , 
+                    Axios.put("https://busy-lion-umbrella.cyclic.app/addWReview" , 
                                 {
                                     image_url : WFileUrls,
                                     name : WName.toUpperCase(),

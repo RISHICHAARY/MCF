@@ -35,8 +35,8 @@ function Workshop() {
 
     const delete_product = (id) => {
         setLoading(true);
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.put('https://busy-lion-umbrella.cyclic.app/DeleteWorkshop' , {id : id}).then(() =>{
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
             setLoading(false);
         });
@@ -49,18 +49,18 @@ function Workshop() {
     const Filter2 = (Cata) => {
         setLoading(true);
         if(Cata === "All"){
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             })
         });
         }
         else{
-        Axios.put('https://bored-wasp-top-hat.cyclic.app/getWs' , {Category : Cata}).then((response) => {
+        Axios.put('https://busy-lion-umbrella.cyclic.app/getWs' , {Category : Cata}).then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
                 setLoading(false);
             });
@@ -77,11 +77,11 @@ function Workshop() {
         setLoading(true);
         if(Location.state.Cata !== undefined){Filter2()}
         else{
-        Axios.get('https://bored-wasp-top-hat.cyclic.app/getAllWorkshops').then((response) => {
+        Axios.get('https://busy-lion-umbrella.cyclic.app/getAllWorkshops').then((response) => {
             setProducts(response.data);
-            Axios.get('https://bored-wasp-top-hat.cyclic.app/getMode').then((response) => {
+            Axios.get('https://busy-lion-umbrella.cyclic.app/getMode').then((response) => {
                 setModes(response.data);
-                Axios.get('https://bored-wasp-top-hat.cyclic.app/getWReview').then((response) => {
+                Axios.get('https://busy-lion-umbrella.cyclic.app/getWReview').then((response) => {
                         setpeople(response.data);
                         if(response.data.length !== 0){
                         setRName(response.data[0].name);
@@ -241,7 +241,6 @@ const handleTouchMove = (e) => {
                 {
                     (Products.length === 0)?
                     <main class="nothing-content">
-                        {/* <div class="nothing-loader"><h2 class="text text-center">No product found.</h2><br></br></div> */}
                         <img className='noprouduct-img' src={NoProduct} alt="no product" />
                         <h2 className='noproduct-text'>No Workshops found</h2>
                         </main>
@@ -338,39 +337,7 @@ const handleTouchMove = (e) => {
                     <article className="review">
                         <div className='flex-container'>
                             <div className='flex-child' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-                                {/*<button className='prev-button-rev' onClick={()=>{
-                                    var f = ActiveValue;
-                                    if(ActiveValue > 0){
-                                    setActiveValue(ActiveValue-1);
-                                    f=f-1;
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    else{
-                                    setActiveValue(NonActiveImage.length-1);
-                                    f=NonActiveImage.length-1
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    }}
-                                >
-                                        <i class="fi fi-rr-angle-left"></i>
-                                </button>*/}
                                 <img src={ActiveImage} alt="MainImage" className="active-image-rev" />
-                                {/*<button className='next-button-rev' onClick={()=>{
-                                    var f = ActiveValue;
-                                    if(ActiveValue < NonActiveImage.length-1){
-                                    setActiveValue(ActiveValue+1);
-                                    f=f+1;
-                                    setActiveImage(NonActiveImage[f]);
-                                    }
-                                    else{
-                                    setActiveValue(0);
-                                    f=0;
-                                    setActiveImage(NonActiveImage[0]);
-                                    }
-                                    }}
-                                >
-                                        <i class="fi fi-rr-angle-right"></i>
-                                </button>*/}
                             </div>
                             <div className='flex-child'>
                                 <div className='inner-rev-det'>

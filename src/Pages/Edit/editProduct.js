@@ -34,7 +34,7 @@ function EditProducts(){
 
     const update = (id) => {
         setLoading(true);
-            Axios.put("https://bored-wasp-top-hat.cyclic.app/updateProducts" , 
+            Axios.put("https://busy-lion-umbrella.cyclic.app/updateProducts" , 
             {
                 id : id,
                 name : Name,
