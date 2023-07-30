@@ -393,13 +393,12 @@ function Display(){
                             </div>
                             <div className='clear'></div>
                         </div>
-                        <div className='display-column see-more-div'>
-                        </div>
                         </>
                         );
                     }
                     )
                 }</>}
+                <div className='display-column see-more-div'></div>
                 <div className='contents-div'>
                             {
                                 (Location.state === null)?<Link to="/Products" state={{page:"P" , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>:
@@ -407,6 +406,7 @@ function Display(){
                                 <Link to="/Products" state={{page : "P", status: Location.state.status, name: Location.state.name , user:Location.state.user , type:Location.state.type , id:Location.state.id , HS : "Yes"}}><h2 className='see-more'>SEE MORE</h2></Link>
                             }
                         </div>
+                
                 </div>
 
 
